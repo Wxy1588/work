@@ -1,0 +1,5924 @@
+{
+  "questions": [
+    {
+      "id": "g7-上-001",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "wh-特殊疑问句",
+      "stem": "—________ do you like sports? —Because they can make me healthy.",
+      "options": [
+        {
+          "key": "A",
+          "text": "What"
+        },
+        {
+          "key": "B",
+          "text": "Why"
+        },
+        {
+          "key": "C",
+          "text": "Where"
+        },
+        {
+          "key": "D",
+          "text": "When"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-上-002",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "wh-特殊疑问句",
+      "stem": "—________ are they talking to? —I am not sure. Maybe a new teacher.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Who"
+        },
+        {
+          "key": "B",
+          "text": "What"
+        },
+        {
+          "key": "C",
+          "text": "When"
+        },
+        {
+          "key": "D",
+          "text": "Where"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-上-003",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "wh-特殊疑问句",
+      "stem": "— ________ do you do in the evening? — I do my homework or watch TV.",
+      "options": [
+        {
+          "key": "A",
+          "text": "What"
+        },
+        {
+          "key": "B",
+          "text": "When"
+        },
+        {
+          "key": "C",
+          "text": "Where"
+        },
+        {
+          "key": "D",
+          "text": "Why"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-上-004",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "wh-特殊疑问句",
+      "stem": "—________ are koalas from? —Australia.",
+      "options": [
+        {
+          "key": "A",
+          "text": "When"
+        },
+        {
+          "key": "B",
+          "text": "What"
+        },
+        {
+          "key": "C",
+          "text": "Why"
+        },
+        {
+          "key": "D",
+          "text": "Where"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-上-005",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "wh-特殊疑问句",
+      "stem": "—________ animals do you like? —I like pandas from China.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Where"
+        },
+        {
+          "key": "B",
+          "text": "Why"
+        },
+        {
+          "key": "C",
+          "text": "What"
+        },
+        {
+          "key": "D",
+          "text": "When"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-上-006",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "wh-特殊疑问句",
+      "stem": "—________ do you like dolphins? —Because they are very smart.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Why"
+        },
+        {
+          "key": "B",
+          "text": "Where"
+        },
+        {
+          "key": "C",
+          "text": "When"
+        },
+        {
+          "key": "D",
+          "text": "What"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-上-007",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "含实义动词的一般现在时结构",
+      "stem": "Our school ________ the library for students every weekday.",
+      "options": [
+        {
+          "key": "A",
+          "text": "opened"
+        },
+        {
+          "key": "B",
+          "text": "will open"
+        },
+        {
+          "key": "C",
+          "text": "opens"
+        },
+        {
+          "key": "D",
+          "text": "is opening"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-上-008",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "含实义动词的一般现在时结构",
+      "stem": "Sarah often ________ AI for painting and it brings her a fresh experience.（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "used"
+        },
+        {
+          "key": "B",
+          "text": "uses"
+        },
+        {
+          "key": "C",
+          "text": "will use"
+        },
+        {
+          "key": "D",
+          "text": "is using"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-上-009",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "频度副词",
+      "stem": "— No, I ________ go to the cinema. The tickets are too expensive.",
+      "options": [
+        {
+          "key": "A",
+          "text": "hardly"
+        },
+        {
+          "key": "B",
+          "text": "nearly"
+        },
+        {
+          "key": "C",
+          "text": "still"
+        },
+        {
+          "key": "D",
+          "text": "only"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-上-010",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "频度副词",
+      "stem": "I ________ ride a bike to school. But this morning, I walked to school.",
+      "options": [
+        {
+          "key": "A",
+          "text": "never"
+        },
+        {
+          "key": "B",
+          "text": "hardly"
+        },
+        {
+          "key": "C",
+          "text": "seldom"
+        },
+        {
+          "key": "D",
+          "text": "usually"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-上-011",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "频度副词",
+      "stem": "—No. I ________ eat it. It’s bad for our health.",
+      "options": [
+        {
+          "key": "A",
+          "text": "often"
+        },
+        {
+          "key": "B",
+          "text": "always"
+        },
+        {
+          "key": "C",
+          "text": "sometimes"
+        },
+        {
+          "key": "D",
+          "text": "never"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-上-012",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "there be 句型 be 动词的选用",
+      "stem": "There ________ a small post office and some bookstores in the school.",
+      "options": [
+        {
+          "key": "A",
+          "text": "is"
+        },
+        {
+          "key": "B",
+          "text": "are"
+        },
+        {
+          "key": "C",
+          "text": "am"
+        },
+        {
+          "key": "D",
+          "text": "be"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-上-013",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "一般将来时will",
+      "stem": "My parents and I ________ a big dinner tomorrow evening.",
+      "options": [
+        {
+          "key": "A",
+          "text": "have"
+        },
+        {
+          "key": "B",
+          "text": "had"
+        },
+        {
+          "key": "C",
+          "text": "has"
+        },
+        {
+          "key": "D",
+          "text": "will have"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-上-014",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "一般将来时 be going to",
+      "stem": "I ________ my homework in ten minutes.",
+      "options": [
+        {
+          "key": "A",
+          "text": "is not going to finish"
+        },
+        {
+          "key": "B",
+          "text": "am not going to finish"
+        },
+        {
+          "key": "C",
+          "text": "am finishing to"
+        },
+        {
+          "key": "D",
+          "text": "am going to finishing"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-上-015",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "一般将来时 be going to",
+      "stem": "________ Jack ________ to get up late and then read a book tomorrow?",
+      "options": [
+        {
+          "key": "A",
+          "text": "Does; going"
+        },
+        {
+          "key": "B",
+          "text": "Are; going"
+        },
+        {
+          "key": "C",
+          "text": "Is; go"
+        },
+        {
+          "key": "D",
+          "text": "Is; going"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-上-016",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "一般将来时 be going to",
+      "stem": "— When ________ Henry ________ Hainan Island ( 海南岛 )? — Next Sunday.",
+      "options": [
+        {
+          "key": "A",
+          "text": "did; visit"
+        },
+        {
+          "key": "B",
+          "text": "do; visit"
+        },
+        {
+          "key": "C",
+          "text": "is; going to visit"
+        },
+        {
+          "key": "D",
+          "text": "does; visit"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-上-017",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "if引导条件状语从句",
+      "stem": "— You won’t pass the exam(考试) ________ you don’t work hard. — OK, I’ll do my best.",
+      "options": [
+        {
+          "key": "A",
+          "text": "and"
+        },
+        {
+          "key": "B",
+          "text": "but"
+        },
+        {
+          "key": "C",
+          "text": "if"
+        },
+        {
+          "key": "D",
+          "text": "so"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-上-018",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "if引导条件状语从句",
+      "stem": "You ________ a lot of good friends if you are kind to others.",
+      "options": [
+        {
+          "key": "A",
+          "text": "will make"
+        },
+        {
+          "key": "B",
+          "text": "make"
+        },
+        {
+          "key": "C",
+          "text": "made"
+        },
+        {
+          "key": "D",
+          "text": "have made"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-上-019",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "if引导条件状语从句",
+      "stem": "If I ________ time tomorrow, I will clean the room.",
+      "options": [
+        {
+          "key": "A",
+          "text": "have"
+        },
+        {
+          "key": "B",
+          "text": "will have"
+        },
+        {
+          "key": "C",
+          "text": "had"
+        },
+        {
+          "key": "D",
+          "text": "am having"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-上-020",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "if引导条件状语从句",
+      "stem": "If it ________ tomorrow, we ________ to play basketball in the playground.",
+      "options": [
+        {
+          "key": "A",
+          "text": "won’t rain; go"
+        },
+        {
+          "key": "B",
+          "text": "won’t rain; will go"
+        },
+        {
+          "key": "C",
+          "text": "doesn’t rain; go"
+        },
+        {
+          "key": "D",
+          "text": "doesn’t rain; will go"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-上-021",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "if引导条件状语从句",
+      "stem": "You should see a doctor if you ________ feel well.",
+      "options": [
+        {
+          "key": "A",
+          "text": "didn't"
+        },
+        {
+          "key": "B",
+          "text": "will not"
+        },
+        {
+          "key": "C",
+          "text": "don't"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-上-022",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "一般过去时的用法",
+      "stem": "She watered the flowers ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "tomorrow"
+        },
+        {
+          "key": "B",
+          "text": "sometimes"
+        },
+        {
+          "key": "C",
+          "text": "yesterday morning"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-上-023",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "含实义动词的一般过去时结构",
+      "stem": "— Where did you take these beautiful photos? — I ________ them in the park.",
+      "options": [
+        {
+          "key": "A",
+          "text": "take"
+        },
+        {
+          "key": "B",
+          "text": "will take"
+        },
+        {
+          "key": "C",
+          "text": "took"
+        },
+        {
+          "key": "D",
+          "text": "am taking"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-上-024",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "含实义动词的一般过去时结构",
+      "stem": "Last month ， we ________ Hangzhou and had a great time there. （ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "visit"
+        },
+        {
+          "key": "B",
+          "text": "visited"
+        },
+        {
+          "key": "C",
+          "text": "are visiting"
+        },
+        {
+          "key": "D",
+          "text": "will visit"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-上-025",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "含实义动词的一般过去时结构",
+      "stem": "— Did you see any flowers in the garden? — ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Yes, we did"
+        },
+        {
+          "key": "B",
+          "text": "Yes, we do"
+        },
+        {
+          "key": "C",
+          "text": "No, we don’t"
+        },
+        {
+          "key": "D",
+          "text": "No, we’re not"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-上-026",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "含实义动词的一般过去时结构",
+      "stem": "— When ________ you ________ your old friend? — The day before yesterday.",
+      "options": [
+        {
+          "key": "A",
+          "text": "will; visit"
+        },
+        {
+          "key": "B",
+          "text": "did; visit"
+        },
+        {
+          "key": "C",
+          "text": "was; visit"
+        },
+        {
+          "key": "D",
+          "text": "were; visit"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-上-027",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "⼈称代词",
+      "stem": "My sister Amy likes singing. ________ is in the music club.",
+      "options": [
+        {
+          "key": "A",
+          "text": "His"
+        },
+        {
+          "key": "B",
+          "text": "He"
+        },
+        {
+          "key": "C",
+          "text": "She"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-上-028",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "⼈称代词",
+      "stem": "—Amy, who is the young man in the photo? —________ is my uncle.",
+      "options": [
+        {
+          "key": "A",
+          "text": "She"
+        },
+        {
+          "key": "B",
+          "text": "We"
+        },
+        {
+          "key": "C",
+          "text": "He"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-上-029",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "⼈称代词",
+      "stem": "My sister and I like sports. ________ often go swimming after school.",
+      "options": [
+        {
+          "key": "A",
+          "text": "I"
+        },
+        {
+          "key": "B",
+          "text": "You"
+        },
+        {
+          "key": "C",
+          "text": "We"
+        },
+        {
+          "key": "D",
+          "text": "They"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-上-030",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "形容词性物主代词",
+      "stem": "Jack is my friend. ________ father is a teacher.",
+      "options": [
+        {
+          "key": "A",
+          "text": "He"
+        },
+        {
+          "key": "B",
+          "text": "He’s"
+        },
+        {
+          "key": "C",
+          "text": "Her"
+        },
+        {
+          "key": "D",
+          "text": "His"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-上-031",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "形容词性物主代词",
+      "stem": "My brother loves music, and ________ guitar sounds amazing.",
+      "options": [
+        {
+          "key": "A",
+          "text": "your"
+        },
+        {
+          "key": "B",
+          "text": "their"
+        },
+        {
+          "key": "C",
+          "text": "her"
+        },
+        {
+          "key": "D",
+          "text": "his"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-上-032",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "形容词性物主代词",
+      "stem": "My brother likes reading and ________ favourite book is Charlie and the Chocolate Factory. （ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "your"
+        },
+        {
+          "key": "B",
+          "text": "their"
+        },
+        {
+          "key": "C",
+          "text": "his"
+        },
+        {
+          "key": "D",
+          "text": "her"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-上-033",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "形容词性物主代词",
+      "stem": "________ is Dave. I’m ________ brother.",
+      "options": [
+        {
+          "key": "A",
+          "text": "He; his"
+        },
+        {
+          "key": "B",
+          "text": "She; her"
+        },
+        {
+          "key": "C",
+          "text": "She; his"
+        },
+        {
+          "key": "D",
+          "text": "He; her"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-上-034",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "形容词性物主代词",
+      "stem": "－ Excuse me, are these ________ English books? － No, they are ________ English books.",
+      "options": [
+        {
+          "key": "A",
+          "text": "your; her"
+        },
+        {
+          "key": "B",
+          "text": "my; she"
+        },
+        {
+          "key": "C",
+          "text": "your; he"
+        },
+        {
+          "key": "D",
+          "text": "he; her"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-上-035",
+      "grade": "7",
+      "term": "上册",
+      "knowledge": "名词性物主代词",
+      "stem": "I can't find my pen. Can I use ________?",
+      "options": [
+        {
+          "key": "A",
+          "text": "you"
+        },
+        {
+          "key": "B",
+          "text": "yours"
+        },
+        {
+          "key": "C",
+          "text": "my"
+        },
+        {
+          "key": "D",
+          "text": "mine"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-001",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "定冠词",
+      "stem": "This is ________ orange. ________ orange is ________ orange.",
+      "options": [
+        {
+          "key": "A",
+          "text": "an; A; a"
+        },
+        {
+          "key": "B",
+          "text": "a; An; a"
+        },
+        {
+          "key": "C",
+          "text": "a; A; an"
+        },
+        {
+          "key": "D",
+          "text": "an; The; /"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-下-002",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "定冠词",
+      "stem": "There's ________ alarm on Mark's desk. ________ alarm goes off at 7 o'clock every morning.",
+      "options": [
+        {
+          "key": "A",
+          "text": "an; An"
+        },
+        {
+          "key": "B",
+          "text": "the; An"
+        },
+        {
+          "key": "C",
+          "text": "an; The"
+        },
+        {
+          "key": "D",
+          "text": "the; The"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-003",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "定冠词",
+      "stem": "That is ________ eraser and ________ eraser is blue.",
+      "options": [
+        {
+          "key": "A",
+          "text": "a; a"
+        },
+        {
+          "key": "B",
+          "text": "an; an"
+        },
+        {
+          "key": "C",
+          "text": "the; an"
+        },
+        {
+          "key": "D",
+          "text": "an; the"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-下-004",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "基础连词",
+      "stem": "In ________ end, his dream came true because he worked hard.",
+      "options": [
+        {
+          "key": "A",
+          "text": "the"
+        },
+        {
+          "key": "B",
+          "text": "a"
+        },
+        {
+          "key": "C",
+          "text": "an"
+        },
+        {
+          "key": "D",
+          "text": "/"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-005",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "基础连词",
+      "stem": "— What vegetables do you like? — I like carrots ________ tomatoes.",
+      "options": [
+        {
+          "key": "A",
+          "text": "and"
+        },
+        {
+          "key": "B",
+          "text": "or"
+        },
+        {
+          "key": "C",
+          "text": "but"
+        },
+        {
+          "key": "D",
+          "text": "so"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-006",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "基础连词",
+      "stem": "Please come ________ have dinner with us.",
+      "options": [
+        {
+          "key": "A",
+          "text": "or"
+        },
+        {
+          "key": "B",
+          "text": "but"
+        },
+        {
+          "key": "C",
+          "text": "and"
+        },
+        {
+          "key": "D",
+          "text": "so"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-007",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "基础连词",
+      "stem": "I want to eat ice cream, ________ my mum says it's too cold.",
+      "options": [
+        {
+          "key": "A",
+          "text": "and"
+        },
+        {
+          "key": "B",
+          "text": "but"
+        },
+        {
+          "key": "C",
+          "text": "for"
+        },
+        {
+          "key": "D",
+          "text": "or"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-008",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "基础连词",
+      "stem": "We are not in the same class, ________ we are friends.",
+      "options": [
+        {
+          "key": "A",
+          "text": "but"
+        },
+        {
+          "key": "B",
+          "text": "so"
+        },
+        {
+          "key": "C",
+          "text": "because"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-009",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "基础连词",
+      "stem": "Lily is badly ill, ________ she has to stay at home.",
+      "options": [
+        {
+          "key": "A",
+          "text": "so"
+        },
+        {
+          "key": "B",
+          "text": "or"
+        },
+        {
+          "key": "C",
+          "text": "but"
+        },
+        {
+          "key": "D",
+          "text": "if"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-010",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "现在进⾏时的用法",
+      "stem": "—My mother ________ dinner in the kitchen.",
+      "options": [
+        {
+          "key": "A",
+          "text": "makes"
+        },
+        {
+          "key": "B",
+          "text": "made"
+        },
+        {
+          "key": "C",
+          "text": "is making"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-011",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "现在进⾏时的用法",
+      "stem": "The children ________ in the pool right now.",
+      "options": [
+        {
+          "key": "A",
+          "text": "are swimming"
+        },
+        {
+          "key": "B",
+          "text": "is swimming"
+        },
+        {
+          "key": "C",
+          "text": "swim"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-012",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "现在进⾏时的句型结构",
+      "stem": "Look! They ________ in the hallway.",
+      "options": [
+        {
+          "key": "A",
+          "text": "run"
+        },
+        {
+          "key": "B",
+          "text": "running"
+        },
+        {
+          "key": "C",
+          "text": "are running"
+        },
+        {
+          "key": "D",
+          "text": "is running"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-013",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "现在进⾏时的句型结构",
+      "stem": "Look! The boys ________ basketball on the playground.",
+      "options": [
+        {
+          "key": "A",
+          "text": "play"
+        },
+        {
+          "key": "B",
+          "text": "are playing"
+        },
+        {
+          "key": "C",
+          "text": "played"
+        },
+        {
+          "key": "D",
+          "text": "will play"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-014",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "现在进⾏时的句型结构",
+      "stem": "Look! The students ________ butterflies in the garden now. （ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "study"
+        },
+        {
+          "key": "B",
+          "text": "studied"
+        },
+        {
+          "key": "C",
+          "text": "are studying"
+        },
+        {
+          "key": "D",
+          "text": "will study"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-015",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "现在进⾏时的句型结构",
+      "stem": "—________ you ________ a book? —Yes, I am.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Do; read"
+        },
+        {
+          "key": "B",
+          "text": "Are; read"
+        },
+        {
+          "key": "C",
+          "text": "Are; reading"
+        },
+        {
+          "key": "D",
+          "text": "Are; looking"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-016",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "现在进⾏时的句型结构",
+      "stem": "—________? —She is reading a story book.",
+      "options": [
+        {
+          "key": "A",
+          "text": "What does she do"
+        },
+        {
+          "key": "B",
+          "text": "What is she"
+        },
+        {
+          "key": "C",
+          "text": "What is Nancy doing"
+        },
+        {
+          "key": "D",
+          "text": "What are you doing"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-017",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "反⾝代词",
+      "stem": "Don’t play with the knife, or you’ll cut ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "itself"
+        },
+        {
+          "key": "B",
+          "text": "yourself"
+        },
+        {
+          "key": "C",
+          "text": "ourselves"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-018",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "反⾝代词",
+      "stem": "I made the cake by ________. Help ________, Tom.",
+      "options": [
+        {
+          "key": "A",
+          "text": "me; him"
+        },
+        {
+          "key": "B",
+          "text": "myself; yourself"
+        },
+        {
+          "key": "C",
+          "text": "myself; you"
+        },
+        {
+          "key": "D",
+          "text": "ourselves; yourself"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-019",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "⽅位介词 in/on/under",
+      "stem": "We planted some flowers ________ the garden yesterday.",
+      "options": [
+        {
+          "key": "A",
+          "text": "on"
+        },
+        {
+          "key": "B",
+          "text": "to"
+        },
+        {
+          "key": "C",
+          "text": "in"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-020",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "⽅位介词表⽰在 …… 上 / 下",
+      "stem": "The tower rises ( 耸⽴ ) ________ the trees. On top of it, you can see the town ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "above; under"
+        },
+        {
+          "key": "B",
+          "text": "over; under"
+        },
+        {
+          "key": "C",
+          "text": "above; below"
+        },
+        {
+          "key": "D",
+          "text": "over; below"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-021",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "⽅位介词表⽰在 …… 前 / 后",
+      "stem": "David sits ________ Lucy. He is very tall, so she can’t see the screen.",
+      "options": [
+        {
+          "key": "A",
+          "text": "behind"
+        },
+        {
+          "key": "B",
+          "text": "in front of"
+        },
+        {
+          "key": "C",
+          "text": "near"
+        },
+        {
+          "key": "D",
+          "text": "next to"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-022",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "⽅位介词表⽰在 …… 旁 / 间",
+      "stem": "There is a picture ________ the wall and a desk ________ the window.",
+      "options": [
+        {
+          "key": "A",
+          "text": "on; in"
+        },
+        {
+          "key": "B",
+          "text": "on; near"
+        },
+        {
+          "key": "C",
+          "text": "in; near"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-023",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "⽅位介词表⽰在 …… 旁 / 间",
+      "stem": "—Who is the boy ________ Simon? —Tom, a new classmate.",
+      "options": [
+        {
+          "key": "A",
+          "text": "in front"
+        },
+        {
+          "key": "B",
+          "text": "next"
+        },
+        {
+          "key": "C",
+          "text": "next to"
+        },
+        {
+          "key": "D",
+          "text": "in the front of"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-024",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "⽅位介词表⽰在 …… 旁 / 间",
+      "stem": "Look at the map. There is a post office ________ the library and the bank.",
+      "options": [
+        {
+          "key": "A",
+          "text": "on"
+        },
+        {
+          "key": "B",
+          "text": "across"
+        },
+        {
+          "key": "C",
+          "text": "next"
+        },
+        {
+          "key": "D",
+          "text": "between"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-下-025",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "many/much",
+      "stem": "There are too ________ rules in the school.",
+      "options": [
+        {
+          "key": "A",
+          "text": "many"
+        },
+        {
+          "key": "B",
+          "text": "much"
+        },
+        {
+          "key": "C",
+          "text": "a lot of"
+        },
+        {
+          "key": "D",
+          "text": "some"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-026",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "many/much",
+      "stem": "Jane has ________ hamburgers, but she doesn't have ________ bread.",
+      "options": [
+        {
+          "key": "A",
+          "text": "many; many"
+        },
+        {
+          "key": "B",
+          "text": "much; much"
+        },
+        {
+          "key": "C",
+          "text": "much; many"
+        },
+        {
+          "key": "D",
+          "text": "many; much"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-下-027",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "few/a few/little/a little",
+      "stem": "We have ________ bread, but we have ________ vegetables. Let’s buy some vegetables in the",
+      "options": [
+        {
+          "key": "A",
+          "text": "a little; a few"
+        },
+        {
+          "key": "B",
+          "text": "few; a little"
+        },
+        {
+          "key": "C",
+          "text": "a little; few"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-028",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词can",
+      "stem": "Alice is good at learning languages. She ________ speak Chinese, English and French.",
+      "options": [
+        {
+          "key": "A",
+          "text": "can"
+        },
+        {
+          "key": "B",
+          "text": "must"
+        },
+        {
+          "key": "C",
+          "text": "should"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-029",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 must 和 have to",
+      "stem": "---Sure, you ________. Here it is.",
+      "options": [
+        {
+          "key": "A",
+          "text": "may"
+        },
+        {
+          "key": "B",
+          "text": "must"
+        },
+        {
+          "key": "C",
+          "text": "need"
+        },
+        {
+          "key": "D",
+          "text": "have to"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-030",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 must 和 have to",
+      "stem": "—Must I go there by subway? —________. You can take a bus, too.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Yes, you must."
+        },
+        {
+          "key": "B",
+          "text": "No, you mustn’t."
+        },
+        {
+          "key": "C",
+          "text": "No, you don’t."
+        },
+        {
+          "key": "D",
+          "text": "No, you don’t have to."
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-下-031",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 must 和 have to",
+      "stem": "Betty's mother is sick. She ________ stay at home and look after her.",
+      "options": [
+        {
+          "key": "A",
+          "text": "have to"
+        },
+        {
+          "key": "B",
+          "text": "has to"
+        },
+        {
+          "key": "C",
+          "text": "will have to"
+        },
+        {
+          "key": "D",
+          "text": "hasn’t"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-032",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 must 和 have to",
+      "stem": "We ________ wear our school uniforms on weekends. We can wear our own clothes then.",
+      "options": [
+        {
+          "key": "A",
+          "text": "must"
+        },
+        {
+          "key": "B",
+          "text": "mustn’t"
+        },
+        {
+          "key": "C",
+          "text": "have to"
+        },
+        {
+          "key": "D",
+          "text": "don’t have to"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-下-033",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 must 和 have to",
+      "stem": "He gets up late today, so he ________ take the next bus.",
+      "options": [
+        {
+          "key": "A",
+          "text": "must"
+        },
+        {
+          "key": "B",
+          "text": "can"
+        },
+        {
+          "key": "C",
+          "text": "may"
+        },
+        {
+          "key": "D",
+          "text": "has to"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-下-034",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 must 和 have to",
+      "stem": "You ________ take me to the station. My brother’s taking me.",
+      "options": [
+        {
+          "key": "A",
+          "text": "can’t"
+        },
+        {
+          "key": "B",
+          "text": "mustn’t"
+        },
+        {
+          "key": "C",
+          "text": "don’t have to"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-035",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 must 和 have to",
+      "stem": "It’s raining all day, so I ________ stay at home.",
+      "options": [
+        {
+          "key": "A",
+          "text": "must"
+        },
+        {
+          "key": "B",
+          "text": "have to"
+        },
+        {
+          "key": "C",
+          "text": "must to"
+        },
+        {
+          "key": "D",
+          "text": "can"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-036",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "What感叹句",
+      "stem": "—________ they are!",
+      "options": [
+        {
+          "key": "A",
+          "text": "How great a man"
+        },
+        {
+          "key": "B",
+          "text": "How great men"
+        },
+        {
+          "key": "C",
+          "text": "What a great man"
+        },
+        {
+          "key": "D",
+          "text": "What great men"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-下-037",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "What感叹句",
+      "stem": "________ terrible news! Three of us didn’t pass the exam.",
+      "options": [
+        {
+          "key": "A",
+          "text": "What"
+        },
+        {
+          "key": "B",
+          "text": "How"
+        },
+        {
+          "key": "C",
+          "text": "What a"
+        },
+        {
+          "key": "D",
+          "text": "How a"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-038",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "How 感叹句",
+      "stem": "—________ sweet song it is! —Yeah. It’s My Heart Will Go Onby Celine Dion.",
+      "options": [
+        {
+          "key": "A",
+          "text": "How"
+        },
+        {
+          "key": "B",
+          "text": "How a"
+        },
+        {
+          "key": "C",
+          "text": "What a"
+        },
+        {
+          "key": "D",
+          "text": "What"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-039",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "How 感叹句",
+      "stem": "________ quickly the time passed!",
+      "options": [
+        {
+          "key": "A",
+          "text": "What"
+        },
+        {
+          "key": "B",
+          "text": "How"
+        },
+        {
+          "key": "C",
+          "text": "What a"
+        },
+        {
+          "key": "D",
+          "text": "How a"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-040",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "How 感叹句",
+      "stem": "________ beautiful she is!",
+      "options": [
+        {
+          "key": "A",
+          "text": "What"
+        },
+        {
+          "key": "B",
+          "text": "How"
+        },
+        {
+          "key": "C",
+          "text": "What a"
+        },
+        {
+          "key": "D",
+          "text": "How a"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-041",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "肯定祈使句",
+      "stem": "Please ________ on the bright side of life and stay positive. （ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "look"
+        },
+        {
+          "key": "B",
+          "text": "to look"
+        },
+        {
+          "key": "C",
+          "text": "looked"
+        },
+        {
+          "key": "D",
+          "text": "looking"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-042",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "肯定祈使句",
+      "stem": "________ the new book with you tomorrow. We'll learn a new lesson.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Bringing"
+        },
+        {
+          "key": "B",
+          "text": "Bring"
+        },
+        {
+          "key": "C",
+          "text": "Brought"
+        },
+        {
+          "key": "D",
+          "text": "To bring"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-043",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "肯定祈使句",
+      "stem": "—Tony, ________ your teeth quickly. —OK, Mom.",
+      "options": [
+        {
+          "key": "A",
+          "text": "brushes"
+        },
+        {
+          "key": "B",
+          "text": "brush"
+        },
+        {
+          "key": "C",
+          "text": "brushing"
+        },
+        {
+          "key": "D",
+          "text": "to brush"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-044",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "否定祈使句",
+      "stem": "________ your homework after school.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Doing"
+        },
+        {
+          "key": "B",
+          "text": "To do"
+        },
+        {
+          "key": "C",
+          "text": "Do"
+        },
+        {
+          "key": "D",
+          "text": "Does"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g7-下-045",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "when引导时间状语从句",
+      "stem": "Cathy was singing in the room ________ his parents came in.",
+      "options": [
+        {
+          "key": "A",
+          "text": "when"
+        },
+        {
+          "key": "B",
+          "text": "while"
+        },
+        {
+          "key": "C",
+          "text": "after"
+        },
+        {
+          "key": "D",
+          "text": "since"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-046",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "when引导时间状语从句",
+      "stem": "Kate will call me when she ________ back to Shanghai tomorrow afternoon.",
+      "options": [
+        {
+          "key": "A",
+          "text": "comes"
+        },
+        {
+          "key": "B",
+          "text": "came"
+        },
+        {
+          "key": "C",
+          "text": "will come"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-047",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "as soon as 引导时间状语从句",
+      "stem": "I ________ you a copy of the report as soon as I finish it.",
+      "options": [
+        {
+          "key": "A",
+          "text": "will send"
+        },
+        {
+          "key": "B",
+          "text": "sent"
+        },
+        {
+          "key": "C",
+          "text": "have sent"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-048",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "as soon as 引导时间状语从句",
+      "stem": "— Can you tell me when you are going to arrive there? — I’m not sure. But I’ll ring you up as soon as I ________ there tomorrow.",
+      "options": [
+        {
+          "key": "A",
+          "text": "arrive"
+        },
+        {
+          "key": "B",
+          "text": "arrived"
+        },
+        {
+          "key": "C",
+          "text": "will arrive"
+        },
+        {
+          "key": "D",
+          "text": "am going to arrive"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-049",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "as soon as 引导时间状语从句",
+      "stem": "He got off the bus as soon as it ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "stops"
+        },
+        {
+          "key": "B",
+          "text": "stopped"
+        },
+        {
+          "key": "C",
+          "text": "is stopping"
+        },
+        {
+          "key": "D",
+          "text": "will stop"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-050",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "as soon as 引导时间状语从句",
+      "stem": "— Please call me as soon as you ________ in London. — Sure, I will.",
+      "options": [
+        {
+          "key": "A",
+          "text": "arrive"
+        },
+        {
+          "key": "B",
+          "text": "are arriving"
+        },
+        {
+          "key": "C",
+          "text": "will arrive"
+        },
+        {
+          "key": "D",
+          "text": "arrived"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-051",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 used to",
+      "stem": "Just now, the managers kept arguing about the problem ________ they agree with each other.",
+      "options": [
+        {
+          "key": "A",
+          "text": "when"
+        },
+        {
+          "key": "B",
+          "text": "although"
+        },
+        {
+          "key": "C",
+          "text": "unless"
+        },
+        {
+          "key": "D",
+          "text": "until"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-下-052",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 used to",
+      "stem": "He ________ to bed until he finished his homework last night.",
+      "options": [
+        {
+          "key": "A",
+          "text": "went"
+        },
+        {
+          "key": "B",
+          "text": "didn’t go"
+        },
+        {
+          "key": "C",
+          "text": "does go"
+        },
+        {
+          "key": "D",
+          "text": "doesn’t go"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-053",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 used to",
+      "stem": "Did you ________ eat too much meat when you were a child?",
+      "options": [
+        {
+          "key": "A",
+          "text": "used to"
+        },
+        {
+          "key": "B",
+          "text": "use to"
+        },
+        {
+          "key": "C",
+          "text": "be used to"
+        },
+        {
+          "key": "D",
+          "text": "was used to"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g7-下-054",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 used to",
+      "stem": "I ________ read books every day because I didn’t have enough time.",
+      "options": [
+        {
+          "key": "A",
+          "text": "didn’t use to"
+        },
+        {
+          "key": "B",
+          "text": "used to"
+        },
+        {
+          "key": "C",
+          "text": "was used not to"
+        },
+        {
+          "key": "D",
+          "text": "was used to"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-055",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 used to",
+      "stem": "—I remember there ________ a lot of fish in Yanglan Lake. Now it has been polluted. —What a pity. I think we should play a role in protecting the environment.",
+      "options": [
+        {
+          "key": "A",
+          "text": "are used to have"
+        },
+        {
+          "key": "B",
+          "text": "are used to be"
+        },
+        {
+          "key": "C",
+          "text": "used to have"
+        },
+        {
+          "key": "D",
+          "text": "used to be"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g7-下-056",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 used to",
+      "stem": "My grandmother ________ a good memory, but now she always forgets things.",
+      "options": [
+        {
+          "key": "A",
+          "text": "used to have"
+        },
+        {
+          "key": "B",
+          "text": "used to having"
+        },
+        {
+          "key": "C",
+          "text": "were used to having"
+        },
+        {
+          "key": "D",
+          "text": "are used to having"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g7-下-057",
+      "grade": "7",
+      "term": "下册",
+      "knowledge": "情态动词 used to",
+      "stem": "Your father used to eat meat, ________?",
+      "options": [
+        {
+          "key": "A",
+          "text": "did you"
+        },
+        {
+          "key": "B",
+          "text": "didn't you"
+        },
+        {
+          "key": "C",
+          "text": "usedn't he"
+        },
+        {
+          "key": "D",
+          "text": "used he"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-001",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "一般疑问句",
+      "stem": "—Is the bread in the kitchen? —No, ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "they are"
+        },
+        {
+          "key": "B",
+          "text": "they aren't"
+        },
+        {
+          "key": "C",
+          "text": "it isn't"
+        },
+        {
+          "key": "D",
+          "text": "it is"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-002",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "wh- 特殊疑问句",
+      "stem": "—________ do you like sports? —Because they can make me healthy.",
+      "options": [
+        {
+          "key": "A",
+          "text": "What"
+        },
+        {
+          "key": "B",
+          "text": "Why"
+        },
+        {
+          "key": "C",
+          "text": "Where"
+        },
+        {
+          "key": "D",
+          "text": "When"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-003",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "wh- 特殊疑问句",
+      "stem": "—________ are they talking to? —I am not sure. Maybe a new teacher.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Who"
+        },
+        {
+          "key": "B",
+          "text": "What"
+        },
+        {
+          "key": "C",
+          "text": "When"
+        },
+        {
+          "key": "D",
+          "text": "Where"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-004",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "wh- 特殊疑问句",
+      "stem": "— ________ do you do in the evening? — I do my homework or watch TV.",
+      "options": [
+        {
+          "key": "A",
+          "text": "What"
+        },
+        {
+          "key": "B",
+          "text": "When"
+        },
+        {
+          "key": "C",
+          "text": "Where"
+        },
+        {
+          "key": "D",
+          "text": "Why"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-005",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "wh- 特殊疑问句",
+      "stem": "—________ are koalas from? —Australia.",
+      "options": [
+        {
+          "key": "A",
+          "text": "When"
+        },
+        {
+          "key": "B",
+          "text": "What"
+        },
+        {
+          "key": "C",
+          "text": "Why"
+        },
+        {
+          "key": "D",
+          "text": "Where"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g9-上-006",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "wh- 特殊疑问句",
+      "stem": "—________ animals do you like? —I like pandas from China.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Where"
+        },
+        {
+          "key": "B",
+          "text": "Why"
+        },
+        {
+          "key": "C",
+          "text": "What"
+        },
+        {
+          "key": "D",
+          "text": "When"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-007",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "wh- 特殊疑问句",
+      "stem": "—________ do you like dolphins? —Because they are very smart.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Why"
+        },
+        {
+          "key": "B",
+          "text": "Where"
+        },
+        {
+          "key": "C",
+          "text": "When"
+        },
+        {
+          "key": "D",
+          "text": "What"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-008",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "what 常考句型",
+      "stem": "—________ my new trousers? —They are very nice.",
+      "options": [
+        {
+          "key": "A",
+          "text": "What do you like"
+        },
+        {
+          "key": "B",
+          "text": "What do you think of"
+        },
+        {
+          "key": "C",
+          "text": "How do you think of"
+        },
+        {
+          "key": "D",
+          "text": "How would you like"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-009",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "what 常考句型",
+      "stem": "—________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "She is very friendly"
+        },
+        {
+          "key": "B",
+          "text": "She is tall and thin"
+        },
+        {
+          "key": "C",
+          "text": "She likes dancing"
+        },
+        {
+          "key": "D",
+          "text": "She is fine"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-010",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "how 特殊疑问句",
+      "stem": "—How do you do, Miss White? — ________",
+      "options": [
+        {
+          "key": "A",
+          "text": "Thank you a lot."
+        },
+        {
+          "key": "B",
+          "text": "Yes, it is."
+        },
+        {
+          "key": "C",
+          "text": "You are right."
+        },
+        {
+          "key": "D",
+          "text": "How do you do?"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g9-上-011",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "how 特殊疑问句",
+      "stem": "—How ________ your father? —He's fine. Thanks.",
+      "options": [
+        {
+          "key": "A",
+          "text": "are"
+        },
+        {
+          "key": "B",
+          "text": "is"
+        },
+        {
+          "key": "C",
+          "text": "do"
+        },
+        {
+          "key": "D",
+          "text": "does"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-012",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "how 特殊疑问句",
+      "stem": "—How's it ________? —Terrible.",
+      "options": [
+        {
+          "key": "A",
+          "text": "go"
+        },
+        {
+          "key": "B",
+          "text": "to go"
+        },
+        {
+          "key": "C",
+          "text": "goes"
+        },
+        {
+          "key": "D",
+          "text": "going"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g9-上-013",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "how 特殊疑问句",
+      "stem": "________ does Lucy ________ her school life?",
+      "options": [
+        {
+          "key": "A",
+          "text": "What; think of"
+        },
+        {
+          "key": "B",
+          "text": "How; think of"
+        },
+        {
+          "key": "C",
+          "text": "What; like"
+        },
+        {
+          "key": "D",
+          "text": "How; think"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-014",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "how 特殊疑问句",
+      "stem": "—How about ________ a walk after dinner? —That's a good idea.",
+      "options": [
+        {
+          "key": "A",
+          "text": "to take"
+        },
+        {
+          "key": "B",
+          "text": "taking"
+        },
+        {
+          "key": "C",
+          "text": "took"
+        },
+        {
+          "key": "D",
+          "text": "takes"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-015",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "how 特殊疑问句",
+      "stem": "—________ does Rock go to school? —He rides a bike.",
+      "options": [
+        {
+          "key": "A",
+          "text": "How"
+        },
+        {
+          "key": "B",
+          "text": "What"
+        },
+        {
+          "key": "C",
+          "text": "When"
+        },
+        {
+          "key": "D",
+          "text": "Where"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-016",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "how 短语特殊疑问句",
+      "stem": "—________ do you play sports, Tina? —Every day. It's necessary for us to play sports an hour a day at school. 【 2023 年江西省南昌市西湖",
+      "options": [
+        {
+          "key": "A",
+          "text": "How long"
+        },
+        {
+          "key": "B",
+          "text": "How often"
+        },
+        {
+          "key": "C",
+          "text": "How soon"
+        },
+        {
+          "key": "D",
+          "text": "How far"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-017",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "how 短语特殊疑问句",
+      "stem": "—________ is the Yellow River? —It is about 5,464 km.",
+      "options": [
+        {
+          "key": "A",
+          "text": "How long"
+        },
+        {
+          "key": "B",
+          "text": "How deep"
+        },
+        {
+          "key": "C",
+          "text": "How wide"
+        },
+        {
+          "key": "D",
+          "text": "How high"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-018",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "how 短语特殊疑问句",
+      "stem": "—________ is it from your home to school? —It's about 15 minutes' walk.",
+      "options": [
+        {
+          "key": "A",
+          "text": "How long"
+        },
+        {
+          "key": "B",
+          "text": "How soon"
+        },
+        {
+          "key": "C",
+          "text": "How far"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-019",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "how 短语特殊疑问句",
+      "stem": "— ________ do you sleep every day, Eric? — For about eight hours.",
+      "options": [
+        {
+          "key": "A",
+          "text": "How much"
+        },
+        {
+          "key": "B",
+          "text": "How far"
+        },
+        {
+          "key": "C",
+          "text": "How often"
+        },
+        {
+          "key": "D",
+          "text": "How long"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g9-上-020",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "how 短语特殊疑问句",
+      "stem": "—________ will you stay in Shanghai? —For about three weeks.",
+      "options": [
+        {
+          "key": "A",
+          "text": "How long"
+        },
+        {
+          "key": "B",
+          "text": "How far"
+        },
+        {
+          "key": "C",
+          "text": "How often"
+        },
+        {
+          "key": "D",
+          "text": "How many"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-021",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "how 短语特殊疑问句",
+      "stem": "— ________was Janek Mela when he got to the North Pole? — He was only 15 years old then. 【 2024 年北京市房⼭区⼋年级（上）期中】",
+      "options": [
+        {
+          "key": "A",
+          "text": "How old"
+        },
+        {
+          "key": "B",
+          "text": "How long"
+        },
+        {
+          "key": "C",
+          "text": "How far"
+        },
+        {
+          "key": "D",
+          "text": "How many"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-022",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "选择疑问句",
+      "stem": "—________ is that tree? —It's six meters tall.",
+      "options": [
+        {
+          "key": "A",
+          "text": "How long"
+        },
+        {
+          "key": "B",
+          "text": "How tall"
+        },
+        {
+          "key": "C",
+          "text": "How many"
+        },
+        {
+          "key": "D",
+          "text": "How much"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-023",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "选择疑问句",
+      "stem": "—Would you like a cup of tea ________ a glass of juice? —A glass of juice, please.",
+      "options": [
+        {
+          "key": "A",
+          "text": "and"
+        },
+        {
+          "key": "B",
+          "text": "or"
+        },
+        {
+          "key": "C",
+          "text": "with"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-024",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "选择疑问句",
+      "stem": "— ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Yes, he has a big mouth"
+        },
+        {
+          "key": "B",
+          "text": "No, he has a small mouth"
+        },
+        {
+          "key": "C",
+          "text": "Yes, he does"
+        },
+        {
+          "key": "D",
+          "text": "He has a big mouth"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g9-上-025",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "选择疑问句",
+      "stem": "—________ robot is yours, the big one or the small one? —The big one.",
+      "options": [
+        {
+          "key": "A",
+          "text": "What"
+        },
+        {
+          "key": "B",
+          "text": "Which"
+        },
+        {
+          "key": "C",
+          "text": "How many"
+        },
+        {
+          "key": "D",
+          "text": "Whose"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-026",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "What 感叹句",
+      "stem": "—________ would you like to live, Chengdu, Beijing or Shanghai? —Chengdu, I think ．",
+      "options": [
+        {
+          "key": "A",
+          "text": "How"
+        },
+        {
+          "key": "B",
+          "text": "What"
+        },
+        {
+          "key": "C",
+          "text": "When"
+        },
+        {
+          "key": "D",
+          "text": "Where"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g9-上-027",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "What 感叹句",
+      "stem": "—________ they are!",
+      "options": [
+        {
+          "key": "A",
+          "text": "How great a man"
+        },
+        {
+          "key": "B",
+          "text": "How great men"
+        },
+        {
+          "key": "C",
+          "text": "What a great man"
+        },
+        {
+          "key": "D",
+          "text": "What great men"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g9-上-028",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "What 感叹句",
+      "stem": "________ terrible news! Three of us didn’t pass the exam.",
+      "options": [
+        {
+          "key": "A",
+          "text": "What"
+        },
+        {
+          "key": "B",
+          "text": "How"
+        },
+        {
+          "key": "C",
+          "text": "What a"
+        },
+        {
+          "key": "D",
+          "text": "How a"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-029",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "What 感叹句",
+      "stem": "—________ sweet song it is! —Yeah. It’s My Heart Will Go Onby Celine Dion.",
+      "options": [
+        {
+          "key": "A",
+          "text": "How"
+        },
+        {
+          "key": "B",
+          "text": "How a"
+        },
+        {
+          "key": "C",
+          "text": "What a"
+        },
+        {
+          "key": "D",
+          "text": "What"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-030",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "How 感叹句",
+      "stem": "________ quickly the time passed!",
+      "options": [
+        {
+          "key": "A",
+          "text": "What"
+        },
+        {
+          "key": "B",
+          "text": "How"
+        },
+        {
+          "key": "C",
+          "text": "What a"
+        },
+        {
+          "key": "D",
+          "text": "How a"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-031",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "How 感叹句",
+      "stem": "________ beautiful she is!",
+      "options": [
+        {
+          "key": "A",
+          "text": "What"
+        },
+        {
+          "key": "B",
+          "text": "How"
+        },
+        {
+          "key": "C",
+          "text": "What a"
+        },
+        {
+          "key": "D",
+          "text": "How a"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-032",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "让步状语从句",
+      "stem": "________ I know Nelly, I hardly talk to her.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Because"
+        },
+        {
+          "key": "B",
+          "text": "And"
+        },
+        {
+          "key": "C",
+          "text": "Although"
+        },
+        {
+          "key": "D",
+          "text": "So"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-033",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "让步状语从句",
+      "stem": "—Why does everybody believe in Bruce no matter ________ he says? —Because he is honest. He never tells a lie.",
+      "options": [
+        {
+          "key": "A",
+          "text": "when"
+        },
+        {
+          "key": "B",
+          "text": "how"
+        },
+        {
+          "key": "C",
+          "text": "who"
+        },
+        {
+          "key": "D",
+          "text": "what"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g9-上-034",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "让步状语从句",
+      "stem": "________ well you drive, you must drive carefully.",
+      "options": [
+        {
+          "key": "A",
+          "text": "No matter where"
+        },
+        {
+          "key": "B",
+          "text": "In order that"
+        },
+        {
+          "key": "C",
+          "text": "No matter how"
+        },
+        {
+          "key": "D",
+          "text": "As soon as"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-035",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "让步状语从句",
+      "stem": "Bill decided to climb K2 ( 乔⼽里峰), the world’s second highest mountain, ________ he knew it was",
+      "options": [
+        {
+          "key": "A",
+          "text": "so that"
+        },
+        {
+          "key": "B",
+          "text": "as if"
+        },
+        {
+          "key": "C",
+          "text": "even though"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-036",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的引导词",
+      "stem": "—The Dragon Boat races are so exciting, but our boat is still behind. —Don’t worry. I am sure ________ our team will win!",
+      "options": [
+        {
+          "key": "A",
+          "text": "if"
+        },
+        {
+          "key": "B",
+          "text": "that"
+        },
+        {
+          "key": "C",
+          "text": "whether"
+        },
+        {
+          "key": "D",
+          "text": "why"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-037",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的引导词",
+      "stem": "We'll plant trees tomorrow, but I don't know ________ Tom will come and join us.",
+      "options": [
+        {
+          "key": "A",
+          "text": "if"
+        },
+        {
+          "key": "B",
+          "text": "which"
+        },
+        {
+          "key": "C",
+          "text": "what"
+        },
+        {
+          "key": "D",
+          "text": "where"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-038",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的引导词",
+      "stem": "No one knows ________ the professor will come to our school tomorrow to give us a talk or not.",
+      "options": [
+        {
+          "key": "A",
+          "text": "when"
+        },
+        {
+          "key": "B",
+          "text": "whether"
+        },
+        {
+          "key": "C",
+          "text": "where"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-039",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的引导词",
+      "stem": "It’s difficult to imagine ________ it is like in that village after the earthquake.",
+      "options": [
+        {
+          "key": "A",
+          "text": "when"
+        },
+        {
+          "key": "B",
+          "text": "what"
+        },
+        {
+          "key": "C",
+          "text": "where"
+        },
+        {
+          "key": "D",
+          "text": "which"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-040",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的引导词",
+      "stem": "— Look at the stone bridge! Do you know ________ it was built? — In the 1860s. It is quite old.",
+      "options": [
+        {
+          "key": "A",
+          "text": "when"
+        },
+        {
+          "key": "B",
+          "text": "how"
+        },
+        {
+          "key": "C",
+          "text": "where"
+        },
+        {
+          "key": "D",
+          "text": "why"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-041",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的引导词",
+      "stem": "—Do you know that girl in red under the tree? —Sorry. I don’t know ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "what is she"
+        },
+        {
+          "key": "B",
+          "text": "which is she"
+        },
+        {
+          "key": "C",
+          "text": "who she is"
+        },
+        {
+          "key": "D",
+          "text": "how she is"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-042",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的否定前移",
+      "stem": "I ________ he ________ tomorrow.",
+      "options": [
+        {
+          "key": "A",
+          "text": "don’t think; will come"
+        },
+        {
+          "key": "B",
+          "text": "think; won’t come"
+        },
+        {
+          "key": "C",
+          "text": "not think; will come"
+        },
+        {
+          "key": "D",
+          "text": "think; don’t come"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-043",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的语序",
+      "stem": "—Excuse me. Could you tell me ________? —Yes. There is a video shop on River Road.",
+      "options": [
+        {
+          "key": "A",
+          "text": "where can I buy some CDs"
+        },
+        {
+          "key": "B",
+          "text": "where I can buy some CDs"
+        },
+        {
+          "key": "C",
+          "text": "when can I buy some CDs"
+        },
+        {
+          "key": "D",
+          "text": "when I can buy some CDs"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-044",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的语序",
+      "stem": "—Do you know ________ the Capital Museum? —Maybe next Friday.",
+      "options": [
+        {
+          "key": "A",
+          "text": "when will they visit"
+        },
+        {
+          "key": "B",
+          "text": "when they will visit"
+        },
+        {
+          "key": "C",
+          "text": "when did they visit"
+        },
+        {
+          "key": "D",
+          "text": "when they visited"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-045",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的语序",
+      "stem": "I don’t feel very well. Mum asked me ________ this morning.",
+      "options": [
+        {
+          "key": "A",
+          "text": "what the matter is"
+        },
+        {
+          "key": "B",
+          "text": "what is wrong"
+        },
+        {
+          "key": "C",
+          "text": "what wrong was"
+        },
+        {
+          "key": "D",
+          "text": "what was wrong"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g9-上-046",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的语序",
+      "stem": "Tom asked whether ________ after he finished his project.",
+      "options": [
+        {
+          "key": "A",
+          "text": "could he go to the cinema"
+        },
+        {
+          "key": "B",
+          "text": "he can go to the cinema"
+        },
+        {
+          "key": "C",
+          "text": "he could go to the cinema"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-047",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的时态",
+      "stem": "The parents hope their son ________ a football player when he grows up.",
+      "options": [
+        {
+          "key": "A",
+          "text": "does"
+        },
+        {
+          "key": "B",
+          "text": "will be"
+        },
+        {
+          "key": "C",
+          "text": "to be"
+        },
+        {
+          "key": "D",
+          "text": "do"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-048",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的时态",
+      "stem": "—Judy, could you tell me ________ the schoolbag? —Oh, yes. I bought it in a store on the Internet.",
+      "options": [
+        {
+          "key": "A",
+          "text": "where did you buy"
+        },
+        {
+          "key": "B",
+          "text": "where will you buy"
+        },
+        {
+          "key": "C",
+          "text": "where you bought"
+        },
+        {
+          "key": "D",
+          "text": "where you will buy"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-049",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的时态",
+      "stem": "Who can tell us ________ about over there?",
+      "options": [
+        {
+          "key": "A",
+          "text": "what they talk"
+        },
+        {
+          "key": "B",
+          "text": "what do they talk"
+        },
+        {
+          "key": "C",
+          "text": "what are they talking"
+        },
+        {
+          "key": "D",
+          "text": "what they are talking"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g9-上-051",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的时态",
+      "stem": "—What did your son say in the letter? —He told me that he ________ the Disney World the next day.",
+      "options": [
+        {
+          "key": "A",
+          "text": "will visit"
+        },
+        {
+          "key": "B",
+          "text": "has visited"
+        },
+        {
+          "key": "C",
+          "text": "is going to visit"
+        },
+        {
+          "key": "D",
+          "text": "would visit"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g9-上-052",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的时态",
+      "stem": "The geography teacher told us that the sun ________ in the east.",
+      "options": [
+        {
+          "key": "A",
+          "text": "has risen"
+        },
+        {
+          "key": "B",
+          "text": "would rise"
+        },
+        {
+          "key": "C",
+          "text": "rises"
+        },
+        {
+          "key": "D",
+          "text": "rose"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-053",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "宾语从句的时态",
+      "stem": "Yesterday the teacher told us the earth ________ the sun.",
+      "options": [
+        {
+          "key": "A",
+          "text": "goes around"
+        },
+        {
+          "key": "B",
+          "text": "went around"
+        },
+        {
+          "key": "C",
+          "text": "is going around"
+        },
+        {
+          "key": "D",
+          "text": "would go around"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-054",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "关系代词 that/which 引导的定语从句",
+      "stem": "I like the clothes ________ make me feel comfortable.",
+      "options": [
+        {
+          "key": "A",
+          "text": "who"
+        },
+        {
+          "key": "B",
+          "text": "what"
+        },
+        {
+          "key": "C",
+          "text": "that"
+        },
+        {
+          "key": "D",
+          "text": "whatever"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-055",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "关系代词 that/which 引导的定语从句",
+      "stem": "We should value the friendship ________ we have developed in the past years.",
+      "options": [
+        {
+          "key": "A",
+          "text": "that"
+        },
+        {
+          "key": "B",
+          "text": "who"
+        },
+        {
+          "key": "C",
+          "text": "whose"
+        },
+        {
+          "key": "D",
+          "text": "what"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-056",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "关系代词 that/which 引导的定语从句",
+      "stem": "Rome is an ancient city ________ is full of places of interest.",
+      "options": [
+        {
+          "key": "A",
+          "text": "where"
+        },
+        {
+          "key": "B",
+          "text": "which"
+        },
+        {
+          "key": "C",
+          "text": "who"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-057",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "关系代词 that/which 引导的定语从句",
+      "stem": "—Why are you so worried? —I've lost the computer ________ my father bought me on my birthday.",
+      "options": [
+        {
+          "key": "A",
+          "text": "what"
+        },
+        {
+          "key": "B",
+          "text": "who"
+        },
+        {
+          "key": "C",
+          "text": "which"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-058",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "关系代词 that/which 引导的定语从句",
+      "stem": "I like the city in ________ the people are really kind and friendly.",
+      "options": [
+        {
+          "key": "A",
+          "text": "that"
+        },
+        {
+          "key": "B",
+          "text": "which"
+        },
+        {
+          "key": "C",
+          "text": "where"
+        },
+        {
+          "key": "D",
+          "text": "who"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-059",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "关系代词 that/which 引导的定语从句",
+      "stem": "The weather turned out to be very good, ________ was more than we could expect.",
+      "options": [
+        {
+          "key": "A",
+          "text": "what"
+        },
+        {
+          "key": "B",
+          "text": "which"
+        },
+        {
+          "key": "C",
+          "text": "that"
+        },
+        {
+          "key": "D",
+          "text": "it"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g9-上-060",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "关系代词 that/which 引导的定语从句",
+      "stem": "I can’t forget the teachers and the university ________ I visited two years ago. They brought me",
+      "options": [
+        {
+          "key": "A",
+          "text": "that"
+        },
+        {
+          "key": "B",
+          "text": "which"
+        },
+        {
+          "key": "C",
+          "text": "what"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-061",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "关系代词 who/whom 引导的定语从句",
+      "stem": "—Have you seen the film The Wandering Earth ( 《流浪地球》 )? —Yes. It's the best one ________ I have ever seen.",
+      "options": [
+        {
+          "key": "A",
+          "text": "that"
+        },
+        {
+          "key": "B",
+          "text": "which"
+        },
+        {
+          "key": "C",
+          "text": "where"
+        },
+        {
+          "key": "D",
+          "text": "why"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-062",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "关系代词 who/whom 引导的定语从句",
+      "stem": "Zhong Nanshan is a brave doctor ________ is known to millions of Chinese people.",
+      "options": [
+        {
+          "key": "A",
+          "text": "who"
+        },
+        {
+          "key": "B",
+          "text": "which"
+        },
+        {
+          "key": "C",
+          "text": "what"
+        },
+        {
+          "key": "D",
+          "text": "when"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-063",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "关系代词 who/whom 引导的定语从句",
+      "stem": "We should remember those ________ lost their lives for our country.",
+      "options": [
+        {
+          "key": "A",
+          "text": "who"
+        },
+        {
+          "key": "B",
+          "text": "whom"
+        },
+        {
+          "key": "C",
+          "text": "which"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g9-上-064",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "关系代词 who/whom 引导的定语从句",
+      "stem": "—Do you know the boy with ________ Ms. Green is talking? —Oh, that’s Peter. He's going to make a speech at our graduation party.",
+      "options": [
+        {
+          "key": "A",
+          "text": "that"
+        },
+        {
+          "key": "B",
+          "text": "what"
+        },
+        {
+          "key": "C",
+          "text": "whom"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g9-上-065",
+      "grade": "9",
+      "term": "上册",
+      "knowledge": "定语从句注意事项",
+      "stem": "The book ________ he bought yesterday is very interesting.",
+      "options": [
+        {
+          "key": "A",
+          "text": "/"
+        },
+        {
+          "key": "B",
+          "text": "why"
+        },
+        {
+          "key": "C",
+          "text": "when"
+        },
+        {
+          "key": "D",
+          "text": "what"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-001",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "复合不定代词",
+      "stem": "________ is waiting for you at the gate. He wants to say thanks to you.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Somebody"
+        },
+        {
+          "key": "B",
+          "text": "Anybody"
+        },
+        {
+          "key": "C",
+          "text": "Everybody"
+        },
+        {
+          "key": "D",
+          "text": "Nobody"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-002",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "复合不定代词",
+      "stem": "—Did you go ________ on vacation? —No, I stayed at home.",
+      "options": [
+        {
+          "key": "A",
+          "text": "somewhere interesting"
+        },
+        {
+          "key": "B",
+          "text": "anywhere interesting"
+        },
+        {
+          "key": "C",
+          "text": "interesting somewhere"
+        },
+        {
+          "key": "D",
+          "text": "interesting anywhere"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-上-003",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "复合不定代词",
+      "stem": "My host family tried to cook ________ for me when I studied in New Zealand.",
+      "options": [
+        {
+          "key": "A",
+          "text": "different something"
+        },
+        {
+          "key": "B",
+          "text": "different anything"
+        },
+        {
+          "key": "C",
+          "text": "something different"
+        },
+        {
+          "key": "D",
+          "text": "anything different"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-上-004",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "复合不定代词",
+      "stem": "Do you have something to ________? I am thirsty.",
+      "options": [
+        {
+          "key": "A",
+          "text": "eat"
+        },
+        {
+          "key": "B",
+          "text": "eating"
+        },
+        {
+          "key": "C",
+          "text": "drinking"
+        },
+        {
+          "key": "D",
+          "text": "drink"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-上-005",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "序数词",
+      "stem": "Today is my sister's ________ birthday. I want to buy a gift for her.",
+      "options": [
+        {
+          "key": "A",
+          "text": "twenty-five"
+        },
+        {
+          "key": "B",
+          "text": "the twenty-five"
+        },
+        {
+          "key": "C",
+          "text": "twenty-fifth"
+        },
+        {
+          "key": "D",
+          "text": "the twenty-fifth"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-上-006",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "基数词",
+      "stem": "My car number is 53659. It reads “________”.",
+      "options": [
+        {
+          "key": "A",
+          "text": "five three six five nine"
+        },
+        {
+          "key": "B",
+          "text": "five four six five eight"
+        },
+        {
+          "key": "C",
+          "text": "five two seven five ten"
+        },
+        {
+          "key": "D",
+          "text": "five six three five nine"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-007",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "基数词",
+      "stem": "Please turn to Page ________ and look at the passage.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Five"
+        },
+        {
+          "key": "B",
+          "text": "five"
+        },
+        {
+          "key": "C",
+          "text": "Fifth"
+        },
+        {
+          "key": "D",
+          "text": "fifth"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-008",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "形容词最⾼级的用法",
+      "stem": "—How do you like the book you read yesterday? —Oh! It’s one of ________ books I’ve ever read.",
+      "options": [
+        {
+          "key": "A",
+          "text": "interesting"
+        },
+        {
+          "key": "B",
+          "text": "more interesting"
+        },
+        {
+          "key": "C",
+          "text": "most interesting"
+        },
+        {
+          "key": "D",
+          "text": "the most interesting"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-上-009",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "形容词最⾼级的用法",
+      "stem": "The Yangtze River is one of ________ rivers in the world. （ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "long"
+        },
+        {
+          "key": "B",
+          "text": "longer"
+        },
+        {
+          "key": "C",
+          "text": "longest"
+        },
+        {
+          "key": "D",
+          "text": "the longest"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-上-010",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "形容词⽐较级的用法",
+      "stem": "Going to Beihai Park with friends makes me ________ than staying at home.",
+      "options": [
+        {
+          "key": "A",
+          "text": "happy"
+        },
+        {
+          "key": "B",
+          "text": "happier"
+        },
+        {
+          "key": "C",
+          "text": "happiest"
+        },
+        {
+          "key": "D",
+          "text": "the happiest"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-上-011",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "形容词⽐较级的用法",
+      "stem": "—What do you think of math, Kate? —I think it is ________ than English.",
+      "options": [
+        {
+          "key": "A",
+          "text": "difficult"
+        },
+        {
+          "key": "B",
+          "text": "very difficult"
+        },
+        {
+          "key": "C",
+          "text": "more difficult"
+        },
+        {
+          "key": "D",
+          "text": "as difficult"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-上-012",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "形容词⽐较级的用法",
+      "stem": "With the effort (努⼒) of Chinese government, the life of Tibetans (西藏⼈⺠) becomes ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "good and good"
+        },
+        {
+          "key": "B",
+          "text": "well and well"
+        },
+        {
+          "key": "C",
+          "text": "better and better"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-上-013",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "形容词⽐较级的用法",
+      "stem": "Our hometown is becoming ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "beautiful and beautiful"
+        },
+        {
+          "key": "B",
+          "text": "more beautiful and beautiful"
+        },
+        {
+          "key": "C",
+          "text": "more beautiful and more beautiful"
+        },
+        {
+          "key": "D",
+          "text": "more and more beautiful"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-上-014",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "— You won’t pass the exam( 考试 ) ________ you don’t work hard. — OK, I’ll do my best.",
+      "options": [
+        {
+          "key": "A",
+          "text": "and"
+        },
+        {
+          "key": "B",
+          "text": "but"
+        },
+        {
+          "key": "C",
+          "text": "if"
+        },
+        {
+          "key": "D",
+          "text": "so"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-上-015",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "You ________ a lot of good friends if you are kind to others.",
+      "options": [
+        {
+          "key": "A",
+          "text": "will make"
+        },
+        {
+          "key": "B",
+          "text": "make"
+        },
+        {
+          "key": "C",
+          "text": "made"
+        },
+        {
+          "key": "D",
+          "text": "have made"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-016",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "If I ________ time tomorrow, I will clean the room.",
+      "options": [
+        {
+          "key": "A",
+          "text": "have"
+        },
+        {
+          "key": "B",
+          "text": "will have"
+        },
+        {
+          "key": "C",
+          "text": "had"
+        },
+        {
+          "key": "D",
+          "text": "am having"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-017",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "If it ________ tomorrow, we ________ to play basketball in the playground.",
+      "options": [
+        {
+          "key": "A",
+          "text": "won’t rain; go"
+        },
+        {
+          "key": "B",
+          "text": "won’t rain; will go"
+        },
+        {
+          "key": "C",
+          "text": "doesn’t rain; go"
+        },
+        {
+          "key": "D",
+          "text": "doesn’t rain; will go"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-上-018",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "You should see a doctor if you ________ feel well.",
+      "options": [
+        {
+          "key": "A",
+          "text": "didn't"
+        },
+        {
+          "key": "B",
+          "text": "will not"
+        },
+        {
+          "key": "C",
+          "text": "don't"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-上-019",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "Tell me if you ________ the answer.",
+      "options": [
+        {
+          "key": "A",
+          "text": "know"
+        },
+        {
+          "key": "B",
+          "text": "knew"
+        },
+        {
+          "key": "C",
+          "text": "will know"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-020",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "If you ________ your parents, please speak out.",
+      "options": [
+        {
+          "key": "A",
+          "text": "will love"
+        },
+        {
+          "key": "B",
+          "text": "love"
+        },
+        {
+          "key": "C",
+          "text": "are loving"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-上-021",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "形容词副词的同级⽐较",
+      "stem": "Jack’s shoes are as ________ as Jim’s.",
+      "options": [
+        {
+          "key": "A",
+          "text": "cheap"
+        },
+        {
+          "key": "B",
+          "text": "cheaper"
+        },
+        {
+          "key": "C",
+          "text": "the cheaper"
+        },
+        {
+          "key": "D",
+          "text": "the cheapest"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-022",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "形容词副词的同级⽐较",
+      "stem": "Helping others is just as ________ as getting help from others. （ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "exciting"
+        },
+        {
+          "key": "B",
+          "text": "more exciting"
+        },
+        {
+          "key": "C",
+          "text": "most exciting"
+        },
+        {
+          "key": "D",
+          "text": "the most exciting"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-023",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "形容词副词的同级⽐较",
+      "stem": "Japanese isn’t ________ important ________ English.",
+      "options": [
+        {
+          "key": "A",
+          "text": "as; as"
+        },
+        {
+          "key": "B",
+          "text": "so; as"
+        },
+        {
+          "key": "C",
+          "text": "as; so"
+        },
+        {
+          "key": "D",
+          "text": "A and B"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-上-024",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "现在完成时表⽰过去持续的动作或状态",
+      "stem": "We ________ English for nearly three years. We can easily speak it now.",
+      "options": [
+        {
+          "key": "A",
+          "text": "learn"
+        },
+        {
+          "key": "B",
+          "text": "learned"
+        },
+        {
+          "key": "C",
+          "text": "have learned"
+        },
+        {
+          "key": "D",
+          "text": "were learning"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-上-025",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "现在完成时表⽰过去持续的动作或状态",
+      "stem": "Cindy ________ a lot of work since she joined our volunteer team.",
+      "options": [
+        {
+          "key": "A",
+          "text": "was doing"
+        },
+        {
+          "key": "B",
+          "text": "has done"
+        },
+        {
+          "key": "C",
+          "text": "does"
+        },
+        {
+          "key": "D",
+          "text": "did"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-上-026",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "现在完成时表⽰过去持续的动作或状态",
+      "stem": "Ben has lived here ________ he was born.",
+      "options": [
+        {
+          "key": "A",
+          "text": "for"
+        },
+        {
+          "key": "B",
+          "text": "when"
+        },
+        {
+          "key": "C",
+          "text": "since"
+        },
+        {
+          "key": "D",
+          "text": "from"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-上-027",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "have gone to/have been to/have been in",
+      "stem": "She ________ to the farm many times, so she knows every corner of it.",
+      "options": [
+        {
+          "key": "A",
+          "text": "went"
+        },
+        {
+          "key": "B",
+          "text": "will go"
+        },
+        {
+          "key": "C",
+          "text": "has gone"
+        },
+        {
+          "key": "D",
+          "text": "has been"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-上-028",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "瞬间动词和持续动词的现在完成时",
+      "stem": "The young man ________ his hometown for a long time. He really misses it.",
+      "options": [
+        {
+          "key": "A",
+          "text": "left"
+        },
+        {
+          "key": "B",
+          "text": "has been away from"
+        },
+        {
+          "key": "C",
+          "text": "has left"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-上-029",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "— You won’t pass the exam( 考试 ) ________ you don’t work hard. — OK, I’ll do my best.",
+      "options": [
+        {
+          "key": "A",
+          "text": "and"
+        },
+        {
+          "key": "B",
+          "text": "but"
+        },
+        {
+          "key": "C",
+          "text": "if"
+        },
+        {
+          "key": "D",
+          "text": "so"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-上-030",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "If it is sunny, we ________ the mountains.",
+      "options": [
+        {
+          "key": "A",
+          "text": "climb"
+        },
+        {
+          "key": "B",
+          "text": "will climb"
+        },
+        {
+          "key": "C",
+          "text": "climbed"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-上-031",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "You ________ a lot of good friends if you are kind to others.",
+      "options": [
+        {
+          "key": "A",
+          "text": "will make"
+        },
+        {
+          "key": "B",
+          "text": "make"
+        },
+        {
+          "key": "C",
+          "text": "made"
+        },
+        {
+          "key": "D",
+          "text": "have made"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-032",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "If I ________ time tomorrow, I will clean the room.",
+      "options": [
+        {
+          "key": "A",
+          "text": "have"
+        },
+        {
+          "key": "B",
+          "text": "will have"
+        },
+        {
+          "key": "C",
+          "text": "had"
+        },
+        {
+          "key": "D",
+          "text": "am having"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-033",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "If it ________ tomorrow, we ________ to play basketball in the playground.",
+      "options": [
+        {
+          "key": "A",
+          "text": "won’t rain; go"
+        },
+        {
+          "key": "B",
+          "text": "won’t rain; will go"
+        },
+        {
+          "key": "C",
+          "text": "doesn’t rain; go"
+        },
+        {
+          "key": "D",
+          "text": "doesn’t rain; will go"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-上-034",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "You should see a doctor if you ________ feel well.",
+      "options": [
+        {
+          "key": "A",
+          "text": "didn't"
+        },
+        {
+          "key": "B",
+          "text": "will not"
+        },
+        {
+          "key": "C",
+          "text": "don't"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-上-035",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "Tell me if you ________ the answer.",
+      "options": [
+        {
+          "key": "A",
+          "text": "know"
+        },
+        {
+          "key": "B",
+          "text": "knew"
+        },
+        {
+          "key": "C",
+          "text": "will know"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-036",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "if 引导条件状语从句",
+      "stem": "If you ________ your parents, please speak out.",
+      "options": [
+        {
+          "key": "A",
+          "text": "will love"
+        },
+        {
+          "key": "B",
+          "text": "love"
+        },
+        {
+          "key": "C",
+          "text": "are loving"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-上-037",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "unless 引导条件状语从句",
+      "stem": "Unless it ________ tomorrow, we will climb the mountain.",
+      "options": [
+        {
+          "key": "A",
+          "text": "rains"
+        },
+        {
+          "key": "B",
+          "text": "will rain"
+        },
+        {
+          "key": "C",
+          "text": "doesn't rain"
+        },
+        {
+          "key": "D",
+          "text": "won't rain"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-038",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "副词",
+      "stem": "You ________ out unless you ________ all the work.",
+      "options": [
+        {
+          "key": "A",
+          "text": "can't go; finish"
+        },
+        {
+          "key": "B",
+          "text": "can go; don't finish"
+        },
+        {
+          "key": "C",
+          "text": "go; finish"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-上-039",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "副词与形容词",
+      "stem": "Michael is a ________ baseball player, because he can play baseball ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "good; good"
+        },
+        {
+          "key": "B",
+          "text": "well; well"
+        },
+        {
+          "key": "C",
+          "text": "good; well"
+        },
+        {
+          "key": "D",
+          "text": "well; good"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-上-040",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "形容词副词同形",
+      "stem": "His brother gets up very ________, so he doesn’t have breakfast and goes to school ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "lately; late"
+        },
+        {
+          "key": "B",
+          "text": "early; quickly"
+        },
+        {
+          "key": "C",
+          "text": "lately; early"
+        },
+        {
+          "key": "D",
+          "text": "late; quickly"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-上-041",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "副词⽐较级最⾼级",
+      "stem": "Henry is a good runner. He runs ________ than his friends.",
+      "options": [
+        {
+          "key": "A",
+          "text": "fast"
+        },
+        {
+          "key": "B",
+          "text": "faster"
+        },
+        {
+          "key": "C",
+          "text": "slower"
+        },
+        {
+          "key": "D",
+          "text": "slowest"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-上-042",
+      "grade": "8",
+      "term": "上册",
+      "knowledge": "副词⽐较级最⾼级",
+      "stem": "If you take schoolwork ________, you are sure to learn well. 【 2023 年吉林省⻓春市朝阳区⼋年级",
+      "options": [
+        {
+          "key": "A",
+          "text": "serious"
+        },
+        {
+          "key": "B",
+          "text": "seriously"
+        },
+        {
+          "key": "C",
+          "text": "more serious"
+        },
+        {
+          "key": "D",
+          "text": "less seriously"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-001",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "不定式作宾语",
+      "stem": "—The movie Mulan is on tonight. I plan ________ it. Do you want to go with me? —Oh, great. I love action movies.",
+      "options": [
+        {
+          "key": "A",
+          "text": "watch"
+        },
+        {
+          "key": "B",
+          "text": "watching"
+        },
+        {
+          "key": "C",
+          "text": "to watch"
+        },
+        {
+          "key": "D",
+          "text": "watched"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-下-002",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "不定式作状语",
+      "stem": "The boy went to the hospital ________ after his mother.",
+      "options": [
+        {
+          "key": "A",
+          "text": "looked"
+        },
+        {
+          "key": "B",
+          "text": "look"
+        },
+        {
+          "key": "C",
+          "text": "to look"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-下-003",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "不定式作状语",
+      "stem": "She got up early ________ the first bus.",
+      "options": [
+        {
+          "key": "A",
+          "text": "catch"
+        },
+        {
+          "key": "B",
+          "text": "catching"
+        },
+        {
+          "key": "C",
+          "text": "to catch"
+        },
+        {
+          "key": "D",
+          "text": "caught"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-下-004",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "疑问词 + 不定式",
+      "stem": "—Alice wants to know ________ to hand in her biology report. —Oh, tomorrow morning.",
+      "options": [
+        {
+          "key": "A",
+          "text": "how"
+        },
+        {
+          "key": "B",
+          "text": "where"
+        },
+        {
+          "key": "C",
+          "text": "what"
+        },
+        {
+          "key": "D",
+          "text": "when"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-下-005",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "疑问词 + 不定式",
+      "stem": "—Excuse me. Could you tell me ________ to get to the Sports Center? —Sure. Take Line 2 and get off at the Sports Center Station.",
+      "options": [
+        {
+          "key": "A",
+          "text": "when"
+        },
+        {
+          "key": "B",
+          "text": "how"
+        },
+        {
+          "key": "C",
+          "text": "what"
+        },
+        {
+          "key": "D",
+          "text": "where"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-006",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "疑问词 + 不定式",
+      "stem": "Most experts think it is very important for children to learn ________ the housework.",
+      "options": [
+        {
+          "key": "A",
+          "text": "what do"
+        },
+        {
+          "key": "B",
+          "text": "what to do"
+        },
+        {
+          "key": "C",
+          "text": "how to do"
+        },
+        {
+          "key": "D",
+          "text": "how do"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-下-007",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "疑问词 + 不定式",
+      "stem": "—Millie, could you give me some advice? I don’t know ________. —Why don’t you wear this red shirt?",
+      "options": [
+        {
+          "key": "A",
+          "text": "when to wear"
+        },
+        {
+          "key": "B",
+          "text": "what to wear"
+        },
+        {
+          "key": "C",
+          "text": "how to wear"
+        },
+        {
+          "key": "D",
+          "text": "where to wear"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-008",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "动名词作主语",
+      "stem": "— ________ is one of the best ways to lose weight. — I agree with you.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Run"
+        },
+        {
+          "key": "B",
+          "text": "Running"
+        },
+        {
+          "key": "C",
+          "text": "Runs"
+        },
+        {
+          "key": "D",
+          "text": "Ran"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-009",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "动名词作宾语",
+      "stem": "He is considering ________ Shanghai.",
+      "options": [
+        {
+          "key": "A",
+          "text": "to visit"
+        },
+        {
+          "key": "B",
+          "text": "visiting"
+        },
+        {
+          "key": "C",
+          "text": "will visit"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-010",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "动名词作宾语",
+      "stem": "— It's too cold today. Would you mind ________ the window? — Certainly not. Go ahead.",
+      "options": [
+        {
+          "key": "A",
+          "text": "to close"
+        },
+        {
+          "key": "B",
+          "text": "closing"
+        },
+        {
+          "key": "C",
+          "text": "close"
+        },
+        {
+          "key": "D",
+          "text": "closed"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-011",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "动名词作宾语",
+      "stem": "Jane suggested ________ her father for advice.",
+      "options": [
+        {
+          "key": "A",
+          "text": "to ask"
+        },
+        {
+          "key": "B",
+          "text": "asking"
+        },
+        {
+          "key": "C",
+          "text": "ask"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-012",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "动名词作宾语",
+      "stem": "We suggest ________ to the restaurant earlier. Because it's hard to get a table. 【 2024 年重庆实验外国",
+      "options": [
+        {
+          "key": "A",
+          "text": "arrive"
+        },
+        {
+          "key": "B",
+          "text": "get"
+        },
+        {
+          "key": "C",
+          "text": "getting"
+        },
+        {
+          "key": "D",
+          "text": "arriving"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-下-013",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "动名词作宾语",
+      "stem": "It's impossible to succeed without ________ any effort.",
+      "options": [
+        {
+          "key": "A",
+          "text": "make"
+        },
+        {
+          "key": "B",
+          "text": "making"
+        },
+        {
+          "key": "C",
+          "text": "made"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-015",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "动名词作宾语",
+      "stem": "She is fond of ________. She cooks for her family every day.",
+      "options": [
+        {
+          "key": "A",
+          "text": "cooking"
+        },
+        {
+          "key": "B",
+          "text": "cook"
+        },
+        {
+          "key": "C",
+          "text": "cooks"
+        },
+        {
+          "key": "D",
+          "text": "cooked"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-下-016",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "动名词作宾语",
+      "stem": "There's little time left. How about ________ some fast food for lunch today?",
+      "options": [
+        {
+          "key": "A",
+          "text": "have"
+        },
+        {
+          "key": "B",
+          "text": "having"
+        },
+        {
+          "key": "C",
+          "text": "to have"
+        },
+        {
+          "key": "D",
+          "text": "had"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-017",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "动名词作宾语",
+      "stem": "Hong Kong Disneyland is well worth ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "to visit"
+        },
+        {
+          "key": "B",
+          "text": "visiting"
+        },
+        {
+          "key": "C",
+          "text": "visit"
+        },
+        {
+          "key": "D",
+          "text": "visited"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-018",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "动名词作宾语",
+      "stem": "When people watch the talent show, they usually play a role in ________ the winner. 【2023 年吉林",
+      "options": [
+        {
+          "key": "A",
+          "text": "decide"
+        },
+        {
+          "key": "B",
+          "text": "deciding"
+        },
+        {
+          "key": "C",
+          "text": "decides"
+        },
+        {
+          "key": "D",
+          "text": "to decide"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-019",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "一般现在时的被动语态",
+      "stem": "I won’t leave my office until my work ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "finish"
+        },
+        {
+          "key": "B",
+          "text": "will finish"
+        },
+        {
+          "key": "C",
+          "text": "are finished"
+        },
+        {
+          "key": "D",
+          "text": "is finished"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-下-020",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "一般现在时的被动语态",
+      "stem": "—Is the kite ________ now? —Yes. We can fly it this afternoon.",
+      "options": [
+        {
+          "key": "A",
+          "text": "do"
+        },
+        {
+          "key": "B",
+          "text": "done"
+        },
+        {
+          "key": "C",
+          "text": "doing"
+        },
+        {
+          "key": "D",
+          "text": "does"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-021",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "一般现在时的被动语态",
+      "stem": "—What languages ________ in that country? —German and English.",
+      "options": [
+        {
+          "key": "A",
+          "text": "are speaking"
+        },
+        {
+          "key": "B",
+          "text": "are spoken"
+        },
+        {
+          "key": "C",
+          "text": "speak"
+        },
+        {
+          "key": "D",
+          "text": "is spoken"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-022",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "一般过去时的被动语态",
+      "stem": "—Many measures ________ to stop COVID-19 from spreading in China in 2020. Did you notice —Yes, I think they have really worked well even up to now.",
+      "options": [
+        {
+          "key": "A",
+          "text": "are taken"
+        },
+        {
+          "key": "B",
+          "text": "have been taken"
+        },
+        {
+          "key": "C",
+          "text": "were taken"
+        },
+        {
+          "key": "D",
+          "text": "should be taken"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-下-023",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "一般过去时的被动语态",
+      "stem": "—Did you go to Tom’s birthday party? —No, I ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "haven’t invited"
+        },
+        {
+          "key": "B",
+          "text": "didn’t invite"
+        },
+        {
+          "key": "C",
+          "text": "am not invited"
+        },
+        {
+          "key": "D",
+          "text": "wasn’t invited"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-下-024",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "一般过去时的被动语态",
+      "stem": "When the baby dog ________, it was very hungry. So we gave it some food.",
+      "options": [
+        {
+          "key": "A",
+          "text": "is found"
+        },
+        {
+          "key": "B",
+          "text": "was found"
+        },
+        {
+          "key": "C",
+          "text": "has been found"
+        },
+        {
+          "key": "D",
+          "text": "will be found"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-025",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "一般将来时的被动语态",
+      "stem": "You ________ if you break the traffic rules.",
+      "options": [
+        {
+          "key": "A",
+          "text": "will punish"
+        },
+        {
+          "key": "B",
+          "text": "will be punished"
+        },
+        {
+          "key": "C",
+          "text": "punish"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-026",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "一般将来时的被动语态",
+      "stem": "—Yes. Luckily, to save water, much action ________.",
+      "options": [
+        {
+          "key": "A",
+          "text": "is taking"
+        },
+        {
+          "key": "B",
+          "text": "is going to take"
+        },
+        {
+          "key": "C",
+          "text": "is going to be taking"
+        },
+        {
+          "key": "D",
+          "text": "is going to be taken"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-下-027",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "一般将来时的被动语态",
+      "stem": "Let’s wait and see whether books ________ by the Internet in the future.",
+      "options": [
+        {
+          "key": "A",
+          "text": "replace"
+        },
+        {
+          "key": "B",
+          "text": "replaced"
+        },
+        {
+          "key": "C",
+          "text": "will be replaced"
+        },
+        {
+          "key": "D",
+          "text": "were replaced"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-下-028",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "一般将来时的被动语态",
+      "stem": "—How soon ________ the building ________? —In a month.",
+      "options": [
+        {
+          "key": "A",
+          "text": "will; complete"
+        },
+        {
+          "key": "B",
+          "text": "is; going to complete"
+        },
+        {
+          "key": "C",
+          "text": "will; be completed"
+        },
+        {
+          "key": "D",
+          "text": "are; going to be completed"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-下-029",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "It's+ 形容词 +of/for sb. to do sth.",
+      "stem": "It's very kind ________ him to cook for us.",
+      "options": [
+        {
+          "key": "A",
+          "text": "for"
+        },
+        {
+          "key": "B",
+          "text": "to"
+        },
+        {
+          "key": "C",
+          "text": "of"
+        },
+        {
+          "key": "D",
+          "text": "with"
+        }
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "g8-下-030",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "It's+ 形容词 +of/for sb. to do sth.",
+      "stem": "-It's clever ________ you to help me work out the difficult math problem. Thanks! -You are welcome. Now it's easier ________ you to understand it.",
+      "options": [
+        {
+          "key": "A",
+          "text": "of; of"
+        },
+        {
+          "key": "B",
+          "text": "of; for"
+        },
+        {
+          "key": "C",
+          "text": "for; of"
+        },
+        {
+          "key": "D",
+          "text": "for; for"
+        }
+      ],
+      "answer": "B"
+    },
+    {
+      "id": "g8-下-031",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "情态动词 had better",
+      "stem": "It's going to rain this afternoon. You'd better ________ the windows when you go out.",
+      "options": [
+        {
+          "key": "A",
+          "text": "close"
+        },
+        {
+          "key": "B",
+          "text": "to close"
+        },
+        {
+          "key": "C",
+          "text": "closed"
+        },
+        {
+          "key": "D",
+          "text": "closing"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-下-032",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "过去进⾏时的用法",
+      "stem": "Your watch is broken. You ________ buy a new one.",
+      "options": [
+        {
+          "key": "A",
+          "text": "had better"
+        },
+        {
+          "key": "B",
+          "text": "had better to"
+        },
+        {
+          "key": "C",
+          "text": "had better not"
+        },
+        {
+          "key": "D",
+          "text": "had better not to"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-下-033",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "when 引导时间状语从句",
+      "stem": "He ________ in the library when the rainstorm came.",
+      "options": [
+        {
+          "key": "A",
+          "text": "will read"
+        },
+        {
+          "key": "B",
+          "text": "reads"
+        },
+        {
+          "key": "C",
+          "text": "is reading"
+        },
+        {
+          "key": "D",
+          "text": "was reading"
+        }
+      ],
+      "answer": "D"
+    },
+    {
+      "id": "g8-下-034",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "when 引导时间状语从句",
+      "stem": "She ________ a newspaper while her father was watching TV.",
+      "options": [
+        {
+          "key": "A",
+          "text": "was reading"
+        },
+        {
+          "key": "B",
+          "text": "read"
+        },
+        {
+          "key": "C",
+          "text": "reads"
+        },
+        {
+          "key": "D",
+          "text": "is reading"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-下-035",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "when 引导时间状语从句",
+      "stem": "Cathy was singing in the room ________ his parents came in.",
+      "options": [
+        {
+          "key": "A",
+          "text": "when"
+        },
+        {
+          "key": "B",
+          "text": "while"
+        },
+        {
+          "key": "C",
+          "text": "after"
+        },
+        {
+          "key": "D",
+          "text": "since"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-下-036",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "过去进⾏时的结构",
+      "stem": "Kate will call me when she ________ back to Shanghai tomorrow afternoon.",
+      "options": [
+        {
+          "key": "A",
+          "text": "comes"
+        },
+        {
+          "key": "B",
+          "text": "came"
+        },
+        {
+          "key": "C",
+          "text": "will come"
+        }
+      ],
+      "answer": "A"
+    },
+    {
+      "id": "g8-下-037",
+      "grade": "8",
+      "term": "下册",
+      "knowledge": "过去进⾏时的结构",
+      "stem": "— ________ they ________ their homework when I went shopping? — Yes, they were.",
+      "options": [
+        {
+          "key": "A",
+          "text": "Do; do"
+        },
+        {
+          "key": "B",
+          "text": "Are; doing"
+        },
+        {
+          "key": "C",
+          "text": "Were; doing"
+        },
+        {
+          "key": "D",
+          "text": "Did; do"
+        }
+      ],
+      "answer": "C"
+    }
+  ]
+}

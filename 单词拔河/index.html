@@ -1,0 +1,3299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>单词拔河</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 30%, #0f172a 70%, #1e1b4b 100%);
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow: hidden;
+            position: relative;
+        }
+        .platform-home-link {
+            position: fixed;
+            top: calc(84px + env(safe-area-inset-top));
+            left: calc(16px + env(safe-area-inset-left));
+            z-index: 10000;
+            width: 74px;
+            height: 54px;
+            display: grid;
+            place-items: center;
+            border: 3px solid rgba(255, 255, 255, 0.82);
+            border-radius: 18px;
+            background: rgba(8, 18, 42, 0.68);
+            color: #ffffff;
+            font: 900 20px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            text-decoration: none;
+            box-shadow: 0 8px 0 rgba(0, 0, 0, 0.28), 0 0 22px rgba(80, 210, 255, 0.36);
+            backdrop-filter: blur(10px);
+            touch-action: manipulation;
+        }
+        .platform-home-link:active {
+            transform: translateY(2px) scale(0.96);
+        }
+
+        /* 拔河背景 */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 草地纹理背景 */
+        .grass-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 50% 50%, rgba(34, 197, 94, 0.1) 0%, transparent 70%),
+                radial-gradient(ellipse at 20% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+        }
+
+        /* 赛场线条 */
+        .field-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent 0px,
+                    transparent 40px,
+                    rgba(255, 255, 255, 0.03) 40px,
+                    rgba(255, 255, 255, 0.03) 42px
+                );
+        }
+
+        /* 拔河绳子效果 */
+        .rope-bg {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 8px;
+            transform: translateY(-50%);
+            background: repeating-linear-gradient(
+                90deg,
+                #d4af37 0px,
+                #d4af37 25px,
+                #b8860b 25px,
+                #b8860b 50px
+            );
+            opacity: 0.4;
+            border-radius: 4px;
+            box-shadow: 
+                0 0 20px rgba(212, 175, 55, 0.4),
+                inset 0 1px 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .rope-bg::before,
+        .rope-bg::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 20px rgba(251, 191, 36, 0.6),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .rope-bg::before { 
+            left: 20px; 
+            animation: ropePulseLeft 2s ease-in-out infinite;
+        }
+        .rope-bg::after { 
+            right: 20px; 
+            animation: ropePulseRight 2s ease-in-out infinite;
+        }
+
+        @keyframes ropePulseLeft {
+            0%, 100% { transform: translateY(-50%) scale(1); box-shadow: 0 0 20px rgba(251, 191, 36, 0.6); }
+            50% { transform: translateY(-50%) scale(1.1); box-shadow: 0 0 30px rgba(251, 191, 36, 0.8); }
+        }
+
+        @keyframes ropePulseRight {
+            0%, 100% { transform: translateY(-50%) scale(1); box-shadow: 0 0 20px rgba(251, 191, 36, 0.6); }
+            50% { transform: translateY(-50%) scale(1.1); box-shadow: 0 0 30px rgba(251, 191, 36, 0.8); }
+        }
+
+        /* 队旗装饰 */
+        .flags {
+            position: absolute;
+            top: clamp(46px, 8vh, 86px);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 clamp(18px, 4vw, 40px);
+        }
+
+        .flag {
+            width: clamp(70px, 8vw, 100px);
+            height: clamp(44px, 5vw, 60px);
+            border-radius: clamp(10px, 1.2vw, 12px);
+            position: relative;
+            animation: flagWave 2s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .flag.blue {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+
+        .flag.orange {
+            background: linear-gradient(135deg, #f97316 0%, #c2410c 100%);
+        }
+
+        .flag::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 25px;
+            background: linear-gradient(to bottom, #9ca3af, #6b7280);
+            border-radius: 0 0 3px 3px;
+        }
+
+        @keyframes flagWave {
+            0%, 100% { transform: rotate(-5deg) skewX(-3deg); }
+            50% { transform: rotate(5deg) skewX(3deg); }
+        }
+
+        /* 火花/能量粒子 */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(251, 191, 36, 0.9);
+            border-radius: 50%;
+            animation: particleFloat 3s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
+        }
+
+        .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 90%; top: 30%; animation-delay: 0.4s; }
+        .particle:nth-child(3) { left: 20%; top: 70%; animation-delay: 0.8s; }
+        .particle:nth-child(4) { left: 80%; top: 80%; animation-delay: 1.2s; }
+        .particle:nth-child(5) { left: 50%; top: 40%; animation-delay: 1.6s; }
+        .particle:nth-child(6) { left: 30%; top: 50%; animation-delay: 2s; }
+        .particle:nth-child(7) { left: 70%; top: 60%; animation-delay: 2.4s; }
+        .particle:nth-child(8) { left: 45%; top: 75%; animation-delay: 2.8s; }
+
+        @keyframes particleFloat {
+            0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
+            20% { opacity: 1; transform: translateY(-15px) scale(1); }
+            50% { opacity: 1; transform: translateY(-35px) scale(1.5); }
+            80% { opacity: 0.8; transform: translateY(-20px) scale(1); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: min(1280px, 100vw);
+            margin: 0 auto;
+            padding: clamp(10px, 2vmin, 20px);
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* 页面切换 */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .show-difficulty .difficulty-page { display: block; }
+        .show-difficulty .tutorial-page, .show-difficulty .game-page, .show-difficulty .result-page { display: none; }
+
+        .show-tutorial .tutorial-page { display: block; }
+        .show-tutorial .difficulty-page, .show-tutorial .game-page, .show-tutorial .result-page { display: none; }
+
+        .show-game .game-page { display: flex; }
+        .show-game .difficulty-page, .show-game .tutorial-page, .show-game .result-page { display: none; }
+
+        .show-result .result-page { display: block; }
+        .show-result .difficulty-page, .show-result .tutorial-page, .show-result .game-page { display: none; }
+
+        /* 难度选择页 */
+        .difficulty-page {
+            width: min(100%, 1080px);
+            margin: 0 auto;
+        }
+
+        .difficulty-header {
+            text-align: center;
+            padding: clamp(8px, 3vh, 34px) 0 clamp(8px, 2.5vh, 24px);
+        }
+
+        .brand-title {
+            font-size: clamp(1rem, 2.2vmin, 1.5rem);
+            color: #fbbf24;
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+            margin-bottom: clamp(8px, 1.8vh, 16px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 8vmin, 4rem);
+            color: white;
+            text-shadow:
+                0 0 15px rgba(251, 191, 36, 0.5),
+                0 0 30px rgba(251, 191, 36, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 0;
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: clamp(2px, 0.45vw, 6px);
+        }
+
+        .difficulty-selection {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: clamp(20px, 3vmin, 32px);
+            padding: clamp(18px, 4vmin, 40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            max-height: calc(100dvh - clamp(150px, 24vh, 220px));
+            overflow: hidden;
+        }
+
+        .difficulty-selection h2 {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: clamp(14px, 2.8vh, 30px);
+            font-size: clamp(1.35rem, 4vmin, 2rem);
+            font-weight: 600;
+            line-height: 1.15;
+        }
+
+        .difficulty-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(12px, 2.5vh, 24px);
+        }
+
+        .difficulty-btn {
+            min-height: clamp(64px, 12vh, 104px);
+            padding: clamp(14px, 3.5vh, 32px) clamp(12px, 2vw, 24px);
+            font-size: clamp(1.35rem, 4vmin, 2rem);
+            font-weight: bold;
+            border: none;
+            border-radius: clamp(16px, 2.5vmin, 24px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            letter-spacing: 0;
+            line-height: 1.1;
+        }
+
+        .difficulty-btn.easy {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
+        }
+
+        .difficulty-btn.medium {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #1a1a2e;
+            box-shadow: 0 8px 24px rgba(251, 191, 36, 0.4);
+        }
+
+        .difficulty-btn.hard {
+            background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+            color: white;
+            box-shadow: 0 8px 24px rgba(248, 113, 113, 0.4);
+        }
+
+        .difficulty-btn:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        .difficulty-btn:active {
+            transform: translateY(2px);
+        }
+
+        /* 玩法示范 */
+        .tutorial-page {
+            width: min(100%, 1120px);
+            margin: 0 auto;
+        }
+
+        .tutorial-card {
+            display: grid;
+            gap: clamp(12px, 2vh, 18px);
+            padding: clamp(16px, 3vmin, 28px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: clamp(22px, 3vmin, 34px);
+            background: rgba(255, 255, 255, 0.09);
+            box-shadow:
+                0 14px 44px rgba(0, 0, 0, 0.38),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(22px);
+        }
+
+        .tutorial-header {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 18px;
+            color: #ffffff;
+        }
+
+        .tutorial-label {
+            display: inline-grid;
+            place-items: center;
+            min-height: 40px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            color: #1f1303;
+            font-weight: 900;
+            box-shadow: 0 7px 0 rgba(120, 53, 15, 0.36);
+            white-space: nowrap;
+        }
+
+        .tutorial-title {
+            margin: 0;
+            font-size: clamp(1.7rem, 4.5vmin, 2.8rem);
+            line-height: 1.05;
+            text-align: right;
+            text-shadow: 0 4px 0 rgba(0, 0, 0, 0.28);
+        }
+
+        .demo-stage {
+            position: relative;
+            min-height: clamp(330px, 56vh, 460px);
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.18);
+            border-radius: clamp(20px, 2.8vmin, 30px);
+            background:
+                radial-gradient(circle at 18% 20%, rgba(96, 165, 250, 0.32), transparent 30%),
+                radial-gradient(circle at 82% 20%, rgba(249, 115, 22, 0.3), transparent 30%),
+                linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(30, 41, 59, 0.88));
+        }
+
+        .demo-floor {
+            position: absolute;
+            left: 4%;
+            right: 4%;
+            bottom: 16%;
+            height: 12px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #60a5fa, #fbbf24 48% 52%, #fb923c);
+            box-shadow: 0 0 24px rgba(251, 191, 36, 0.3);
+        }
+
+        .demo-finish {
+            position: absolute;
+            top: 47%;
+            bottom: 13%;
+            width: 5px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.64);
+        }
+
+        .demo-finish.left { left: 12%; }
+        .demo-finish.right { right: 12%; }
+
+        .demo-player {
+            position: absolute;
+            top: 24%;
+            display: grid;
+            justify-items: center;
+            gap: 8px;
+            width: clamp(112px, 16vw, 172px);
+            color: #ffffff;
+            font-weight: 900;
+            text-shadow: 0 3px 0 rgba(0, 0, 0, 0.35);
+        }
+
+        .demo-player.blue {
+            left: clamp(34px, 7vw, 92px);
+            animation: demoBlueBounce 6.8s ease-in-out infinite;
+        }
+
+        .demo-player.orange {
+            right: clamp(34px, 7vw, 92px);
+            animation: demoOrangeBounce 6.8s ease-in-out infinite;
+        }
+
+        .demo-animal {
+            display: grid;
+            place-items: center;
+            width: clamp(84px, 12vmin, 118px);
+            aspect-ratio: 1;
+            border: 4px solid rgba(255, 255, 255, 0.82);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.22);
+            font-size: clamp(3rem, 8vmin, 5rem);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
+        }
+
+        .demo-team-name {
+            padding: 7px 14px;
+            border-radius: 999px;
+            font-size: clamp(1rem, 2.3vmin, 1.35rem);
+        }
+
+        .demo-player.blue .demo-team-name {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        .demo-player.orange .demo-team-name {
+            background: linear-gradient(135deg, #f97316, #c2410c);
+        }
+
+        .demo-word-card {
+            position: absolute;
+            left: 50%;
+            top: 9%;
+            display: grid;
+            justify-items: center;
+            gap: 8px;
+            width: clamp(148px, 17vw, 210px);
+            padding: 12px;
+            border: 3px solid rgba(255, 255, 255, 0.82);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1f2937;
+            font-size: clamp(1.5rem, 4vmin, 2.25rem);
+            font-weight: 900;
+            transform: translateX(-50%);
+            box-shadow: 0 14px 26px rgba(0, 0, 0, 0.24);
+        }
+
+        .demo-ball-icon {
+            position: relative;
+            width: clamp(78px, 10vmin, 116px);
+            aspect-ratio: 1;
+            border: 4px solid rgba(255, 255, 255, 0.92);
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 35% 34%, #ffffff 0 13%, transparent 14%),
+                conic-gradient(from 20deg, #60a5fa 0 25%, #fbbf24 0 50%, #f97316 0 75%, #a78bfa 0);
+            box-shadow: inset 0 -10px 16px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(0, 0, 0, 0.18);
+        }
+
+        .demo-ball-icon::before,
+        .demo-ball-icon::after {
+            content: "";
+            position: absolute;
+            inset: 18%;
+            border: 4px solid rgba(255, 255, 255, 0.78);
+            border-radius: 50%;
+        }
+
+        .demo-ball-icon::after {
+            inset: 50% auto auto 50%;
+            width: 4px;
+            height: 78%;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.82);
+            transform: translate(-50%, -50%) rotate(42deg);
+        }
+
+        .demo-chant {
+            position: absolute;
+            left: 50%;
+            top: 37%;
+            display: flex;
+            gap: 8px;
+            transform: translateX(-50%);
+        }
+
+        .demo-chant span {
+            opacity: 0;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #fbbf24;
+            color: #1f1303;
+            font-size: clamp(1.1rem, 3vmin, 1.65rem);
+            font-weight: 900;
+            box-shadow: 0 6px 0 rgba(120, 53, 15, 0.34);
+            animation: demoChant 6.8s ease-in-out infinite;
+        }
+
+        .demo-chant span:nth-child(2) { animation-delay: 0.35s; }
+        .demo-chant span:nth-child(3) { animation-delay: 0.7s; }
+
+        .demo-rps {
+            position: absolute;
+            left: 50%;
+            top: 54%;
+            display: flex;
+            align-items: center;
+            gap: clamp(24px, 6vw, 78px);
+            transform: translateX(-50%);
+            font-size: clamp(2.6rem, 8vmin, 4.8rem);
+        }
+
+        .demo-hand {
+            display: grid;
+            place-items: center;
+            width: clamp(74px, 10vmin, 112px);
+            aspect-ratio: 1;
+            border: 4px solid rgba(255, 255, 255, 0.82);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.18);
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            animation: demoHandReveal 6.8s ease-in-out infinite;
+        }
+
+        .demo-hand.win {
+            border-color: #fbbf24;
+            box-shadow: 0 0 26px rgba(251, 191, 36, 0.62);
+        }
+
+        .demo-piece {
+            position: absolute;
+            left: 50%;
+            bottom: 13.5%;
+            display: grid;
+            place-items: center;
+            width: clamp(48px, 7vmin, 68px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            color: #ffffff;
+            font-size: clamp(1.8rem, 5vmin, 2.7rem);
+            transform: translateX(-50%);
+            box-shadow: 0 8px 22px rgba(249, 115, 22, 0.46);
+            animation: demoPieceMove 6.8s ease-in-out infinite;
+        }
+
+        .demo-action {
+            position: absolute;
+            right: clamp(36px, 7vw, 94px);
+            bottom: clamp(24px, 5vh, 46px);
+            min-height: clamp(52px, 8vh, 70px);
+            padding: 12px 22px;
+            border: 0;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: #ffffff;
+            font-size: clamp(1.15rem, 3.2vmin, 1.7rem);
+            font-weight: 900;
+            box-shadow: 0 10px 0 rgba(124, 45, 18, 0.42), 0 0 20px rgba(249, 115, 22, 0.42);
+            animation: demoButtonPress 6.8s ease-in-out infinite;
+        }
+
+        .demo-caption {
+            position: absolute;
+            left: clamp(24px, 4vw, 44px);
+            right: clamp(24px, 4vw, 44px);
+            bottom: clamp(20px, 4vh, 38px);
+            max-width: min(560px, 58vw);
+            padding: 10px 14px;
+            border-radius: 16px;
+            background: rgba(8, 18, 42, 0.42);
+            color: #ffffff;
+            font-size: clamp(1.05rem, 2.8vmin, 1.55rem);
+            font-weight: 900;
+            line-height: 1.25;
+            text-shadow: 0 3px 0 rgba(0, 0, 0, 0.38);
+        }
+
+        .tutorial-actions {
+            display: flex;
+            justify-content: center;
+            gap: clamp(10px, 2vw, 18px);
+        }
+
+        .tutorial-btn {
+            min-height: clamp(48px, 8vh, 66px);
+            padding: 12px clamp(18px, 3vw, 30px);
+            border: 0;
+            border-radius: 999px;
+            font-size: clamp(1rem, 2.7vmin, 1.45rem);
+            font-weight: 900;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .tutorial-btn.primary {
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            color: #1f1303;
+            box-shadow: 0 9px 0 rgba(120, 53, 15, 0.42);
+        }
+
+        .tutorial-btn.secondary {
+            background: rgba(255, 255, 255, 0.14);
+            color: #ffffff;
+            box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.24);
+        }
+
+        .tutorial-btn:active {
+            transform: translateY(2px) scale(0.98);
+        }
+
+        @keyframes demoBlueBounce {
+            0%, 22%, 100% { transform: translateY(0); }
+            8%, 16% { transform: translateY(-10px); }
+        }
+
+        @keyframes demoOrangeBounce {
+            0%, 22%, 100% { transform: translateY(0); }
+            10%, 18% { transform: translateY(-10px); }
+            48%, 60% { transform: translateY(-16px) scale(1.05); }
+        }
+
+        @keyframes demoChant {
+            0%, 8% { opacity: 0; transform: translateY(12px) scale(0.86); }
+            12%, 34% { opacity: 1; transform: translateY(0) scale(1); }
+            42%, 100% { opacity: 0; transform: translateY(-12px) scale(0.9); }
+        }
+
+        @keyframes demoHandReveal {
+            0%, 38% { opacity: 0; transform: translateY(20px) scale(0.8); }
+            44%, 68% { opacity: 1; transform: translateY(0) scale(1); }
+            78%, 100% { opacity: 0; transform: translateY(-12px) scale(0.92); }
+        }
+
+        @keyframes demoButtonPress {
+            0%, 62% { transform: translateY(0) scale(1); filter: brightness(1); }
+            68%, 74% { transform: translateY(7px) scale(0.96); filter: brightness(1.16); }
+            84%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
+        }
+
+        @keyframes demoPieceMove {
+            0%, 68% { left: 50%; transform: translateX(-50%) scale(1); }
+            80%, 100% { left: 72%; transform: translateX(-50%) scale(1.08); }
+        }
+
+        .simple-demo {
+            display: grid;
+            grid-template-columns: minmax(130px, 1fr) minmax(300px, 1.15fr) minmax(130px, 1fr);
+            grid-template-rows: minmax(210px, 1fr) auto auto;
+            gap: clamp(12px, 2vw, 22px);
+            align-items: center;
+            padding: clamp(20px, 4vmin, 34px);
+            min-height: clamp(320px, 50vh, 430px);
+        }
+
+        .simple-demo .demo-side,
+        .simple-demo .demo-center {
+            position: static;
+            display: grid;
+            justify-items: center;
+            align-content: center;
+            gap: clamp(10px, 1.8vh, 16px);
+            width: auto;
+            color: #ffffff;
+            text-shadow: 0 3px 0 rgba(0, 0, 0, 0.34);
+        }
+
+        .simple-demo .demo-animal {
+            width: clamp(112px, 15vmin, 150px);
+            border-radius: 32px;
+            font-size: clamp(4rem, 10vmin, 6rem);
+            transition: transform 260ms ease, box-shadow 260ms ease, filter 260ms ease;
+        }
+
+        .simple-demo .demo-team-name {
+            padding: 10px 18px;
+            font-size: clamp(1.35rem, 3.4vmin, 2rem);
+            font-weight: 900;
+        }
+
+        .simple-demo .demo-word-card {
+            position: static;
+            width: clamp(180px, 21vw, 250px);
+            transform: none;
+            font-size: clamp(2rem, 5vmin, 3rem);
+        }
+
+        .simple-demo .demo-ball-icon {
+            width: clamp(96px, 13vmin, 136px);
+        }
+
+        .demo-chant-row,
+        .demo-rps-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(10px, 2vw, 18px);
+            min-height: clamp(64px, 10vh, 84px);
+        }
+
+        .demo-chant-row span {
+            opacity: 0.22;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: #fbbf24;
+            color: #1f1303;
+            font-size: clamp(1.25rem, 3.4vmin, 2rem);
+            font-weight: 900;
+            box-shadow: 0 6px 0 rgba(120, 53, 15, 0.34);
+            transition: opacity 220ms ease, transform 220ms ease;
+        }
+
+        .demo-rps-row {
+            opacity: 0.18;
+            transition: opacity 220ms ease, transform 220ms ease;
+        }
+
+        .demo-gesture {
+            display: grid;
+            place-items: center;
+            width: clamp(76px, 10vmin, 108px);
+            aspect-ratio: 1;
+            border: 4px solid rgba(255, 255, 255, 0.82);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.18);
+            font-size: clamp(2.8rem, 7vmin, 4.4rem);
+        }
+
+        .demo-gesture.orange {
+            border-color: rgba(251, 191, 36, 0.9);
+        }
+
+        .demo-versus {
+            color: #ffffff;
+            font-size: clamp(1rem, 2.8vmin, 1.45rem);
+            font-weight: 900;
+        }
+
+        .demo-track {
+            grid-column: 1 / -1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 70px;
+            padding: 0 clamp(14px, 3vw, 32px);
+        }
+
+        .demo-track::before {
+            content: "";
+            position: absolute;
+            left: clamp(80px, 12vw, 150px);
+            right: clamp(80px, 12vw, 150px);
+            top: 50%;
+            height: 12px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #60a5fa, #fbbf24 48% 52%, #fb923c);
+            transform: translateY(-50%);
+            box-shadow: 0 0 24px rgba(251, 191, 36, 0.3);
+        }
+
+        .demo-goal {
+            z-index: 1;
+            padding: 8px 12px;
+            border-radius: 999px;
+            color: #ffffff;
+            font-size: clamp(0.95rem, 2.4vmin, 1.25rem);
+            font-weight: 900;
+        }
+
+        .demo-goal.blue {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        .demo-goal.orange {
+            background: linear-gradient(135deg, #f97316, #c2410c);
+        }
+
+        .simple-demo .demo-piece {
+            position: absolute;
+            left: 50%;
+            bottom: auto;
+            z-index: 2;
+            transition: left 520ms cubic-bezier(.2, .85, .25, 1), transform 220ms ease;
+            animation: none;
+        }
+
+        .demo-win-buttons {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(12px, 3vw, 28px);
+            width: 100%;
+        }
+
+        .demo-win-button {
+            display: grid;
+            place-items: center;
+            min-height: clamp(50px, 8vh, 70px);
+            border-radius: 20px;
+            color: #ffffff;
+            font-size: clamp(1.15rem, 3.3vmin, 1.8rem);
+            font-weight: 900;
+            transition: transform 220ms ease, filter 220ms ease, box-shadow 220ms ease;
+        }
+
+        .demo-win-button.blue {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        .demo-win-button.orange {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+        }
+
+        .tutorial-caption {
+            min-height: clamp(48px, 7vh, 64px);
+            display: grid;
+            place-items: center;
+            padding: 10px 18px;
+            border-radius: 18px;
+            background: rgba(8, 18, 42, 0.58);
+            color: #ffffff;
+            font-size: clamp(1.15rem, 2.7vmin, 1.6rem);
+            font-weight: 900;
+            line-height: 1.25;
+            text-align: center;
+            text-shadow: 0 3px 0 rgba(0, 0, 0, 0.34);
+        }
+
+        .tutorial-video-shell {
+            position: relative;
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 auto;
+            overflow: visible;
+        }
+
+        .tutorial-video-frame {
+            position: relative;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            border-radius: clamp(18px, 2.6vmin, 30px);
+        }
+
+        .tutorial-video {
+            width: auto;
+            max-width: 100%;
+            height: min(66vh, 600px);
+            display: block;
+            object-fit: contain;
+            border: 4px solid rgba(255, 255, 255, 0.78);
+            border-radius: inherit;
+            background: #10233d;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
+        }
+
+        .tutorial-rule-guide {
+            position: absolute;
+            top: clamp(12px, 2vmin, 22px);
+            left: 76%;
+            right: auto;
+            bottom: clamp(12px, 2vmin, 22px);
+            z-index: 2;
+            width: 48%;
+            display: grid;
+            align-content: start;
+            gap: clamp(8px, 1.4vh, 14px);
+            min-width: 0;
+            pointer-events: none;
+        }
+
+        .tutorial-rule-steps { display: contents; }
+
+        .tutorial-rule-step {
+            min-height: clamp(70px, 10vmin, 100px);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto auto;
+            align-items: center;
+            align-content: center;
+            gap: 7px 10px;
+            padding: clamp(8px, 1.5vmin, 12px);
+            border: 2px solid rgba(255, 255, 255, 0.38);
+            border-radius: clamp(12px, 1.8vmin, 18px);
+            background: rgba(15, 23, 42, 0.76);
+            color: rgba(255, 255, 255, 0.72);
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.22);
+            transition: transform 220ms ease, background 220ms ease, border-color 220ms ease, color 220ms ease;
+        }
+
+        .tutorial-rule-step.is-active {
+            min-height: clamp(190px, 29vmin, 285px);
+        }
+
+        .tutorial-rule-step:not(.is-visible) {
+            display: none;
+        }
+
+        .tutorial-rule-step.is-active {
+            transform: translateY(-5px) scale(1.03);
+            border-color: #fbbf24;
+            background: rgba(120, 53, 15, 0.88);
+            color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.3), 0 9px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .tutorial-rule-number {
+            width: clamp(30px, 4.8vmin, 42px);
+            aspect-ratio: 1;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: #fbbf24;
+            color: #3b2101;
+            font-size: clamp(1rem, 2.6vmin, 1.4rem);
+            font-weight: 900;
+        }
+
+        .tutorial-rule-copy {
+            display: grid;
+            gap: 2px;
+            min-width: 0;
+            font-weight: 900;
+            line-height: 1.12;
+            overflow-wrap: anywhere;
+        }
+
+
+        .tutorial-rule-copy strong,
+        .tutorial-rule-copy span { overflow-wrap: anywhere; word-break: break-word; }
+        .tutorial-rule-copy strong { font-size: clamp(1rem, 2.4vmin, 1.4rem); }
+        .tutorial-rule-copy span { font-size: clamp(0.78rem, 1.8vmin, 1rem); font-weight: 700; }
+
+        .tutorial-rule-media {
+            grid-column: 1 / -1;
+            display: none;
+            min-height: clamp(112px, 18vmin, 180px);
+            align-items: center;
+            justify-content: center;
+            padding: clamp(7px, 1.2vmin, 12px);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.13);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            overflow: hidden;
+        }
+
+        .tutorial-rule-step.is-active .tutorial-rule-media {
+            display: flex;
+            animation: tutorialMediaIn 260ms ease-out;
+        }
+
+        .tutorial-rule-media img {
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .tutorial-rule-step[data-tutorial-step="0"] .tutorial-rule-media img {
+            transform: none;
+        }
+
+        .tutorial-rule-step[data-tutorial-step="0"] .tutorial-rule-media {
+            width: 180px;
+            justify-self: center;
+            min-height: 180px;
+            overflow: visible;
+        }
+
+        .tutorial-rule-step[data-tutorial-step="0"].is-active {
+            width: min(100%, 240px);
+            min-height: 0;
+            justify-self: center;
+        }
+
+        .tutorial-rule-step[data-tutorial-step="0"] .tutorial-rule-media img {
+            width: 170px;
+            max-width: none;
+            height: auto;
+            flex: 0 0 auto;
+        }
+
+        .tutorial-rule-step[data-tutorial-step="0"].is-active {
+            width: 94%;
+            justify-self: end;
+            min-height: clamp(175px, 27vmin, 265px);
+        }
+
+        .tutorial-rule-step[data-tutorial-step="2"].is-active {
+            width: 110%;
+            min-height: clamp(240px, 36vmin, 350px);
+        }
+
+        .tutorial-rule-step[data-tutorial-step="2"].is-active .tutorial-rule-media {
+            min-height: clamp(185px, 27vmin, 270px);
+            overflow: visible;
+        }
+
+        .tutorial-boundary-demo {
+            position: relative;
+            width: 100%;
+            height: clamp(62px, 10vmin, 88px);
+            display: flex;
+            align-items: center;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #3b82f6 0 13%, #8bd3ff 14% 42%, #fbbf24 43% 57%, #fb923c 58% 86%, #ea580c 87% 100%);
+            box-shadow: inset 0 0 0 3px rgba(255,255,255,0.5), 0 5px 12px rgba(0,0,0,0.2);
+        }
+
+        .tutorial-boundary-label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffffff;
+            font-size: clamp(0.62rem, 1.5vmin, 0.82rem);
+            font-weight: 900;
+            text-shadow: 0 2px 2px rgba(0,0,0,0.35);
+        }
+
+        .tutorial-boundary-label.left { left: 8px; }
+        .tutorial-boundary-label.right { right: 8px; }
+
+        .tutorial-boundary-trophy {
+            position: absolute;
+            left: 48%;
+            z-index: 1;
+            font-size: clamp(1.5rem, 4vmin, 2.4rem);
+            transform: translateX(-50%);
+            animation: tutorialBoundaryTug 1.8s ease-in-out infinite;
+        }
+
+        .tutorial-boundary-win {
+            position: absolute;
+            right: 8%;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #ffffff;
+            color: #ea580c;
+            font-size: clamp(0.62rem, 1.55vmin, 0.85rem);
+            font-weight: 900;
+            opacity: 0;
+            animation: tutorialBoundaryWin 1.8s ease-in-out infinite;
+        }
+
+        @keyframes tutorialMediaIn {
+            from { opacity: 0; transform: translateY(8px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes tutorialBoundaryTug {
+            0%, 35% { left: 48%; transform: translateX(-50%) scale(1); }
+            75%, 100% { left: 91%; transform: translateX(-50%) scale(1.16); }
+        }
+
+        @keyframes tutorialBoundaryWin {
+            0%, 68% { opacity: 0; transform: scale(0.8); }
+            78%, 100% { opacity: 1; transform: scale(1); }
+        }
+
+        .tutorial-mini-game {
+            position: relative;
+            width: 100%;
+            display: grid;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, rgba(59,130,246,0.35), rgba(255,255,255,0.7), rgba(249,115,22,0.35));
+            border: 2px solid rgba(255,255,255,0.7);
+            overflow: visible;
+            transform: scale(1.1);
+            transform-origin: center;
+        }
+
+        .tutorial-mini-game-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+            margin-bottom: 5px;
+            font-size: clamp(0.62rem, 1.5vmin, 0.82rem);
+            font-weight: 900;
+        }
+
+        .tutorial-mini-score {
+            flex: 1 1 0;
+            min-width: 0;
+            padding: 3px 7px;
+            border-radius: 7px;
+            color: #ffffff;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .tutorial-mini-score.blue { background: #2563eb; }
+        .tutorial-mini-score.orange { background: #ea580c; }
+
+        .tutorial-mini-score-after {
+            display: inline-block;
+            opacity: 0;
+            animation: tutorialScoreAfter 2.2s steps(1, end) infinite;
+        }
+
+        .tutorial-mini-score-before {
+            animation: tutorialScoreBefore 2.2s steps(1, end) infinite;
+        }
+
+        .tutorial-mini-game-track {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+            padding: 7px;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #3b82f6, #fbbf24 48% 52%, #f97316);
+        }
+
+        .tutorial-mini-game-card {
+            height: clamp(30px, 5.5vmin, 48px);
+            border: 2px solid rgba(255,255,255,0.92);
+            border-radius: 5px;
+            background-color: rgba(255,255,255,0.88);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .tutorial-mini-game-card:nth-child(1) { background-image: url('image/easy/apple.png'); }
+        .tutorial-mini-game-card:nth-child(2) { background-image: url('image/easy/ball.png'); }
+        .tutorial-mini-game-card:nth-child(3) { background-image: url('image/easy/egg.png'); }
+        .tutorial-mini-game-card:nth-child(4) { background-image: url('image/easy/cat.png'); }
+        .tutorial-mini-game-card:nth-child(5) { background-image: url('image/easy/bag.png'); }
+
+        .tutorial-mini-game-card.active { border-color: #fbbf24; box-shadow: 0 0 0 2px rgba(251,191,36,0.55); }
+
+        .tutorial-mini-game-trophy {
+            position: absolute;
+            top: 0;
+            left: 90%;
+            z-index: 4;
+            font-size: clamp(1rem, 3vmin, 1.6rem);
+            transform: translate(-50%, -100%);
+            animation: tutorialGameTrophyMove 2.2s ease-in-out infinite;
+        }
+
+        .tutorial-mini-game-win {
+            justify-self: center;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: #ffffff;
+            color: #ea580c;
+            font-size: clamp(0.62rem, 1.5vmin, 0.82rem);
+            font-weight: 900;
+            animation: tutorialGameWinPulse 2.2s ease-in-out infinite;
+        }
+
+        @keyframes tutorialGameTrophyMove {
+            0%, 24% { left: 90%; transform: translate(-50%, -100%) scale(1); }
+            56%, 100% { left: 112%; transform: translate(-50%, -100%) scale(1.18); }
+        }
+
+        @keyframes tutorialGameWinPulse {
+            0%, 44% { opacity: 0.35; transform: scale(0.92); }
+            58%, 100% { opacity: 1; transform: scale(1.06); }
+        }
+
+        .tutorial-mini-celebration {
+            position: absolute;
+            right: 8px;
+            bottom: 6px;
+            padding: 3px 7px;
+            border-radius: 999px;
+            background: #fbbf24;
+            color: #5b2c06;
+            font-size: clamp(0.62rem, 1.5vmin, 0.82rem);
+            font-weight: 900;
+            opacity: 0;
+            animation: tutorialCelebration 2.2s ease-in-out infinite;
+        }
+
+        @keyframes tutorialScoreBefore {
+            0%, 52% { opacity: 1; }
+            62%, 100% { opacity: 0; }
+        }
+
+        @keyframes tutorialScoreAfter {
+            0%, 52% { opacity: 0; }
+            62%, 100% { opacity: 1; }
+        }
+
+        @keyframes tutorialCelebration {
+            0%, 50% { opacity: 0; transform: scale(0.75); }
+            62%, 100% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .tutorial-play-overlay {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            border: 0;
+            border-radius: clamp(18px, 2.6vmin, 30px);
+            background: rgba(8, 18, 42, 0.16);
+            cursor: pointer;
+            transition: opacity 0.18s ease, transform 0.18s ease;
+        }
+
+        .tutorial-play-overlay.is-hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .tutorial-play-icon {
+            display: grid;
+            place-items: center;
+            width: clamp(86px, 13vmin, 132px);
+            aspect-ratio: 1;
+            border: 6px solid rgba(255, 255, 255, 0.96);
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            box-shadow:
+                0 16px 34px rgba(120, 53, 15, 0.34),
+                inset 0 2px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .tutorial-play-icon::before {
+            content: "";
+            width: 0;
+            height: 0;
+            margin-left: 8%;
+            border-top: clamp(18px, 3vmin, 28px) solid transparent;
+            border-bottom: clamp(18px, 3vmin, 28px) solid transparent;
+            border-left: clamp(28px, 4.6vmin, 44px) solid #ffffff;
+        }
+
+        .tutorial-play-overlay:active .tutorial-play-icon {
+            transform: translateY(4px) scale(0.97);
+        }
+
+        /* 新版对战台视觉 */
+        body {
+            background:
+                radial-gradient(circle at 15% 16%, rgba(96, 165, 250, 0.36), transparent 28%),
+                radial-gradient(circle at 86% 18%, rgba(249, 115, 22, 0.34), transparent 29%),
+                linear-gradient(180deg, #dff7ff 0%, #baf0df 42%, #88d879 100%);
+        }
+
+        .grass-bg {
+            background:
+                linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0 2px, transparent 2px 14%),
+                repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.14) 0 2px, transparent 2px 54px);
+        }
+
+        .field-lines {
+            background:
+                radial-gradient(ellipse at 50% 64%, rgba(255, 255, 255, 0.34), transparent 44%),
+                linear-gradient(90deg, transparent 0 49.5%, rgba(255, 255, 255, 0.48) 49.5% 50.5%, transparent 50.5% 100%);
+        }
+
+        .rope-bg {
+            opacity: 0.18;
+        }
+
+        .game-page {
+            width: min(100%, 1240px);
+        }
+
+        .game-header {
+            padding: clamp(9px, 1.7vh, 16px);
+            margin-bottom: clamp(8px, 1.4vh, 16px);
+            border: 4px solid rgba(255, 255, 255, 0.85);
+            background: linear-gradient(180deg, rgba(20, 35, 77, 0.9), rgba(13, 26, 58, 0.82));
+            box-shadow: 0 10px 0 rgba(12, 32, 72, 0.26), 0 0 28px rgba(255, 255, 255, 0.22);
+        }
+
+        .tug-of-war-container {
+            position: relative;
+            overflow: hidden;
+            min-height: clamp(430px, 62vh, 560px);
+            border: 5px solid rgba(255, 255, 255, 0.88);
+            background:
+                linear-gradient(90deg, rgba(59, 130, 246, 0.24), transparent 28%, transparent 72%, rgba(249, 115, 22, 0.24)),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(241, 255, 247, 0.84));
+            box-shadow: 0 14px 0 rgba(23, 66, 110, 0.24), 0 22px 48px rgba(26, 52, 72, 0.22);
+        }
+
+        .tug-of-war-container::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 18% 18%, rgba(59, 130, 246, 0.22), transparent 26%),
+                radial-gradient(circle at 82% 18%, rgba(249, 115, 22, 0.2), transparent 26%);
+            pointer-events: none;
+        }
+
+        .team-zones {
+            position: relative;
+            z-index: 2;
+            align-items: start;
+            padding: 0 clamp(18px, 3vw, 40px);
+            margin-bottom: clamp(6px, 1vh, 12px);
+        }
+
+        .team-zone {
+            width: clamp(128px, 16vw, 180px);
+        }
+
+        .team-label {
+            min-width: clamp(110px, 13vw, 154px);
+            text-align: center;
+            border: 4px solid rgba(255, 255, 255, 0.92);
+            box-shadow: 0 8px 0 rgba(0, 0, 0, 0.18);
+        }
+
+        .team-score {
+            min-width: 70px;
+            min-height: 58px;
+            display: grid;
+            place-items: center;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.72);
+            box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.72), 0 7px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .track-area {
+            z-index: 2;
+            height: clamp(280px, 42vh, 370px);
+        }
+
+        .track-line {
+            height: 18px;
+            background: linear-gradient(90deg, #3b82f6, #fbbf24 48% 52%, #f97316);
+            box-shadow: 0 0 22px rgba(251, 191, 36, 0.34), inset 0 2px 4px rgba(255, 255, 255, 0.34);
+        }
+
+        .track-line::before {
+            opacity: 0.2;
+        }
+
+        .track-center {
+            width: 44px;
+            height: 44px;
+            border-width: 4px;
+            background: rgba(255, 255, 255, 0.72);
+        }
+
+        .word-positions {
+            gap: clamp(10px, 1.4vw, 18px);
+            padding: 0 clamp(14px, 2vw, 28px) clamp(16px, 2.2vh, 24px);
+        }
+
+        .word-card {
+            min-height: clamp(220px, 36vh, 310px);
+            padding: clamp(10px, 1.8vmin, 16px);
+            border: 5px solid rgba(255, 255, 255, 0.95);
+            border-radius: clamp(20px, 2.6vmin, 30px);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(239, 248, 255, 0.92));
+            box-shadow: 0 10px 0 rgba(45, 72, 92, 0.2), 0 16px 28px rgba(31, 53, 67, 0.16);
+        }
+
+        .word-card.active {
+            border-color: #fbbf24;
+            box-shadow: 0 0 34px rgba(251, 191, 36, 0.6), 0 13px 0 rgba(139, 92, 0, 0.22);
+            transform: translateY(-8px) scale(1.04);
+        }
+
+        .word-image {
+            min-height: clamp(132px, 25vh, 210px);
+            border-radius: 18px;
+            background: #ffffff;
+        }
+
+        .word-text {
+            color: #19324f;
+            text-shadow: 0 2px 0 rgba(255, 255, 255, 0.84);
+        }
+
+        .audio-btn {
+            box-shadow: 0 5px 0 rgba(29, 78, 216, 0.42), 0 0 18px rgba(59, 130, 246, 0.36);
+        }
+
+        .piece-container {
+            top: clamp(-56px, -6vh, -38px);
+            width: clamp(54px, 7.4vmin, 72px);
+            height: clamp(54px, 7.4vmin, 72px);
+        }
+
+        .piece {
+            font-size: clamp(2rem, 4.6vmin, 3rem);
+        }
+
+        .progress-indicator {
+            position: relative;
+            z-index: 2;
+        }
+
+        .game-controls {
+            gap: clamp(12px, 2vw, 24px);
+        }
+
+        .control-btn {
+            min-height: clamp(72px, 11vh, 96px);
+            border: 5px solid rgba(255, 255, 255, 0.88);
+            border-radius: 28px;
+            box-shadow: 0 12px 0 rgba(0, 0, 0, 0.2), 0 0 26px rgba(255, 255, 255, 0.18);
+        }
+
+        .simple-demo[data-step="0"] .demo-blue .demo-animal,
+        .simple-demo[data-step="0"] .demo-orange .demo-animal {
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.32);
+            transform: translateY(-8px);
+        }
+
+        .simple-demo[data-step="1"] .demo-chant-row span {
+            opacity: 1;
+            transform: translateY(-6px) scale(1.05);
+        }
+
+        .simple-demo[data-step="1"] .demo-blue .demo-animal,
+        .simple-demo[data-step="1"] .demo-orange .demo-animal {
+            transform: translateY(-12px);
+        }
+
+        .simple-demo[data-step="2"] .demo-rps-row {
+            opacity: 1;
+            transform: translateY(-6px) scale(1.03);
+        }
+
+        .simple-demo[data-step="2"] .demo-gesture.orange {
+            box-shadow: 0 0 34px rgba(251, 191, 36, 0.7);
+            transform: scale(1.08);
+        }
+
+        .simple-demo[data-step="3"] .demo-win-button.orange {
+            transform: translateY(7px) scale(0.96);
+            filter: brightness(1.18);
+            box-shadow: 0 0 28px rgba(249, 115, 22, 0.68);
+        }
+
+        .simple-demo[data-step="4"] .demo-piece {
+            left: 72%;
+            transform: translateX(-50%) scale(1.14);
+        }
+
+        .simple-demo[data-step="4"] .demo-orange .demo-animal {
+            transform: translateY(-16px) scale(1.06);
+            box-shadow: 0 0 32px rgba(249, 115, 22, 0.48);
+        }
+
+        /* 游戏页 */
+        .game-page {
+            width: min(100%, 1200px);
+            min-height: calc(100dvh - clamp(20px, 4vmin, 40px));
+            margin: 0 auto;
+            flex-direction: column;
+        }
+
+        .game-header {
+            text-align: center;
+            padding: clamp(10px, 2vh, 20px);
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px);
+            border-radius: clamp(16px, 2vmin, 24px);
+            margin-bottom: clamp(12px, 2vh, 24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .game-title {
+            font-size: clamp(1.9rem, 5.2vmin, 3rem);
+            color: white;
+            margin: 0;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .game-title::before,
+        .game-title::after {
+            content: '⚔️';
+            font-size: clamp(1.4rem, 4vmin, 2.2rem);
+        }
+
+        .tug-of-war-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: clamp(20px, 3vmin, 32px);
+            padding: clamp(12px, 3vmin, 30px);
+            margin-bottom: clamp(12px, 2vh, 24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: clamp(260px, 54vh, 480px);
+        }
+
+        .tug-of-war-track {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-zones {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 clamp(4px, 2vw, 20px);
+            margin-bottom: clamp(10px, 2vh, 20px);
+        }
+
+        .team-zone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(4px, 1vh, 8px);
+            width: clamp(72px, 12vw, 100px);
+        }
+
+        .team-label {
+            font-size: clamp(1.45rem, 3.7vmin, 2.15rem);
+            font-weight: 900;
+            color: white;
+            padding: clamp(9px, 1.7vh, 13px) clamp(16px, 2.5vw, 26px);
+            border-radius: clamp(12px, 1.8vmin, 16px);
+            background: rgba(255, 255, 255, 0.1);
+            white-space: nowrap;
+        }
+
+        .team-score {
+            font-size: clamp(1.8rem, 4.6vmin, 2.8rem);
+            font-weight: 900;
+        }
+
+        .team-left .team-label {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+
+        .team-left .team-score {
+            color: #60a5fa;
+        }
+
+        .team-right .team-label {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        }
+
+        .team-right .team-score {
+            color: #fb923c;
+        }
+
+        .track-area {
+            width: 100%;
+            height: clamp(230px, 38vh, 330px);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .track-line {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .track-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0px,
+                transparent 30px,
+                rgba(255, 255, 255, 0.1) 30px,
+                rgba(255, 255, 255, 0.1) 32px
+            );
+            border-radius: 6px;
+        }
+
+        /* 中线标记 */
+        .track-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            border: 3px dashed #fbbf24;
+            border-radius: 50%;
+            animation: pulseCenter 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseCenter {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
+        }
+
+        .word-positions {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: clamp(8px, 1.3vw, 18px);
+            align-items: flex-end;
+            padding: 0 clamp(4px, 1vw, 10px) clamp(14px, 3vh, 24px);
+            overflow: visible;
+        }
+
+        .word-position {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(6px, 1.5vh, 10px);
+            width: 100%;
+            min-width: 0;
+            position: relative;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .word-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(18px);
+            border-radius: clamp(16px, 2.2vmin, 24px);
+            padding: clamp(9px, 1.7vmin, 14px);
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.28);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: clamp(190px, 32vh, 270px);
+            width: 100%;
+            max-width: none;
+            display: grid;
+            grid-template-rows: minmax(0, 1fr) auto;
+            align-items: stretch;
+            justify-items: center;
+            gap: clamp(6px, 1vh, 10px);
+            flex-shrink: 0;
+        }
+
+        .word-card:hover {
+            transform: scale(1.03);
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .word-card.active {
+            border-color: #fbbf24;
+            box-shadow: 
+                0 0 30px rgba(251, 191, 36, 0.4),
+                inset 0 0 20px rgba(251, 191, 36, 0.1);
+            transform: scale(1.05);
+        }
+
+        .word-image {
+            width: 100%;
+            height: 100%;
+            min-height: clamp(112px, 22vh, 184px);
+            object-fit: contain;
+            border-radius: clamp(10px, 1.5vmin, 12px);
+            background: rgba(255, 255, 255, 0.08);
+            padding: clamp(6px, 1.3vmin, 10px);
+            overflow: hidden;
+        }
+
+        .word-text {
+            font-size: clamp(1.45rem, 3.4vmin, 2.2rem);
+            font-weight: 900;
+            color: white;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            line-height: 1.1;
+        }
+
+        .audio-btn {
+            position: absolute;
+            top: clamp(7px, 1.2vmin, 10px);
+            right: clamp(7px, 1.2vmin, 10px);
+            width: clamp(34px, 5vmin, 44px);
+            height: clamp(34px, 5vmin, 44px);
+            border-radius: 50%;
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            border: clamp(2px, 0.4vmin, 3px) solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: clamp(0.95rem, 2.2vmin, 1.25rem);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.5);
+            flex-shrink: 0;
+        }
+
+        .audio-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+
+        .audio-btn:active {
+            transform: scale(0.95);
+        }
+
+        .audio-btn.playing {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            animation: pulse 0.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* 棋子 */
+        .piece-container {
+            position: absolute;
+            top: clamp(-44px, -5vh, -30px);
+            left: 0;
+            transform: translateX(-50%);
+            transition: left 0.5s ease-out;
+            z-index: 20;
+            width: clamp(38px, 6vmin, 50px);
+            height: clamp(38px, 6vmin, 50px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        .piece-container.visible {
+            opacity: 1;
+        }
+
+        .piece {
+            font-size: clamp(1.45rem, 3.4vmin, 2rem);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            animation: pieceBounce 1s ease-in-out infinite;
+        }
+
+        @keyframes pieceBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* 进度指示 */
+        .progress-indicator {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: clamp(6px, 1vmin, 8px);
+            margin-top: clamp(10px, 2vh, 16px);
+        }
+
+        .progress-dot {
+            width: clamp(9px, 1.5vmin, 12px);
+            height: clamp(9px, 1.5vmin, 12px);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: #fbbf24;
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+        }
+
+        .game-controls {
+            display: flex;
+            gap: clamp(10px, 2vw, 20px);
+            justify-content: center;
+        }
+
+        .control-btn {
+            flex: 1;
+            min-height: clamp(54px, 10vh, 86px);
+            padding: clamp(14px, 2.8vh, 28px) clamp(10px, 2vw, 20px);
+            font-size: clamp(1.65rem, 4.6vmin, 2.6rem);
+            font-weight: 900;
+            border: none;
+            border-radius: clamp(16px, 2.5vmin, 28px);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0;
+            position: relative;
+            overflow: hidden;
+            line-height: 1.15;
+        }
+
+        .control-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .control-btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-left-win {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-right-win {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+            box-shadow: 0 12px 35px rgba(249, 115, 22, 0.5);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        .control-btn:active {
+            transform: translateY(2px);
+        }
+
+        /* 结果页 */
+        .result-page {
+            text-align: center;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: clamp(22px, 4vmin, 40px);
+            padding: clamp(24px, 5vmin, 50px) clamp(18px, 4vmin, 40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .result-title {
+            font-size: clamp(2rem, 7vmin, 3.5rem);
+            color: #fbbf24;
+            margin-bottom: clamp(14px, 2.5vh, 20px);
+            font-weight: 800;
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+            animation: celebrate 0.5s ease-in-out infinite;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.05) rotate(-3deg); }
+            75% { transform: scale(1.05) rotate(3deg); }
+        }
+
+        .winner-display {
+            font-size: clamp(1.65rem, 5.5vmin, 3rem);
+            color: white;
+            margin-bottom: clamp(18px, 4vh, 30px);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .winner-trophy {
+            font-size: clamp(2.4rem, 7vmin, 4rem);
+            animation: trophyBounce 0.6s ease-in-out infinite;
+        }
+
+        @keyframes trophyBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .result-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(12px, 2.5vh, 20px);
+        }
+
+        .result-btn {
+            min-height: clamp(56px, 10vh, 86px);
+            padding: clamp(14px, 3vh, 28px) clamp(10px, 2vw, 20px);
+            font-size: clamp(1.15rem, 3.6vmin, 1.8rem);
+            font-weight: bold;
+            border: none;
+            border-radius: clamp(16px, 2.5vmin, 24px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0;
+            line-height: 1.15;
+        }
+
+        .btn-restart {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #1a1a2e;
+            box-shadow: 0 8px 24px rgba(251, 191, 36, 0.4);
+        }
+
+        .btn-end {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            box-shadow: 0 8px 24px rgba(107, 114, 128, 0.4);
+        }
+
+        .result-btn:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        .result-btn:active {
+            transform: translateY(2px);
+        }
+
+        /* 音乐按钮 */
+        .music-btn {
+            position: fixed;
+            top: clamp(12px, 2.5vmin, 24px);
+            right: clamp(12px, 2.5vmin, 24px);
+            width: clamp(44px, 7vmin, 60px);
+            height: clamp(44px, 7vmin, 60px);
+            border-radius: 50%;
+            background: rgba(251, 191, 36, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: clamp(1.15rem, 3vmin, 1.5rem);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 100;
+            color: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.6);
+        }
+
+        .music-btn.off {
+            background: rgba(107, 114, 128, 0.9);
+            color: white;
+        }
+
+        @media (max-width: 720px) {
+            .container {
+                padding: 10px;
+            }
+
+            .flags {
+                opacity: 0.75;
+            }
+
+            .difficulty-page {
+                width: 100%;
+            }
+
+            .game-controls {
+                flex-direction: column;
+            }
+
+            .word-positions {
+                gap: 5px;
+                padding-inline: 0;
+            }
+
+            .word-card {
+                min-height: clamp(142px, 28vh, 190px);
+                padding: 6px;
+            }
+
+            .word-image {
+                min-height: clamp(78px, 17vh, 124px);
+            }
+
+            .tutorial-header,
+            .tutorial-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .tutorial-title {
+                text-align: left;
+            }
+
+            .demo-caption {
+                max-width: none;
+                right: clamp(20px, 4vw, 36px);
+            }
+
+            .demo-action {
+                right: clamp(20px, 4vw, 36px);
+            }
+
+            .simple-demo {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto auto auto;
+                gap: 10px;
+                padding: 14px;
+            }
+
+            .simple-demo .demo-center {
+                grid-column: 1 / -1;
+                grid-row: 1;
+            }
+
+            .simple-demo .demo-side {
+                grid-row: 2;
+            }
+
+            .simple-demo .demo-animal {
+                width: clamp(82px, 20vmin, 112px);
+                font-size: clamp(3rem, 9vmin, 4.5rem);
+            }
+
+            .simple-demo .demo-word-card {
+                width: min(210px, 58vw);
+            }
+
+            .demo-track,
+            .demo-win-buttons {
+                grid-column: 1 / -1;
+            }
+
+            .demo-win-buttons {
+                gap: 8px;
+            }
+
+            .tutorial-caption {
+                font-size: clamp(1.05rem, 4vmin, 1.45rem);
+            }
+
+            .tutorial-rule-guide {
+                padding: 10px;
+            }
+
+            .tutorial-rule-steps {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+
+            .tutorial-rule-step {
+                min-height: 0;
+                padding: 6px 8px;
+            }
+
+            .tutorial-rule-number {
+                width: 28px;
+                font-size: 0.9rem;
+            }
+
+            .tutorial-rule-copy {
+                grid-template-columns: auto 1fr;
+                gap: 6px;
+                align-items: baseline;
+            }
+
+            .tutorial-rule-copy strong { font-size: clamp(0.78rem, 3.2vmin, 1rem); }
+            .tutorial-rule-copy span { font-size: clamp(0.62rem, 2.5vmin, 0.78rem); }
+
+            .tutorial-video-shell {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+
+            .tutorial-video-frame {
+                width: 100%;
+                height: auto;
+            }
+
+            .tutorial-video {
+                width: 100%;
+                height: min(54vh, 460px);
+                object-fit: contain;
+            }
+
+            .tutorial-rule-guide {
+                position: relative;
+                top: auto;
+                left: auto;
+                bottom: auto;
+                width: 100%;
+                margin-top: 8px;
+                grid-template-rows: none;
+            }
+
+            .tutorial-rule-steps {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+
+            .tutorial-rule-step {
+                min-height: 0;
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto auto;
+            }
+
+            .tutorial-rule-media {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-height: 760px) {
+            .difficulty-header {
+                padding-top: 4px;
+                padding-bottom: 8px;
+            }
+
+            .difficulty-selection {
+                padding: clamp(14px, 3vmin, 28px);
+            }
+
+            .difficulty-selection h2 {
+                margin-bottom: clamp(10px, 2vh, 18px);
+            }
+
+            .difficulty-buttons {
+                gap: clamp(8px, 1.8vh, 16px);
+            }
+
+            .difficulty-btn {
+                min-height: clamp(52px, 10.5vh, 78px);
+                padding-block: clamp(10px, 2.4vh, 20px);
+            }
+
+            .tug-of-war-container {
+                min-height: clamp(270px, 52vh, 400px);
+            }
+
+            .track-area {
+                height: clamp(190px, 34vh, 260px);
+            }
+
+            .control-btn,
+            .result-btn {
+                min-height: clamp(48px, 8vh, 68px);
+                padding-block: clamp(10px, 2vh, 18px);
+            }
+
+            .demo-stage {
+                min-height: clamp(280px, 50vh, 370px);
+            }
+        }
+
+        @media (max-height: 600px) {
+            .brand-title {
+                display: none;
+            }
+
+            .main-title {
+                font-size: clamp(2rem, 10vh, 3rem);
+            }
+
+            .difficulty-selection {
+                max-height: calc(100dvh - 92px);
+            }
+
+            .difficulty-btn {
+                min-height: clamp(46px, 11vh, 62px);
+            }
+
+            .game-header {
+                margin-bottom: 8px;
+                padding-block: 8px;
+            }
+
+            .team-zones {
+                margin-bottom: 6px;
+            }
+
+            .progress-indicator {
+                margin-top: 8px;
+            }
+        }
+
+        /* 最终版：明亮对战台覆盖样式 */
+        body {
+            background:
+                radial-gradient(circle at 15% 16%, rgba(96, 165, 250, 0.36), transparent 28%),
+                radial-gradient(circle at 86% 18%, rgba(249, 115, 22, 0.34), transparent 29%),
+                linear-gradient(180deg, #dff7ff 0%, #baf0df 42%, #88d879 100%);
+        }
+
+        .game-header {
+            padding: clamp(9px, 1.7vh, 16px);
+            margin-bottom: clamp(8px, 1.4vh, 16px);
+            border: 4px solid rgba(255, 255, 255, 0.9);
+            background: linear-gradient(180deg, rgba(20, 35, 77, 0.96), rgba(13, 26, 58, 0.9));
+            box-shadow: 0 10px 0 rgba(12, 32, 72, 0.26), 0 0 28px rgba(255, 255, 255, 0.22);
+        }
+
+        .game-title {
+            color: #ffffff;
+            font-size: clamp(1.9rem, 5.2vmin, 3rem);
+            font-weight: 900;
+            text-shadow: 0 4px 0 rgba(0, 0, 0, 0.34), 0 0 18px rgba(255, 255, 255, 0.28);
+        }
+
+        .tug-of-war-container {
+            position: relative;
+            overflow: hidden;
+            min-height: clamp(430px, 62vh, 560px);
+            border: 5px solid rgba(255, 255, 255, 0.88);
+            background:
+                linear-gradient(90deg, rgba(59, 130, 246, 0.24), transparent 28%, transparent 72%, rgba(249, 115, 22, 0.24)),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(241, 255, 247, 0.84));
+            box-shadow: 0 14px 0 rgba(23, 66, 110, 0.24), 0 22px 48px rgba(26, 52, 72, 0.22);
+        }
+
+        .team-zones {
+            position: relative;
+            z-index: 2;
+            align-items: start;
+            padding: 0 clamp(18px, 3vw, 40px);
+            margin-bottom: clamp(6px, 1vh, 12px);
+        }
+
+        .team-label {
+            min-width: clamp(110px, 13vw, 154px);
+            text-align: center;
+            border: 4px solid rgba(255, 255, 255, 0.92);
+            box-shadow: 0 8px 0 rgba(0, 0, 0, 0.18);
+            font-size: clamp(1.45rem, 3.7vmin, 2.15rem);
+            font-weight: 900;
+        }
+
+        .team-score {
+            min-width: 70px;
+            min-height: 58px;
+            display: grid;
+            place-items: center;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.72);
+            box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.72), 0 7px 0 rgba(0, 0, 0, 0.12);
+            font-size: clamp(1.8rem, 4.6vmin, 2.8rem);
+            font-weight: 900;
+        }
+
+        .track-area {
+            z-index: 2;
+            height: clamp(280px, 42vh, 370px);
+        }
+
+        .track-line {
+            height: 18px;
+            background: linear-gradient(90deg, #3b82f6, #fbbf24 48% 52%, #f97316);
+            box-shadow: 0 0 22px rgba(251, 191, 36, 0.34), inset 0 2px 4px rgba(255, 255, 255, 0.34);
+        }
+
+        .word-positions {
+            gap: clamp(10px, 1.4vw, 18px);
+            padding: 0 clamp(14px, 2vw, 28px) clamp(16px, 2.2vh, 24px);
+        }
+
+        .word-card {
+            min-height: clamp(220px, 36vh, 310px);
+            padding: clamp(10px, 1.8vmin, 16px);
+            border: 5px solid rgba(255, 255, 255, 0.95);
+            border-radius: clamp(20px, 2.6vmin, 30px);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(239, 248, 255, 0.92));
+            box-shadow: 0 10px 0 rgba(45, 72, 92, 0.2), 0 16px 28px rgba(31, 53, 67, 0.16);
+        }
+
+        .word-card.active {
+            border-color: #fbbf24;
+            box-shadow: 0 0 34px rgba(251, 191, 36, 0.6), 0 13px 0 rgba(139, 92, 0, 0.22);
+            transform: translateY(-8px) scale(1.04);
+        }
+
+        .word-image {
+            min-height: clamp(132px, 25vh, 210px);
+            border-radius: 18px;
+            background: #ffffff;
+        }
+
+        .word-text {
+            color: #19324f;
+            font-size: clamp(1.45rem, 3.4vmin, 2.2rem);
+            font-weight: 900;
+            text-shadow: 0 2px 0 rgba(255, 255, 255, 0.84);
+        }
+
+        .control-btn {
+            min-height: clamp(72px, 11vh, 96px);
+            border: 5px solid rgba(255, 255, 255, 0.88);
+            border-radius: 28px;
+            font-size: clamp(1.65rem, 4.6vmin, 2.6rem);
+            font-weight: 900;
+            box-shadow: 0 12px 0 rgba(0, 0, 0, 0.2), 0 0 26px rgba(255, 255, 255, 0.18);
+        }
+
+        /* 主游戏页：始终在当前屏幕内分配空间，避免底部胜负按钮被裁切。 */
+        .show-game {
+            overflow: auto;
+        }
+
+        .show-game .container {
+            min-height: 100dvh;
+            align-items: stretch;
+            justify-content: flex-start;
+        }
+
+        .show-game .game-page {
+            width: min(100%, 1200px);
+            min-height: calc(100dvh - clamp(20px, 4vmin, 40px));
+            height: calc(100dvh - clamp(20px, 4vmin, 40px));
+            display: grid !important;
+            grid-template-rows: auto minmax(0, 1fr) auto;
+            gap: clamp(8px, 1.4vh, 14px);
+        }
+
+        .show-game .game-header,
+        .show-game .tug-of-war-container {
+            margin: 0;
+        }
+
+        .show-game .tug-of-war-container {
+            min-height: 0;
+            height: 100%;
+            padding: clamp(10px, 1.8vmin, 20px);
+        }
+
+        .show-game .tug-of-war-track {
+            min-height: 0;
+            justify-content: space-between;
+        }
+
+        .show-game .team-zones {
+            flex: 0 0 auto;
+            margin-bottom: clamp(4px, 0.8vh, 8px);
+        }
+
+        .show-game .track-area {
+            min-height: 0;
+            height: clamp(190px, 100%, 370px);
+            flex: 1 1 auto;
+        }
+
+        .show-game .word-card {
+            min-height: 0;
+            height: min(100%, 310px);
+            padding: clamp(7px, 1.2vmin, 12px);
+        }
+
+        .show-game .word-image {
+            min-height: 0;
+            height: 100%;
+        }
+
+        .show-game .progress-indicator {
+            flex: 0 0 auto;
+            margin-top: clamp(4px, 0.8vh, 8px);
+        }
+
+        .show-game .game-controls {
+            min-height: 0;
+        }
+
+        .show-game .control-btn {
+            min-height: clamp(58px, 9vh, 82px);
+            padding-block: clamp(10px, 1.8vh, 16px);
+        }
+
+        @media (max-width: 720px) {
+            .show-game .game-page {
+                height: auto;
+                min-height: calc(100dvh - 20px);
+            }
+
+            .show-game .tug-of-war-container {
+                min-height: min(58dvh, 440px);
+            }
+
+            .show-game .game-controls {
+                flex-direction: row;
+            }
+
+            .show-game .control-btn {
+                min-height: 58px;
+                font-size: clamp(1.15rem, 5vw, 1.65rem);
+            }
+
+            .show-game .team-label {
+                min-width: 0;
+                padding: 8px 10px;
+                font-size: clamp(1rem, 5vw, 1.45rem);
+            }
+
+            .show-game .team-score {
+                min-width: 50px;
+                min-height: 44px;
+            }
+
+            .show-game .word-positions {
+                gap: 5px;
+                padding-inline: 4px;
+            }
+
+            .show-game .word-text {
+                font-size: clamp(0.85rem, 4vw, 1.2rem);
+            }
+
+            .show-game .audio-btn {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        @media (max-height: 650px) and (min-width: 721px) {
+            .show-game .game-header {
+                padding-block: 6px;
+            }
+
+            .show-game .game-title {
+                font-size: clamp(1.45rem, 4.5vh, 2.1rem);
+            }
+
+            .show-game .team-label {
+                min-width: 92px;
+                padding-block: 6px;
+                font-size: clamp(1rem, 3.8vh, 1.45rem);
+            }
+
+            .show-game .team-score {
+                min-width: 52px;
+                min-height: 42px;
+                font-size: clamp(1.25rem, 4vh, 1.8rem);
+            }
+
+            .show-game .track-area {
+                min-height: 150px;
+            }
+
+            .show-game .word-card {
+                height: min(100%, 210px);
+            }
+
+            .show-game .control-btn {
+                min-height: 46px;
+                font-size: clamp(1.1rem, 4.5vh, 1.6rem);
+            }
+        }
+    </style>
+</head>
+<body class="show-tutorial">
+    <a class="platform-home-link" href="#" aria-label="返回游戏平台主页" onclick="history.back(); return false;">首页</a>
+    <div class="background">
+        <div class="grass-bg"></div>
+        <div class="field-lines"></div>
+        <div class="rope-bg"></div>
+        <div class="flags">
+            <div class="flag blue">🔵</div>
+            <div class="flag orange">🟠</div>
+        </div>
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <!-- 音乐按钮 -->
+    <button class="music-btn" id="musicBtn">🎵</button>
+
+    <div class="container">
+        <!-- 难度选择页 -->
+        <div class="page difficulty-page">
+            <div class="difficulty-header">
+                <div class="brand-title">🦊 好犀狸·单词拔河</div>
+                <h1 class="main-title">单词拔河</h1>
+            </div>
+
+            <div class="difficulty-selection">
+                <h2>选择难度</h2>
+                <div class="difficulty-buttons">
+                    <button class="difficulty-btn easy" id="easyBtn">🌟 简单</button>
+                    <button class="difficulty-btn medium" id="mediumBtn">⭐ 中等</button>
+                    <button class="difficulty-btn hard" id="hardBtn">💎 困难</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 玩法示范页 -->
+        <div class="page tutorial-page">
+            <div class="tutorial-card" id="tutorialCard">
+                <div class="tutorial-header">
+                    <span class="tutorial-label">玩法示范</span>
+                    <h2 class="tutorial-title">看一遍就会玩</h2>
+                </div>
+
+                <div class="tutorial-video-shell">
+                    <div class="tutorial-video-frame">
+                        <video class="tutorial-video" id="tutorialVideo" src="assets/tutorial/word_tug_real_demo_privacy.mp4" playsinline preload="auto"></video>
+                        <button class="tutorial-play-overlay" id="tutorialPlayBtn" type="button" aria-label="播放玩法示范">
+                            <span class="tutorial-play-icon" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="tutorial-rule-guide" aria-label="游戏规则：先读单词，玩家点击获胜队伍，先把奖杯拉出对方边界获胜">
+                        <div class="tutorial-rule-steps">
+                            <div class="tutorial-rule-step is-active" data-tutorial-step="0">
+                                <span class="tutorial-rule-number">1</span>
+                                <span class="tutorial-rule-copy"><strong>看单词，一起读</strong><span>点喇叭听发音</span></span>
+                                <span class="tutorial-rule-media"><img src="image/teach/1.png" alt="规则一：单词卡和发音按钮示意"></span>
+                            </div>
+                            <div class="tutorial-rule-step" data-tutorial-step="1">
+                                <span class="tutorial-rule-number">2</span>
+                                <span class="tutorial-rule-copy"><strong>玩家点击胜方</strong><span>点击本轮获胜队</span></span>
+                                <span class="tutorial-rule-media"><img src="image/teach/2.png" alt="规则二：点击获胜队按钮示意"></span>
+                            </div>
+                            <div class="tutorial-rule-step" data-tutorial-step="2">
+                                <span class="tutorial-rule-number">3</span>
+                                <span class="tutorial-rule-copy"><strong>奖杯向胜方移动</strong><span>再赢一分，越过边界获胜</span></span>
+                                <span class="tutorial-rule-media">
+                                    <span class="tutorial-mini-game">
+                                        <span class="tutorial-mini-game-head">
+                                            <span class="tutorial-mini-score blue">蓝队 2 分</span>
+                                            <span class="tutorial-mini-score orange"><span class="tutorial-mini-score-before">橙队 4 分</span><span class="tutorial-mini-score-after">橙队 5 分</span></span>
+                                        </span>
+                                        <span class="tutorial-mini-game-track">
+                                            <span class="tutorial-mini-game-card"></span>
+                                            <span class="tutorial-mini-game-card"></span>
+                                            <span class="tutorial-mini-game-card active"></span>
+                                            <span class="tutorial-mini-game-card"></span>
+                                            <span class="tutorial-mini-game-card"></span>
+                                            <span class="tutorial-mini-game-trophy">🏆</span>
+                                        </span>
+                                        <span class="tutorial-mini-game-win">再赢 1 分，越过边界获胜！</span>
+                                        <span class="tutorial-mini-celebration">🎉 橙队获胜！</span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tutorial-caption" id="tutorialCaption">规则很简单：读单词，玩家点击胜方，把奖杯拉出对方边界！</div>
+
+                <div class="tutorial-actions">
+                    <button class="tutorial-btn secondary" id="replayTutorialBtn" type="button">再看一遍</button>
+                    <button class="tutorial-btn secondary" id="skipTutorialBtn" type="button">跳过示范</button>
+                    <button class="tutorial-btn primary" id="beginGameBtn" type="button">看懂了，选择难度</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 游戏页 -->
+        <div class="page game-page">
+            <div class="game-header">
+                <h2 class="game-title" id="gameTitle">简单模式</h2>
+            </div>
+
+            <div class="tug-of-war-container">
+                <div class="tug-of-war-track">
+                    <!-- 队伍区域 -->
+                    <div class="team-zones">
+                        <div class="team-zone team-left">
+                            <div class="team-label">🐰 蓝队</div>
+                            <div class="team-score" id="leftScore">0</div>
+                        </div>
+                        <div class="team-zone team-right">
+                            <div class="team-label">🦊 橙队</div>
+                            <div class="team-score" id="rightScore">0</div>
+                        </div>
+                    </div>
+
+                    <!-- 轨道区域 -->
+                    <div class="track-area">
+                        <div class="track-line"></div>
+                        <div class="track-center"></div>
+                        
+                        <!-- 单词位置 -->
+                        <div class="word-positions" id="wordPositions">
+                            <!-- 单词位置将通过JS动态生成 -->
+                        </div>
+
+                        <!-- 棋子容器 -->
+                        <div class="piece-container" id="pieceContainer">
+                            <div class="piece">🏆</div>
+                        </div>
+                    </div>
+
+                    <!-- 进度指示 -->
+                    <div class="progress-indicator" id="progressIndicator">
+                        <!-- 进度点将通过JS动态生成 -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <button class="control-btn btn-left-win" id="leftWinBtn">🐰 蓝队赢</button>
+                <button class="control-btn btn-right-win" id="rightWinBtn">🦊 橙队赢</button>
+            </div>
+        </div>
+
+        <!-- 结果页 -->
+        <div class="page result-page">
+            <div class="result-card">
+                <h2 class="result-title">🎉 游戏结束!</h2>
+                <div class="winner-display" id="winnerDisplay">
+                    <span class="winner-trophy">🏆</span>
+                    <span>蓝队获胜!</span>
+                </div>
+                <div class="result-buttons">
+                    <button class="result-btn btn-restart" id="restartBtn">🔄 重开一局</button>
+                    <button class="result-btn btn-end" id="endGameBtn">🏠 结束游戏</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game-tracker.js"></script>
+    <script>
+        window.gameTracker = createPlatformGameTracker('word_tug_of_war');
+        // 游戏状态
+        let currentDifficulty = 'easy';
+        let currentWords = [];
+        let piecePosition = 2; // 0-4，初始在中间（位置2）
+        let currentAudio = null;
+        let playingAudioIndex = -1;
+        let leftScore = 0;
+        let rightScore = 0;
+        let musicPlaying = true;
+        let bgmInterval = null;
+        let audioCtx = null;
+        let resizeObserver = null;
+        let resizeUpdateTimer = null;
+        let tutorialVideo = null;
+        let tutorialPlayBtn = null;
+        let tutorialRuleTimer = null;
+        let tutorialRuleStep = 0;
+
+        const TUTORIAL_RULES = [
+            { caption: '先看高亮单词；需要时，点击喇叭听示范发音。' },
+            { caption: '本游戏不自动判题；玩家点击这一轮获胜的队伍。' },
+            { caption: '每赢一轮移动一格；先把奖杯拉出对方边界的队伍获胜！' }
+        ];
+
+        const TUTORIAL_RULE_DURATIONS = [3300, 3500];
+
+        // 单词库（使用简单的颜色方块作为图片占位符）
+        const WORD_BANKS = {
+            easy: [
+                { word: 'apple', image: 'image/easy/apple.png', audio: 'audio/easy/apple.mp3' },
+                { word: 'bag', image: 'image/easy/bag.png', audio: 'audio/easy/bag.mp3' },
+                { word: 'ball', image: 'image/easy/ball.png', audio: 'audio/easy/ball.mp3' },
+                { word: 'banana', image: 'image/easy/banana.png', audio: 'audio/easy/banana.mp3' },
+                { word: 'bed', image: 'image/easy/bed.png', audio: 'audio/easy/bed.mp3' },
+                { word: 'bird', image: 'image/easy/bird.png', audio: 'audio/easy/bird.mp3' },
+                { word: 'car', image: 'image/easy/car.png', audio: 'audio/easy/car.mp3' },
+                { word: 'cat', image: 'image/easy/cat.png', audio: 'audio/easy/cat.mp3' },
+                { word: 'cup', image: 'image/easy/cup.png', audio: 'audio/easy/cup.mp3' },
+                { word: 'egg', image: 'image/easy/egg.png', audio: 'audio/easy/egg.mp3' }
+            ],
+            medium: [
+                { word: 'coat', image: 'image/medium/coat.png', audio: 'audio/medium/coat.mp3' },
+                { word: 'cookie', image: 'image/medium/cookie.png', audio: 'audio/medium/cookie.mp3' },
+                { word: 'dress', image: 'image/medium/dress.png', audio: 'audio/medium/dress.mp3' },
+                { word: 'eight', image: 'image/medium/eight.png', audio: 'audio/medium/eight.mp3' },
+                { word: 'horse', image: 'image/medium/horse.png', audio: 'audio/medium/horse.mp3' },
+                { word: 'lemon', image: 'image/medium/lemon.png', audio: 'audio/medium/lemon.mp3' },
+                { word: 'love', image: 'image/medium/love.png', audio: 'audio/medium/love.mp3' },
+                { word: 'panda', image: 'image/medium/panda.png', audio: 'audio/medium/panda.mp3' },
+                { word: 'white', image: 'image/medium/white.png', audio: 'audio/medium/white.mp3' },
+                { word: 'zoo', image: 'image/medium/zoo.png', audio: 'audio/medium/zoo.mp3' }
+            ],
+            hard: [
+                { word: 'candle', image: 'image/hard/candle.png', audio: 'audio/hard/candle.mp3' },
+                { word: 'chocolate', image: 'image/hard/chocolate.png', audio: 'audio/hard/chocolate.mp3' },
+                { word: 'dolphin', image: 'image/hard/dolphin.png', audio: 'audio/hard/dolphin.mp3' },
+                { word: 'elephant', image: 'image/hard/elephant.png', audio: 'audio/hard/elephant.mp3' },
+                { word: 'grandma', image: 'image/hard/grandma.png', audio: 'audio/hard/grandma.mp3' },
+                { word: 'grandpa', image: 'image/hard/grandpa.png', audio: 'audio/hard/grandpa.mp3' },
+                { word: 'kangaroo', image: 'image/hard/kangaroo.png', audio: 'audio/hard/kangaroo.mp3' },
+                { word: 'lollipop', image: 'image/hard/lollipop.png', audio: 'audio/hard/lollipop.mp3' },
+                { word: 'scarf', image: 'image/hard/scarf.png', audio: 'audio/hard/scarf.mp3' },
+                { word: 'watermelon', image: 'image/hard/watermelon.png', audio: 'audio/hard/watermelon.mp3' }
+            ]
+        };
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 难度选择按钮
+            document.getElementById('easyBtn').addEventListener('click', () => startGame('easy'));
+            document.getElementById('mediumBtn').addEventListener('click', () => startGame('medium'));
+            document.getElementById('hardBtn').addEventListener('click', () => startGame('hard'));
+
+            // 玩法示范按钮
+            document.getElementById('replayTutorialBtn').addEventListener('click', restartTutorialAnimation);
+            document.getElementById('skipTutorialBtn').addEventListener('click', showDifficultySelection);
+            document.getElementById('beginGameBtn').addEventListener('click', showDifficultySelection);
+            tutorialVideo = document.getElementById('tutorialVideo');
+            tutorialPlayBtn = document.getElementById('tutorialPlayBtn');
+            tutorialPlayBtn.addEventListener('click', () => startTutorialDemo(false));
+            tutorialVideo.addEventListener('click', toggleTutorialVideo);
+            tutorialVideo.addEventListener('play', updateTutorialPlayButton);
+            tutorialVideo.addEventListener('pause', updateTutorialPlayButton);
+            tutorialVideo.addEventListener('ended', () => {
+                stopTutorialRuleGuide();
+                setTutorialRuleStep(2);
+            });
+
+            // 游戏控制按钮
+            document.getElementById('leftWinBtn').addEventListener('click', () => handleWin('left'));
+            document.getElementById('rightWinBtn').addEventListener('click', () => handleWin('right'));
+
+            // 结果页按钮
+            document.getElementById('restartBtn').addEventListener('click', restartGame);
+            document.getElementById('endGameBtn').addEventListener('click', endGame);
+
+            // 音乐按钮
+            document.getElementById('musicBtn').addEventListener('click', toggleMusic);
+
+            // 窗口大小改变时更新棋子位置
+            window.addEventListener('resize', queueLayoutUpdate);
+            window.addEventListener('orientationchange', queueLayoutUpdate);
+
+            if ('ResizeObserver' in window) {
+                resizeObserver = new ResizeObserver(queueLayoutUpdate);
+                resizeObserver.observe(document.querySelector('.container'));
+                resizeObserver.observe(document.querySelector('.track-area'));
+            }
+
+            stopBGM();
+            setTutorialRuleStep(0);
+            updateTutorialPlayButton();
+        });
+
+        // 初始化音频上下文
+        function initAudio() {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+
+        // 播放背景音乐（活泼竞赛风格）
+        function playBGM() {
+            if (!audioCtx) initAudio();
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume().catch(() => {});
+            }
+
+            clearInterval(bgmInterval);
+
+            const playNote = (freq, startTime, duration, type = 'square', volume = 0.055) => {
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                const filter = audioCtx.createBiquadFilter();
+
+                oscillator.connect(filter);
+                filter.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                oscillator.frequency.value = freq;
+                oscillator.type = type;
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(type === 'square' ? 1400 : 2200, startTime);
+
+                gainNode.gain.setValueAtTime(0.0001, startTime);
+                gainNode.gain.exponentialRampToValueAtTime(volume, startTime + 0.012);
+                gainNode.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+                oscillator.start(startTime);
+                oscillator.stop(startTime + duration + 0.02);
+            };
+
+            const playKick = (startTime) => {
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(130, startTime);
+                oscillator.frequency.exponentialRampToValueAtTime(48, startTime + 0.12);
+                gainNode.gain.setValueAtTime(0.16, startTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.16);
+                oscillator.connect(gainNode).connect(audioCtx.destination);
+                oscillator.start(startTime);
+                oscillator.stop(startTime + 0.18);
+            };
+
+            const playSnare = (startTime) => {
+                const noise = audioCtx.createBufferSource();
+                const noiseBuffer = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.07, audioCtx.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+                for (let i = 0; i < noiseBuffer.length; i++) {
+                    output[i] = Math.random() * 2 - 1;
+                }
+                noise.buffer = noiseBuffer;
+
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'bandpass';
+                filter.frequency.value = 1800;
+
+                const gainNode = audioCtx.createGain();
+                gainNode.gain.setValueAtTime(0.09, startTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.07);
+
+                noise.connect(filter);
+                filter.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                noise.start(startTime);
+            };
+
+            const melody = [659.25, 783.99, 987.77, 783.99, 880, 987.77, 1174.66, 987.77];
+            const bass = [164.81, 164.81, 196, 220, 246.94, 220, 196, 164.81];
+            let beatCount = 0;
+
+            bgmInterval = setInterval(() => {
+                if (!musicPlaying) return;
+                const time = audioCtx.currentTime + 0.025;
+                const step = beatCount % 16;
+
+                if (step % 4 === 0) {
+                    playKick(time);
+                }
+
+                if (step === 4 || step === 12) {
+                    playSnare(time);
+                }
+
+                if (step % 2 === 0) {
+                    playNote(bass[Math.floor(step / 2) % bass.length], time, 0.12, 'triangle', 0.07);
+                }
+
+                if ([1, 3, 6, 7, 9, 11, 14, 15].includes(step)) {
+                    const note = melody[beatCount % melody.length];
+                    playNote(note, time, 0.095, 'square', 0.045);
+                    playNote(note * 2, time + 0.015, 0.06, 'triangle', 0.018);
+                }
+
+                beatCount++;
+            }, 115);
+        }
+
+        // 切换音乐
+        function toggleMusic() {
+            musicPlaying = !musicPlaying;
+            const musicBtn = document.getElementById('musicBtn');
+            
+            if (musicPlaying) {
+                musicBtn.classList.remove('off');
+                musicBtn.innerHTML = '🎵';
+                if (!bgmInterval) {
+                    playBGM();
+                }
+            } else {
+                musicBtn.classList.add('off');
+                musicBtn.innerHTML = '🔇';
+            }
+        }
+
+        function stopBGM() {
+            clearInterval(bgmInterval);
+            bgmInterval = null;
+        }
+
+        function showDifficultySelection() {
+            stopTutorialDemo();
+            document.body.className = 'show-difficulty';
+            if (musicPlaying) {
+                playBGM();
+            }
+        }
+
+        function restartTutorialAnimation() {
+            startTutorialDemo();
+        }
+
+        function startTutorialDemo(restart = true) {
+            tutorialVideo = document.getElementById('tutorialVideo');
+            if (!tutorialVideo) return;
+
+            stopBGM();
+            if (restart) {
+                tutorialVideo.currentTime = 0;
+                setTutorialRuleStep(0);
+            }
+            tutorialVideo.volume = 1;
+            tutorialVideo.play().catch(() => {
+                updateTutorialPlayButton();
+            });
+            startTutorialRuleGuide();
+            updateTutorialPlayButton();
+        }
+
+        function toggleTutorialVideo() {
+            tutorialVideo = document.getElementById('tutorialVideo');
+            if (!tutorialVideo) return;
+
+            if (tutorialVideo.paused) {
+                startTutorialDemo(false);
+            } else {
+                tutorialVideo.pause();
+            }
+        }
+
+        function stopTutorialDemo() {
+            stopTutorialRuleGuide();
+            tutorialVideo = document.getElementById('tutorialVideo');
+            if (tutorialVideo) {
+                tutorialVideo.pause();
+            }
+            updateTutorialPlayButton();
+        }
+
+        function setTutorialRuleStep(step) {
+            tutorialRuleStep = Math.max(0, Math.min(TUTORIAL_RULES.length - 1, step));
+            const rule = TUTORIAL_RULES[tutorialRuleStep];
+            const caption = document.getElementById('tutorialCaption');
+            if (caption) caption.textContent = rule.caption;
+            document.querySelectorAll('[data-tutorial-step]').forEach((element, index) => {
+                element.classList.toggle('is-active', index === tutorialRuleStep);
+                element.classList.toggle('is-visible', index === tutorialRuleStep);
+            });
+        }
+
+        function startTutorialRuleGuide() {
+            stopTutorialRuleGuide();
+            scheduleTutorialRuleAdvance();
+        }
+
+        function scheduleTutorialRuleAdvance() {
+            if (tutorialRuleStep >= TUTORIAL_RULES.length - 1) return;
+            tutorialRuleTimer = setTimeout(() => {
+                setTutorialRuleStep(tutorialRuleStep + 1);
+                scheduleTutorialRuleAdvance();
+            }, TUTORIAL_RULE_DURATIONS[tutorialRuleStep]);
+        }
+
+        function stopTutorialRuleGuide() {
+            clearTimeout(tutorialRuleTimer);
+            tutorialRuleTimer = null;
+        }
+
+        function updateTutorialPlayButton() {
+            tutorialVideo = document.getElementById('tutorialVideo');
+            tutorialPlayBtn = document.getElementById('tutorialPlayBtn');
+            if (!tutorialVideo || !tutorialPlayBtn) return;
+
+            tutorialPlayBtn.classList.toggle('is-hidden', !tutorialVideo.paused && !tutorialVideo.ended);
+        }
+
+        function prepareGame(difficulty) {
+            currentDifficulty = difficulty;
+            // 随机选择5个单词
+            currentWords = shuffle([...WORD_BANKS[difficulty]]).slice(0, 5);
+            piecePosition = 2; // 重置到中间位置
+            playingAudioIndex = -1;
+            leftScore = 0;
+            rightScore = 0;
+
+            // 更新标题
+            const difficultyNames = { easy: '简单', medium: '中等', hard: '困难' };
+            document.getElementById('gameTitle').textContent = difficultyNames[difficulty] + '模式';
+
+            // 更新分数显示
+            document.getElementById('leftScore').textContent = leftScore;
+            document.getElementById('rightScore').textContent = rightScore;
+        }
+
+        function beginPreparedGame() {
+            stopTutorialDemo();
+            // 生成单词位置
+            renderWordPositions();
+
+            // 更新进度指示
+            updateProgressIndicator();
+
+            // 切换到游戏页
+            document.body.className = 'show-game';
+
+            // 等待DOM渲染完成后再更新棋子位置
+            requestAnimationFrame(() => {
+                updatePiecePosition();
+            });
+
+            // 播放第一个单词音频
+            playCurrentWordAudio();
+        }
+
+        // 开始游戏
+        function startGame(difficulty) {
+            window.gameTracker.start();
+            prepareGame(difficulty);
+            beginPreparedGame();
+        }
+
+        // 渲染单词位置
+        function renderWordPositions() {
+            const container = document.getElementById('wordPositions');
+            container.innerHTML = '';
+
+            currentWords.forEach((wordData, index) => {
+                const positionDiv = document.createElement('div');
+                positionDiv.className = 'word-position';
+
+                const card = document.createElement('div');
+                card.className = 'word-card' + (index === piecePosition ? ' active' : '');
+
+                const img = document.createElement('img');
+                img.className = 'word-image';
+                img.src = wordData.image || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23374151" width="100" height="100"/><text fill="white" font-size="20" x="50" y="55" text-anchor="middle">?</text></svg>';
+                img.alt = wordData.word;
+
+                const text = document.createElement('p');
+                text.className = 'word-text';
+                text.textContent = wordData.word;
+
+                const audioBtn = document.createElement('button');
+                audioBtn.className = 'audio-btn';
+                audioBtn.innerHTML = '🔊';
+                audioBtn.setAttribute('data-word-index', index);
+                audioBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const wordIndex = parseInt(this.getAttribute('data-word-index'));
+                    playWordAudio(wordIndex);
+                });
+
+                card.appendChild(img);
+                card.appendChild(text);
+                card.appendChild(audioBtn);
+                positionDiv.appendChild(card);
+                container.appendChild(positionDiv);
+            });
+        }
+
+        // 更新棋子位置
+        function updatePiecePosition() {
+            const pieceContainer = document.getElementById('pieceContainer');
+            const wordPositions = document.querySelectorAll('.word-position');
+            
+            // 确保棋子位置在有效范围内才更新显示位置
+            if (piecePosition >= 0 && piecePosition <= 4 && wordPositions[piecePosition]) {
+                const targetWord = wordPositions[piecePosition];
+                const wordCard = targetWord.querySelector('.word-card');
+                const trackArea = document.querySelector('.track-area');
+                
+                // 获取单词卡片的实际位置
+                const cardRect = wordCard.getBoundingClientRect();
+                const trackRect = trackArea.getBoundingClientRect();
+                
+                // 计算棋子应该位于单词卡片中心的上方
+                const cardCenterX = cardRect.left - trackRect.left + (cardRect.width / 2);
+                
+                pieceContainer.style.left = `${cardCenterX}px`;
+                
+                // 确保棋子可见
+                pieceContainer.classList.add('visible');
+            }
+
+            // 更新单词卡片激活状态
+            const cards = document.querySelectorAll('.word-card');
+            cards.forEach((card, index) => {
+                if (index === piecePosition) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+        }
+
+        function queueLayoutUpdate() {
+            clearTimeout(resizeUpdateTimer);
+            resizeUpdateTimer = setTimeout(() => {
+                if (document.body.classList.contains('show-game')) {
+                    updatePiecePosition();
+                }
+            }, 80);
+        }
+
+        // 更新进度指示
+        function updateProgressIndicator() {
+            const container = document.getElementById('progressIndicator');
+            container.innerHTML = '';
+
+            for (let i = 0; i < 5; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'progress-dot' + (i === piecePosition ? ' active' : '');
+                container.appendChild(dot);
+            }
+        }
+
+        // 播放当前单词音频
+        function playCurrentWordAudio() {
+            if (currentWords[piecePosition] && currentWords[piecePosition].audio) {
+                playWordAudio(piecePosition);
+            }
+        }
+
+        // 播放指定单词音频
+        function playWordAudio(index) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+
+            document.querySelectorAll('.audio-btn').forEach(btn => {
+                btn.classList.remove('playing');
+                btn.innerHTML = '🔊';
+            });
+
+            const wordData = currentWords[index];
+            if (wordData && wordData.audio) {
+                currentAudio = new Audio(wordData.audio);
+                currentAudio.volume = 1;
+                playingAudioIndex = index;
+
+                const audioBtn = document.querySelector(`.audio-btn[data-word-index="${index}"]`);
+                if (audioBtn) {
+                    audioBtn.classList.add('playing');
+                    audioBtn.innerHTML = '🔉';
+                }
+
+                currentAudio.play().then(() => {
+                    currentAudio.onended = function() {
+                        if (playingAudioIndex === index) {
+                            const btn = document.querySelector(`.audio-btn[data-word-index="${index}"]`);
+                            if (btn) {
+                                btn.classList.remove('playing');
+                                btn.innerHTML = '🔊';
+                            }
+                            playingAudioIndex = -1;
+                        }
+                    };
+                }).catch(e => {
+                    console.log('Audio play failed:', e);
+                    const btn = document.querySelector(`.audio-btn[data-word-index="${index}"]`);
+                    if (btn) {
+                        btn.classList.remove('playing');
+                        btn.innerHTML = '🔊';
+                    }
+                    playingAudioIndex = -1;
+                });
+            }
+        }
+
+        // 处理获胜
+        function handleWin(team) {
+            if (team === 'left') {
+                piecePosition--;
+                leftScore++;
+                document.getElementById('leftScore').textContent = leftScore;
+            } else {
+                piecePosition++;
+                rightScore++;
+                document.getElementById('rightScore').textContent = rightScore;
+            }
+
+            updatePiecePosition();
+            updateProgressIndicator();
+            playCurrentWordAudio();
+
+            // 检查游戏是否结束（到达端点单词后需要再赢一次才算获胜）
+            // 棋子位置范围：0-4（5个单词），需要到达两端外的虚拟格子才算赢
+            if (piecePosition < 0) {
+                // 蓝队到达左侧虚拟格子，获胜
+                setTimeout(() => showResult('left'), 500);
+            } else if (piecePosition > 4) {
+                // 橙队到达右侧虚拟格子，获胜
+                setTimeout(() => showResult('right'), 500);
+            }
+        }
+
+        // 显示结果
+        function showResult(winner) {
+            window.gameTracker.finish(leftScore + rightScore);
+            const winnerDisplay = document.getElementById('winnerDisplay');
+            if (winner === 'left') {
+                winnerDisplay.innerHTML = '<span class="winner-trophy">🏆</span><span>蓝队获胜!</span>';
+                winnerDisplay.style.color = '#60a5fa';
+            } else {
+                winnerDisplay.innerHTML = '<span class="winner-trophy">🏆</span><span>橙队获胜!</span>';
+                winnerDisplay.style.color = '#fb923c';
+            }
+
+            document.body.className = 'show-result';
+        }
+
+        // 重开一局
+        function restartGame() {
+            startGame(currentDifficulty);
+        }
+
+        // 结束游戏
+        function endGame() {
+            document.body.className = 'show-difficulty';
+        }
+
+        // 洗牌算法
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+    </script>
+</body>
+</html>

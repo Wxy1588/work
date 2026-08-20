@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Flappy Grammar</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game-shell" id="gameShell">
+    <div class="sky" aria-hidden="true"></div>
+
+    <section class="screen start-screen" id="startScreen">
+      <div class="start-menu">
+        <div class="start-heading">
+          <h1 class="start-title">选择学习关卡</h1>
+          <p class="start-subtitle">选择年级与册别，开始语法闯关</p>
+        </div>
+        <div class="book-options" role="radiogroup" aria-label="选择题库">
+          <button class="book-option selected" type="button" data-grade="七年级" data-semester="上册" data-label="七年级上册" aria-pressed="true"><span class="book-grade">七年级</span><span class="book-semester">上册</span></button>
+          <button class="book-option" type="button" data-grade="七年级" data-semester="下册" data-label="七年级下册" aria-pressed="false"><span class="book-grade">七年级</span><span class="book-semester">下册</span></button>
+          <button class="book-option" type="button" data-grade="八年级" data-semester="上册" data-label="八年级上册" aria-pressed="false"><span class="book-grade">八年级</span><span class="book-semester">上册</span></button>
+          <button class="book-option" type="button" data-grade="八年级" data-semester="下册" data-label="八年级下册" aria-pressed="false"><span class="book-grade">八年级</span><span class="book-semester">下册</span></button>
+          <button class="book-option" type="button" data-grade="九年级" data-semester="上册" data-label="九年级上册" aria-pressed="false"><span class="book-grade">九年级</span><span class="book-semester">上册</span></button>
+        </div>
+        <button class="image-button" id="startButton" type="button" aria-label="开始所选题库">
+          <img src="assets/images/startbtn.png" alt="">
+        </button>
+      </div>
+    </section>
+
+    <section class="potion-intro" id="potionIntro" role="status" aria-live="polite" hidden>
+      <div class="potion-intro-flow">
+        <section class="potion-intro-step potion-intro-earn">
+          <div class="potion-intro-mini-scene" aria-hidden="true">
+            <div class="potion-intro-mini-streak">
+              <span style="--intro-index: 0">✓</span>
+              <span style="--intro-index: 1">✓</span>
+              <span style="--intro-index: 2">✓</span>
+              <span style="--intro-index: 3">✓</span>
+              <span style="--intro-index: 4">✓</span>
+            </div>
+            <div class="potion-intro-mini-potion">
+              <i></i>
+              <img src="assets/images/revive-potion.png" alt="">
+            </div>
+          </div>
+          <h2>连续答对 5 题</h2>
+          <p>进度集满，获得一瓶复活药水</p>
+        </section>
+
+        <span class="potion-intro-flow-arrow" aria-hidden="true">→</span>
+
+        <section class="potion-intro-step potion-intro-reset">
+          <div class="potion-intro-mini-scene" aria-hidden="true">
+            <div class="potion-intro-mini-streak">
+              <span class="reset-correct">✓</span>
+              <span class="reset-correct">✓</span>
+              <span class="reset-correct">✓</span>
+              <span class="reset-wrong">×</span>
+              <span class="reset-empty"></span>
+            </div>
+            <span class="potion-intro-reset-meter"><i></i></span>
+            <span class="potion-intro-reset-count">
+              <span class="reset-count-before"><b>3</b><small>/ 5</small></span>
+              <span class="reset-count-after"><b>0</b><small>/ 5</small></span>
+            </span>
+          </div>
+          <h2>中途答错</h2>
+          <p>连对进度立即清零</p>
+        </section>
+
+        <span class="potion-intro-flow-arrow" aria-hidden="true">→</span>
+
+        <section class="potion-intro-step potion-intro-use">
+          <div class="potion-intro-mini-scene" aria-hidden="true">
+            <div class="potion-intro-mini-potion">
+              <i></i>
+              <img src="assets/images/revive-potion.png" alt="">
+            </div>
+          </div>
+          <h2>使用复活药水</h2>
+          <p>可主动点击，恢复一颗爱心</p>
+          <p>爱心用完后也会询问是否使用</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="screen game-screen" id="gameScreen" hidden>
+      <header class="hud">
+        <button class="hud-report-button" id="reportButton" type="button" aria-label="查看学习报告" aria-expanded="false" disabled>
+          <span class="report-document-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>学习报告</span>
+        </button>
+        <div class="hud-pill hud-progress">
+          <span id="levelText">Level：1</span>
+          <span class="hud-progress-separator" aria-hidden="true">|</span>
+          <span id="progressText">Question：0/9</span>
+        </div>
+        <div class="hearts" id="heartsDisplay" aria-label="Lives">❤️❤️❤️❤️❤️</div>
+        <button class="revive-potion" id="revivePotion" type="button" aria-label="复活药水：0 瓶，连续答对进度 0/5" disabled>
+          <span class="potion-art" aria-hidden="true">
+            <img src="assets/images/revive-potion.png" alt="">
+            <span class="potion-count" id="potionCount">0</span>
+          </span>
+          <span class="potion-streak" aria-hidden="true">
+            <span class="potion-streak-text">连对 <span id="potionProgress">0/5</span></span>
+            <span class="potion-streak-track"><span id="potionProgressFill"></span></span>
+          </span>
+        </button>
+        <div class="hud-pill"><span id="scoreText">Score：0</span></div>
+      </header>
+
+      <section class="question-panel" id="questionPanel" aria-live="polite" hidden></section>
+
+      <div class="play-field" id="playField" role="application" aria-label="飞行语法选择游戏">
+        <div class="cloud cloud-a" aria-hidden="true">☁️</div>
+        <div class="cloud cloud-b" aria-hidden="true">☁️</div>
+        <div class="bird" id="bird" aria-hidden="true"><img id="chickenSprite" src="assets/images/chicken1.png" alt=""></div>
+        <div class="gate" id="gate" hidden>
+          <div class="answer answer-top" id="topAnswer"></div>
+          <div class="answer answer-bottom" id="bottomAnswer"></div>
+          <div class="bar bar-top"></div>
+          <div class="bar bar-middle"></div>
+          <div class="bar bar-bottom"></div>
+        </div>
+        <div class="tap-guide" id="tapGuide" aria-hidden="true">👆</div>
+        <div class="feedback-icon" id="feedbackIcon" aria-live="polite"></div>
+      </div>
+
+      <section class="revive-choice" id="reviveChoice" role="alertdialog" aria-modal="true" aria-labelledby="reviveChoiceTitle" aria-describedby="reviveChoiceDescription" hidden>
+        <div class="revive-choice-card">
+          <div class="revive-choice-art" aria-hidden="true"><img src="assets/images/revive-potion.png" alt=""></div>
+          <div class="revive-choice-content" id="reviveChoiceContent">
+            <h2 id="reviveChoiceTitle">使用复活药水？</h2>
+            <p id="reviveChoiceDescription">恢复一颗爱心，继续当前关卡</p>
+            <div class="revive-choice-actions">
+              <button class="revive-choice-button revive-choice-confirm" id="reviveConfirmButton" type="button">使用药水</button>
+              <button class="revive-choice-button revive-choice-decline" id="reviveDeclineButton" type="button">不使用</button>
+            </div>
+          </div>
+          <div class="revive-countdown" id="reviveCountdown" hidden>
+            <p>准备继续</p>
+            <strong id="reviveCountdownNumber" aria-live="assertive">3</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-report" id="learningReport" role="dialog" aria-modal="true" aria-label="知识点掌握情况" hidden>
+        <div class="learning-report-card">
+          <header class="learning-report-header">
+            <div>
+              <p class="learning-report-book" id="reportBook">七年级上册</p>
+            </div>
+          </header>
+          <div class="knowledge-report-grid">
+            <article class="knowledge-report-panel knowledge-unmastered">
+              <h3>未掌握知识点 <span id="unmasteredCount">0</span></h3>
+              <div class="knowledge-tags" id="unmasteredList"></div>
+            </article>
+            <article class="knowledge-report-panel knowledge-mastered">
+              <h3>已掌握知识点 <span id="masteredCount">0</span></h3>
+              <div class="knowledge-tags" id="masteredList"></div>
+            </article>
+          </div>
+          <footer class="learning-report-actions">
+            <button class="report-action report-continue" id="reportContinueButton" type="button">继续挑战</button>
+            <button class="report-action report-replay" id="reportReplayButton" type="button">重新开始</button>
+          </footer>
+        </div>
+      </section>
+
+      <section class="result-state" id="resultState" hidden>
+        <div class="result-card">
+          <div class="result-mascot" aria-hidden="true"><img src="assets/images/chicken1.png" alt=""></div>
+          <div class="result-kicker"><span aria-hidden="true">★</span> 闯关成功</div>
+          <div class="result-summary">
+            <div class="result-stat">
+              <span class="result-stat-label">剩余爱心</span>
+              <div class="result-hearts" id="resultHearts">❤️❤️❤️❤️❤️</div>
+            </div>
+            <div class="result-stat">
+              <span class="result-stat-label">累计得分</span>
+              <div class="result-score" id="resultScore">Score：0</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="screen end-screen" id="endScreen" hidden aria-hidden="true">
+      <div class="confetti-layer" id="confettiLayer"></div>
+      <div class="end-content">
+        <div class="celebration-emoji" id="celebrationEmoji">🎉</div>
+        <button class="retry-button" id="retryButton" type="button" aria-label="Retry" hidden><img src="assets/images/retry.png" alt=""></button>
+      </div>
+    </section>
+  </main>
+  <script src="game-tracker.js"></script>
+  <script src="grammar-question-bank.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5efe3">
+  <title>Word Bloom · 词花纵横</title>
+  <link rel="stylesheet" href="styles.css?v=20260810-report-autoplay-v21">
+</head>
+<body>
+  <div class="ambient ambient--coral" aria-hidden="true"></div>
+  <div class="ambient ambient--teal" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#" id="brand-home" aria-label="返回关卡列表">
+      <span class="brand__mark brand__flower" aria-hidden="true">✿</span>
+      <span>
+        <strong>WORD BLOOM</strong>
+        <small>词花纵横</small>
+      </span>
+    </a>
+    <div class="topbar__game-actions" id="game-top-actions" hidden>
+      <button class="report-button" id="learning-report-open" type="button">
+        <span class="report-button__icon" aria-hidden="true">▤</span>
+        <span class="report-button__label">学习报告</span>
+      </button>
+      <button class="report-button report-button--hint" id="hint-letter" type="button">
+        <span class="report-button__icon" aria-hidden="true">A</span>
+        <span class="report-button__label">揭示字母</span>
+        <span class="report-button__count" id="hint-letter-count" aria-hidden="true">x1</span>
+      </button>
+      <div class="progress-card progress-card--words score-card" id="score-card" aria-label="累计得分 0">
+        <span>Score：</span><strong id="score-value">0</strong>
+      </div>
+      <div class="progress-card progress-card--words timer-card" id="timer-card" aria-label="剩余时间 120 秒">
+        <span>Time：</span><strong id="timer-value">120</strong>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="level-view" id="level-view">
+      <div class="level-panel">
+        <div class="level-panel__head">
+          <div>
+            <p class="section-kicker">ALL GRADES</p>
+            <h2>选择年级</h2>
+          </div>
+        </div>
+        <div class="level-grid" id="level-grid"></div>
+      </div>
+    </section>
+
+    <section class="game-view" id="game-view" hidden>
+      <section class="game-card">
+        <div class="clue-card" id="clue-card" aria-live="polite">
+          <strong class="direction-chip" id="clue-position">1 横</strong>
+          <p id="clue-text">选择词格后，这里会显示一句提示。</p>
+        </div>
+        <div class="board-wrap">
+          <div class="crossword" id="crossword" role="grid" aria-label="纵横字谜拼词板"></div>
+        </div>
+        <aside class="floating-keyboard word-wheel-dock" id="floating-keyboard" hidden aria-label="本关字母键盘">
+          <div class="word-wheel-dock__top">
+            <div class="word-wheel-dock__actions">
+              <button class="wheel-tool" id="wheel-delete" type="button" aria-label="删除当前词槽最后一个字母">删除</button>
+              <button class="wheel-tool" id="wheel-clear" type="button" aria-label="清空当前词槽">清空</button>
+            </div>
+          </div>
+          <div class="word-wheel" id="word-wheel" aria-label="本关字母键盘">
+            <div class="word-wheel__letters" id="word-wheel-letters"></div>
+          </div>
+        </aside>
+      </section>
+      <section class="solved-words-panel" id="solved-words-panel" hidden aria-hidden="true">
+        <span id="solved-words-count"></span>
+        <div class="solved-words-list" id="solved-words-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <section class="term-modal" id="term-modal" hidden role="dialog" aria-modal="true" aria-labelledby="term-modal-title">
+    <div class="term-modal__card">
+      <button class="term-modal__close" id="term-modal-close" type="button" aria-label="关闭册别选择">×</button>
+      <p class="section-kicker">SELECT VOLUME</p>
+      <h2 id="term-modal-title">选择册别</h2>
+      <div class="term-options" id="term-options"></div>
+    </div>
+  </section>
+
+  <section class="learning-report" id="learning-report" hidden role="dialog" aria-modal="true" aria-labelledby="learning-report-title">
+    <div class="learning-report__card">
+      <header class="learning-report__head">
+        <div>
+          <p class="section-kicker">LEARNING REPORT</p>
+          <h2 id="learning-report-title">学习报告</h2>
+        </div>
+      </header>
+      <div class="learning-report__columns" aria-hidden="true">
+        <span>玩家拼出的单词</span>
+        <span>参考词组</span>
+      </div>
+      <div class="learning-report__words" id="learning-report-words"></div>
+      <div class="learning-report__actions">
+        <button class="button button--ghost" id="learning-report-levels" type="button">回到首页</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="completion" id="completion" hidden role="dialog" aria-modal="true" aria-labelledby="completion-title">
+    <div class="completion__card">
+      <span class="completion__spark" aria-hidden="true">✦</span>
+      <p class="section-kicker">LEVEL COMPLETE</p>
+      <h2 id="completion-title">全部拼对了！</h2>
+      <p>你已经完成本关所有纵横单词。</p>
+      <div class="completion__progress">
+        <span>完成单词</span>
+        <strong id="completion-progress">6 / 6</strong>
+      </div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <audio id="background-music" src="audio/background.mp3" preload="auto" autoplay loop aria-hidden="true"></audio>
+  <audio id="word-audio" preload="none" aria-hidden="true"></audio>
+  <audio id="report-audio" preload="none" aria-hidden="true"></audio>
+
+  <script src="word-data.js"></script>
+  <script src="word-meanings.js?v=20260807-local-meanings"></script>
+  <script src="word-clues.js?v=20260806-crossword-style"></script>
+  <script src="level-data.js?v=20260807-144-levels"></script>
+  <script src="game-tracker.js?v=1.0.0"></script>
+  <script src="app.js?v=20260810-report-autoplay-v18"></script>
+</body>
+</html>

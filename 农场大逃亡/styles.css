@@ -1,0 +1,248 @@
+:root {
+  --ink: #17334d;
+  --cream: #fff8de;
+  --orange: #ff9d3d;
+  --orange-dark: #e66d1b;
+  --green: #3ab87a;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #80cfec;
+  font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.game_shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: #8bd8f3 url("assets/photo/background.svg?v=farm-28") center / 100% 100% no-repeat;
+  box-shadow: 0 0 50px rgba(20, 53, 75, 0.28);
+}
+
+#gameCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  touch-action: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.start_overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(222, 227, 230, 0.52);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 5;
+}
+
+.start_overlay.is_hidden {
+  display: none;
+}
+
+.start_card {
+  width: min(520px, 76%);
+  padding: 42px 48px 36px;
+  text-align: center;
+  color: var(--ink);
+  border: 5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 34px;
+  background: rgba(255, 248, 222, 0.94);
+  box-shadow: 0 20px 55px rgba(30, 73, 101, 0.3), inset 0 -8px 0 rgba(236, 196, 110, 0.25);
+}
+
+.start_badge {
+  display: inline-block;
+  padding: 7px 17px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  border-radius: 999px;
+  background: var(--green);
+  transform: rotate(-2deg);
+}
+
+.start_card h1 {
+  margin: 16px 0 8px;
+  font-size: clamp(32px, 4vw, 54px);
+  line-height: 1.08;
+  letter-spacing: 2px;
+  text-shadow: 0 3px 0 #fff;
+}
+
+.start_card p {
+  margin: 0 0 14px;
+  color: #5d7282;
+  font-size: clamp(16px, 1.65vw, 22px);
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.grade_picker {
+  margin: 0 0 20px;
+}
+
+.grade_label {
+  display: block;
+  margin-bottom: 9px;
+  color: #607a8d;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.grade_options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.grade_button {
+  min-width: 68px;
+  padding: 8px 12px;
+  color: #49677b;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 900;
+  border: 2px solid #b7d6cb;
+  border-radius: 999px;
+  outline: 0;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 3px 0 rgba(99, 150, 132, 0.22);
+  cursor: pointer;
+  transition: transform 120ms ease, color 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.grade_button:hover {
+  color: #237a56;
+  border-color: #57bb8a;
+  transform: translateY(-1px);
+}
+
+.grade_button.is_selected {
+  color: #fff;
+  border-color: #24875c;
+  background: #39b878;
+  box-shadow: 0 4px 0 #237a56, inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.grade_button:focus-visible {
+  outline: 4px solid rgba(44, 130, 195, 0.42);
+  outline-offset: 2px;
+}
+
+.start_button {
+  min-width: 236px;
+  padding: 17px 34px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  border: 4px solid #fff4c7;
+  border-radius: 999px;
+  outline: 0;
+  background: linear-gradient(180deg, #ffb54e 0%, var(--orange) 55%, var(--orange-dark) 100%);
+  box-shadow: 0 8px 0 #b94f16, 0 14px 26px rgba(174, 79, 26, 0.28), inset 0 2px 0 rgba(255, 255, 255, 0.55);
+  transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+}
+
+.start_button:hover {
+  filter: brightness(1.08) saturate(1.05);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 0 #b94f16, 0 17px 30px rgba(174, 79, 26, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.6);
+}
+
+.start_button:active {
+  transform: translateY(6px) scale(0.99);
+  box-shadow: 0 2px 0 #b94f16, 0 7px 14px rgba(174, 79, 26, 0.24), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.start_button:focus-visible {
+  outline: 5px solid rgba(44, 130, 195, 0.5);
+  outline-offset: 5px;
+}
+
+.start_tip {
+  display: block;
+  margin-top: 22px;
+  color: #8194a2;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .start_card {
+    padding: 24px 26px 20px;
+    border-width: 3px;
+    border-radius: 24px;
+  }
+
+  .start_card p {
+    margin-bottom: 8px;
+  }
+
+  .grade_picker {
+    margin-bottom: 13px;
+  }
+
+  .grade_label {
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+
+  .grade_options {
+    gap: 6px;
+  }
+
+  .grade_button {
+    min-width: 58px;
+    padding: 6px 9px;
+    font-size: 13px;
+  }
+
+  .start_button {
+    min-width: 196px;
+    padding: 12px 28px;
+    font-size: 20px;
+    border-width: 3px;
+  }
+
+  .start_tip {
+    margin-top: 14px;
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .start_button {
+    transition: none;
+  }
+}

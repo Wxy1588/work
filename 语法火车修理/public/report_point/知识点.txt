@@ -1,0 +1,71 @@
+repair-0001：wh-特殊疑问句
+repair-0002：含实义动词的一般现在时结构
+repair-0003：频度副词
+repair-0004：there be 句型 be 动词的选用
+repair-0005：一般将来时will
+repair-0006：一般将来时 be going to
+repair-0007：if引导条件状语从句
+repair-0008：一般过去时的用法
+repair-0009：含实义动词的一般过去时结构
+repair-0010：⼈称代词
+repair-0011：形容词性物主代词
+repair-0012：名词性物主代词
+repair-0013：定冠词
+repair-0014：基础连词
+repair-0015：现在进⾏时的用法
+repair-0016：现在进⾏时的句型结构
+repair-0017：反⾝代词
+repair-0018：⽅位介词 in/on/under
+repair-0019：⽅位介词表⽰在 …… 上 / 下
+repair-0020：⽅位介词表⽰在 …… 前 / 后
+repair-0021：⽅位介词表⽰在 …… 旁 / 间
+repair-0022：many/much
+repair-0023：few/a few/little/a little
+repair-0024：情态动词can
+repair-0025：情态动词 must 和 have to
+repair-0026：What感叹句
+repair-0027：How 感叹句
+repair-0028：肯定祈使句
+repair-0029：否定祈使句
+repair-0030：when引导时间状语从句
+repair-0031：as soon as 引导时间状语从句
+repair-0032：情态动词 used to
+repair-0033：一般疑问句
+repair-0034：what 常考句型
+repair-0035：how 特殊疑问句
+repair-0036：how 短语特殊疑问句
+repair-0037：选择疑问句
+repair-0038：让步状语从句
+repair-0039：宾语从句的引导词
+repair-0040：宾语从句的否定前移
+repair-0041：宾语从句的语序
+repair-0042：宾语从句的时态
+repair-0043：关系代词 that/which 引导的定语从句
+repair-0044：关系代词 who/whom 引导的定语从句
+repair-0045：定语从句注意事项
+repair-0046：复合不定代词
+repair-0047：序数词
+repair-0048：基数词
+repair-0049：形容词最⾼级的用法
+repair-0050：形容词⽐较级的用法
+repair-0051：形容词副词的同级⽐较
+repair-0052：现在完成时表⽰过去持续的动作或状态
+repair-0053：have gone to/have been to/have been in
+repair-0054：瞬间动词和持续动词的现在完成时
+repair-0055：unless 引导条件状语从句
+repair-0056：副词
+repair-0057：副词与形容词
+repair-0058：形容词副词同形
+repair-0059：副词⽐较级最⾼级
+repair-0060：不定式作宾语
+repair-0061：不定式作状语
+repair-0062：疑问词 + 不定式
+repair-0063：动名词作主语
+repair-0064：动名词作宾语
+repair-0065：一般现在时的被动语态
+repair-0066：一般过去时的被动语态
+repair-0067：一般将来时的被动语态
+repair-0068：It's+ 形容词 +of/for sb. to do sth.
+repair-0069：情态动词 had better
+repair-0070：过去进⾏时的用法
+repair-0071：过去进⾏时的结构

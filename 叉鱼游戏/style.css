@@ -1,0 +1,564 @@
+:root {
+    --tutorial-navy: #07304c;
+    --tutorial-cyan: #61e7ef;
+    --tutorial-sand: #ffe2a1;
+    --report-action-top: #d9f6ff;
+    --report-action-bottom: #68c5eb;
+    --report-action-text: #07507d;
+    --report-action-border: #2a9fd1;
+    --upgrade-intro-navy: #063b60;
+    --upgrade-intro-cyan: #36c7ea;
+    --upgrade-intro-light: #dff8ff;
+    --upgrade-intro-gold: #ffcf5a;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.tutorial-hud {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    pointer-events: none;
+    font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+}
+
+.tutorial-objective {
+    position: absolute;
+    top: max(16px, env(safe-area-inset-top));
+    left: 50%;
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    box-sizing: border-box;
+    padding: 10px 16px;
+    color: var(--tutorial-navy);
+    background: var(--tutorial-sand);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 28, 52, 0.32);
+    transform: translateX(-50%);
+}
+
+.tutorial-objective__step {
+    font-size: clamp(13px, 1.5vw, 17px);
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.tutorial-skip {
+    position: absolute;
+    top: max(18px, env(safe-area-inset-top));
+    right: max(16px, env(safe-area-inset-right));
+    padding: 9px 15px;
+    color: white;
+    background: rgba(4, 47, 76, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 999px;
+    font: 700 14px/1.2 "Microsoft YaHei", sans-serif;
+    pointer-events: auto;
+    cursor: pointer;
+    box-shadow: 0 5px 16px rgba(0, 28, 52, 0.24);
+}
+
+.tutorial-skip:hover,
+.tutorial-skip:focus-visible {
+    background: rgba(4, 47, 76, 0.94);
+    outline: 3px solid rgba(97, 231, 239, 0.46);
+    outline-offset: 2px;
+}
+
+.upgrade-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 130;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    box-sizing: border-box;
+    background: rgba(3, 48, 77, 0.48);
+    backdrop-filter: blur(5px);
+    font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.upgrade-intro.is-leaving {
+    opacity: 0;
+}
+
+.upgrade-intro__panel {
+    position: relative;
+    width: min(650px, calc(100vw - 48px));
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 25px 34px 22px;
+    color: var(--upgrade-intro-navy);
+    text-align: center;
+    background:
+        radial-gradient(circle at 12% 12%, rgba(255, 255, 255, 0.95) 0 4px, transparent 5px),
+        linear-gradient(180deg, rgba(239, 252, 255, 0.98), rgba(159, 225, 247, 0.98));
+    border: 3px solid rgba(255, 255, 255, 0.92);
+    border-radius: 24px;
+    box-shadow: 0 18px 48px rgba(1, 38, 65, 0.34), inset 0 0 0 2px rgba(42, 159, 209, 0.28);
+    animation: upgradeIntroPop 0.46s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}
+
+.upgrade-intro__title {
+    margin: 0 0 12px;
+    font-size: clamp(22px, 3.5vw, 30px);
+    line-height: 1.25;
+}
+
+.upgrade-intro__title strong {
+    display: inline-block;
+    color: #f5a900;
+    font-size: 1.28em;
+    text-shadow: 0 2px 0 rgba(255, 255, 255, 0.9);
+}
+
+.upgrade-intro__mini-level {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    margin-bottom: 13px;
+    background: linear-gradient(180deg, #c9f1ff 0 38%, #51c8ec 39%, #159fd6 100%);
+    border: 2px solid rgba(7, 116, 157, 0.2);
+    border-radius: 18px;
+    box-shadow: inset 0 0 24px rgba(255, 255, 255, 0.28);
+}
+
+.upgrade-intro__mini-sky {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 98px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(209, 246, 255, 0.78));
+}
+
+.upgrade-intro__mini-water {
+    position: absolute;
+    inset: 96px 0 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(101, 220, 245, 0.72), rgba(4, 126, 183, 0.72));
+}
+
+.upgrade-intro__mini-wave {
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 200%;
+    height: 12px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.78) 0 35%, transparent 37%) 0 0 / 38px 10px repeat-x;
+    animation: upgradeMiniWave 1.8s linear infinite;
+}
+
+.upgrade-intro__mini-boat-wrap {
+    position: absolute;
+    z-index: 4;
+    top: 22px;
+    left: 23%;
+    width: 46%;
+    max-width: 270px;
+    aspect-ratio: 3040 / 1472;
+}
+
+.upgrade-intro__mini-boat {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 5px rgba(4, 67, 108, 0.28));
+}
+
+.upgrade-intro__mini-hammer {
+    position: absolute;
+    z-index: 6;
+    top: 0;
+    left: 63%;
+    width: 76px;
+    height: 76px;
+    object-fit: contain;
+    pointer-events: none;
+    opacity: 0;
+    filter: drop-shadow(0 4px 4px rgba(1, 37, 59, 0.32));
+    transform: translateX(-50%) rotate(18deg);
+    transform-origin: 78% 82%;
+}
+
+.upgrade-intro__mini-boat-cover {
+    position: absolute;
+    inset: -2% -3% -5%;
+    z-index: 2;
+    display: block;
+    width: 106%;
+    height: 107%;
+    overflow: visible;
+    fill: #05080b;
+    filter: drop-shadow(0 7px 8px rgba(0, 0, 0, 0.58));
+    opacity: 0;
+    transform: scale(0.92);
+    transform-origin: center 62%;
+}
+
+.upgrade-intro__mini-question {
+    position: absolute;
+    z-index: 3;
+    top: 43%;
+    left: 50%;
+    color: #ffe477;
+    font-size: 46px;
+    font-weight: 900;
+    text-shadow: 0 3px 0 rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+}
+
+.upgrade-intro__fishing-line {
+    position: absolute;
+    z-index: 3;
+    top: 18px;
+    left: 70%;
+    width: 2px;
+    height: 86px;
+    background: rgba(70, 55, 94, 0.86);
+    transform-origin: top center;
+    animation: upgradeMiniLineStrike 0.95s ease-in-out infinite;
+}
+
+.upgrade-intro__mini-harpoon {
+    position: absolute;
+    z-index: 5;
+    top: 64px;
+    left: calc(70% - 13px);
+    width: 27px;
+    height: 82px;
+    object-fit: fill;
+    filter: drop-shadow(0 3px 3px rgba(4, 67, 108, 0.22));
+    animation: upgradeMiniHarpoonStrike 0.95s ease-in-out infinite;
+}
+
+.upgrade-intro__mini-fish {
+    position: absolute;
+    width: 78px;
+    height: auto;
+    filter: drop-shadow(0 4px 4px rgba(4, 67, 108, 0.2));
+}
+
+.upgrade-intro__mini-fish--one {
+    top: 85px;
+    left: -90px;
+    animation: upgradeMiniFishSwimRight 3s linear infinite;
+}
+
+.upgrade-intro__mini-fish--two {
+    top: 112px;
+    right: -90px;
+    animation: upgradeMiniFishSwimLeft 3.4s 0.6s linear infinite;
+}
+
+.upgrade-intro__mini-fish--target {
+    top: 50px;
+    left: 4%;
+    transform: scaleX(-1);
+    animation: upgradeMiniFishCaught 0.95s ease-in-out infinite;
+}
+
+.upgrade-intro__mini-catch-flash {
+    position: absolute;
+    top: 40px;
+    left: 67%;
+    color: #ffe05f;
+    font-size: 21px;
+    font-weight: 900;
+    text-shadow: 0 2px 0 #07507d;
+    opacity: 0;
+    animation: upgradeMiniCatchFlash 0.95s ease-out infinite;
+}
+
+.upgrade-intro__panel.is-ready .upgrade-intro__mini-boat-wrap {
+    animation: upgradeMiniBoatGlow 0.65s ease-in-out 1;
+}
+
+.upgrade-intro__panel.is-ready .upgrade-intro__mini-hammer {
+    animation: upgradeMiniHammerWork 0.65s ease-in-out 1 both;
+}
+
+.upgrade-intro__panel.is-ready .upgrade-intro__mini-boat-cover {
+    animation: upgradeMiniBoatCover 0.35s 0.62s ease-out forwards;
+}
+
+.upgrade-intro__panel.is-ready .upgrade-intro__mini-boat {
+    animation: upgradeMiniBoatHide 0.16s 0.68s ease-out forwards;
+}
+
+.upgrade-intro__panel.is-ready .upgrade-intro__mini-question {
+    animation: upgradeMiniQuestionIn 0.3s 0.72s cubic-bezier(0.2, 0.9, 0.3, 1.25) forwards;
+}
+
+.upgrade-intro__panel.is-ready .upgrade-intro__mini-fish--target {
+    top: 78px;
+    left: -90px;
+    animation: upgradeMiniFishSwimRight 3.2s linear infinite;
+}
+
+.upgrade-intro__panel.is-ready .upgrade-intro__mini-harpoon,
+.upgrade-intro__panel.is-ready .upgrade-intro__fishing-line {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.upgrade-intro__panel.is-ready .upgrade-intro__mini-catch-flash {
+    animation: none;
+    opacity: 0;
+}
+
+.upgrade-intro__meter {
+    height: 16px;
+    overflow: hidden;
+    background: rgba(7, 80, 125, 0.15);
+    border: 2px solid rgba(7, 80, 125, 0.2);
+    border-radius: 999px;
+    box-shadow: inset 0 2px 4px rgba(4, 67, 108, 0.15);
+}
+
+.upgrade-intro__meter-fill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #31bce1, #65e5df 72%, var(--upgrade-intro-gold));
+    border-radius: inherit;
+    box-shadow: 0 0 16px rgba(54, 199, 234, 0.7);
+    transform: scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
+}
+
+.upgrade-intro__count {
+    margin-top: 8px;
+    color: var(--upgrade-intro-navy);
+    font-size: 22px;
+    font-weight: 900;
+    font-variant-numeric: tabular-nums;
+}
+
+.upgrade-intro__ready {
+    margin-top: 8px;
+    color: #087c69;
+    font-size: 17px;
+    font-weight: 900;
+    opacity: 0;
+    transform: translateY(7px) scale(0.96);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.upgrade-intro__panel.is-ready .upgrade-intro__ready {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.upgrade-intro__panel.is-ready {
+    box-shadow: 0 18px 48px rgba(1, 38, 65, 0.34), 0 0 28px rgba(255, 207, 90, 0.5), inset 0 0 0 2px rgba(42, 159, 209, 0.28);
+}
+
+.upgrade-intro__bubble {
+    position: absolute;
+    display: block;
+    border: 2px solid rgba(255, 255, 255, 0.86);
+    border-radius: 50%;
+    background: rgba(90, 211, 240, 0.24);
+    box-shadow: inset 3px 3px 5px rgba(255, 255, 255, 0.65);
+    animation: upgradeBubble 2.2s ease-in-out infinite;
+}
+
+.upgrade-intro__bubble--one {
+    top: 28px;
+    left: 28px;
+    width: 22px;
+    height: 22px;
+}
+
+.upgrade-intro__bubble--two {
+    top: 62px;
+    right: 30px;
+    width: 15px;
+    height: 15px;
+    animation-delay: -0.7s;
+}
+
+.upgrade-intro__bubble--three {
+    right: 72px;
+    bottom: 28px;
+    width: 10px;
+    height: 10px;
+    animation-delay: -1.25s;
+}
+
+@keyframes upgradeIntroPop {
+    from { opacity: 0; transform: translateY(18px) scale(0.92); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes upgradeBubble {
+    0%, 100% { transform: translateY(4px) scale(0.94); opacity: 0.58; }
+    50% { transform: translateY(-7px) scale(1.05); opacity: 1; }
+}
+
+@keyframes upgradeMiniWave {
+    from { transform: translateX(0); }
+    to { transform: translateX(-38px); }
+}
+
+@keyframes upgradeMiniFishSwimRight {
+    from { transform: translateX(0) scaleX(-1); }
+    to { transform: translateX(720px) scaleX(-1); }
+}
+
+@keyframes upgradeMiniFishSwimLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-720px); }
+}
+
+@keyframes upgradeMiniFishCaught {
+    0% { left: 4%; top: 50px; transform: scaleX(-1); opacity: 0; }
+    12% { opacity: 1; }
+    50% { left: 58%; top: 50px; transform: scaleX(-1); opacity: 1; }
+    64% { left: 58%; top: 31px; transform: scaleX(-1) rotate(-8deg); opacity: 1; }
+    100% { left: 58%; top: -45px; transform: scaleX(-1) rotate(-12deg) scale(0.72); opacity: 0; }
+}
+
+@keyframes upgradeMiniLineStrike {
+    0%, 18% { transform: scaleY(0.55); }
+    50%, 64% { transform: scaleY(1.18); }
+    100% { transform: scaleY(0.55); }
+}
+
+@keyframes upgradeMiniHarpoonStrike {
+    0%, 18% { transform: translateY(-22px); }
+    50%, 64% { transform: translateY(52px); }
+    100% { transform: translateY(-22px); }
+}
+
+@keyframes upgradeMiniCatchFlash {
+    0%, 48% { opacity: 0; transform: translateY(6px) scale(0.7); }
+    58% { opacity: 1; transform: translateY(0) scale(1.12); }
+    88%, 100% { opacity: 0; transform: translateY(-18px) scale(1); }
+}
+
+@keyframes upgradeMiniBoatGlow {
+    0%, 100% { filter: drop-shadow(0 6px 5px rgba(4, 67, 108, 0.28)); transform: scale(1); }
+    50% { filter: drop-shadow(0 0 12px #fff) drop-shadow(0 0 24px #ffd95c); transform: scale(1.035); }
+}
+
+@keyframes upgradeMiniHammerWork {
+    0% { opacity: 0; transform: translate(-50%, -5px) rotate(18deg); }
+    6% { opacity: 1; }
+    18% { transform: translate(-50%, 2px) rotate(-38deg); }
+    30% { transform: translate(-50%, -5px) rotate(18deg); }
+    43% { transform: translate(-50%, 2px) rotate(-37deg); }
+    56% { transform: translate(-50%, -5px) rotate(17deg); }
+    70% { transform: translate(-50%, 2px) rotate(-37deg); }
+    84% { opacity: 1; transform: translate(-50%, -4px) rotate(14deg); }
+    100% { opacity: 0; transform: translate(-50%, -7px) rotate(18deg); }
+}
+
+@keyframes upgradeMiniBoatCover {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes upgradeMiniBoatHide {
+    to { opacity: 0; }
+}
+
+@keyframes upgradeMiniQuestionIn {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@media (max-width: 640px) {
+    .tutorial-objective {
+        top: max(9px, env(safe-area-inset-top));
+        left: 50%;
+        width: auto;
+        padding: 7px 11px;
+        border-radius: 12px;
+        transform: translateX(-50%);
+    }
+
+    .tutorial-objective__step {
+        font-size: 12px;
+    }
+
+    .tutorial-skip {
+        z-index: 2;
+        top: max(17px, env(safe-area-inset-top));
+        right: 16px;
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+    .upgrade-intro__panel {
+        padding: 22px 14px 18px;
+        border-radius: 20px;
+    }
+
+    .upgrade-intro__mini-level {
+        height: 220px;
+    }
+
+    .upgrade-intro__mini-boat-wrap {
+        left: 14%;
+        width: 58%;
+    }
+
+    .upgrade-intro__fishing-line {
+        left: 77%;
+    }
+
+    .upgrade-intro__mini-harpoon {
+        left: calc(77% - 12px);
+    }
+
+    .upgrade-intro__mini-fish {
+        width: 62px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .upgrade-intro,
+    .upgrade-intro__panel,
+    .upgrade-intro__bubble,
+    .upgrade-intro__mini-wave,
+    .upgrade-intro__mini-fish,
+    .upgrade-intro__mini-harpoon,
+    .upgrade-intro__fishing-line,
+    .upgrade-intro__mini-catch-flash,
+    .upgrade-intro__mini-boat-wrap,
+    .upgrade-intro__mini-hammer,
+    .upgrade-intro__mini-boat-cover,
+    .upgrade-intro__mini-question,
+    .upgrade-intro__ready {
+        animation: none;
+        transition-duration: 0.01ms;
+    }
+
+    .upgrade-intro__panel.is-ready .upgrade-intro__mini-boat-cover {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .upgrade-intro__panel.is-ready .upgrade-intro__mini-boat {
+        opacity: 0;
+    }
+
+    .upgrade-intro__panel.is-ready .upgrade-intro__mini-question,
+    .upgrade-intro__panel.is-ready .upgrade-intro__ready {
+        opacity: 1;
+    }
+}

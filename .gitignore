@@ -1,0 +1,11 @@
+# OS/editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+
+# Local development output
+node_modules/
+dist/
+build/
+*.log

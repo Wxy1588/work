@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3200" height="640" viewBox="0 0 3200 640" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="land" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8caf70"/>
+      <stop offset="0.55" stop-color="#6e955f"/>
+      <stop offset="1" stop-color="#496f55"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3f92a3"/>
+      <stop offset="1" stop-color="#1f526e"/>
+    </linearGradient>
+    <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c1a36d"/>
+      <stop offset="1" stop-color="#69523f"/>
+    </linearGradient>
+    <pattern id="grain" width="64" height="64" patternUnits="userSpaceOnUse">
+      <circle cx="9" cy="14" r="1.2" fill="#eff2c7" opacity=".13"/>
+      <circle cx="43" cy="37" r="1.5" fill="#183b35" opacity=".12"/>
+      <path d="M4 51q16-8 31 1t25-3" fill="none" stroke="#244b40" stroke-width="1" opacity=".09"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#15251f" flood-opacity=".45"/>
+    </filter>
+    <symbol id="mountain" viewBox="0 0 130 100">
+      <path d="M3 91 48 21l17 25L83 5l44 86Z" fill="url(#hill)" stroke="#4a3c34" stroke-width="5"/>
+      <path d="m37 39 11-18 11 17-7-3-5 10Zm30 17L83 5l18 30-12-8-8 17-7-8Z" fill="#e7d7a8" opacity=".85"/>
+      <path d="M5 92h122" stroke="#314a3b" stroke-width="7" stroke-linecap="round" opacity=".45"/>
+    </symbol>
+    <symbol id="pine" viewBox="0 0 48 70">
+      <path d="M21 44h7v22h-7z" fill="#553d2e"/>
+      <path d="M24 2 5 35h10L3 50h42L33 35h10Z" fill="#245b43" stroke="#173e36" stroke-width="3"/>
+      <path d="m24 8-12 24h8l-9 13" fill="none" stroke="#4a8660" stroke-width="3" opacity=".65"/>
+    </symbol>
+    <symbol id="ruin" viewBox="0 0 120 100">
+      <path d="M12 88h96M22 85V34h18v51m40 0V25h20v60M40 44h40m-45-20 13-12 13 12m12-9 16-11 18 13" fill="none" stroke="#6e6251" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 91h96" stroke="#3f5544" stroke-width="8" opacity=".5"/>
+    </symbol>
+    <symbol id="castle" viewBox="0 0 120 100">
+      <path d="M15 88V38h20V19h18v19h15V12h19v26h18v50Z" fill="#7b705b" stroke="#3f4238" stroke-width="5"/>
+      <path d="M45 88V66q0-16 15-16t15 16v22" fill="#2d4540"/>
+      <path d="M21 28h8m45-24h8m10 25h8" stroke="#e1c86e" stroke-width="7"/>
+    </symbol>
+  </defs>
+
+  <rect width="3200" height="640" fill="url(#land)"/>
+  <path d="M0 0h3200v66c-146 42-263 4-410 35-180 38-266 113-451 68-155-38-257-108-431-67-171 40-284 113-463 75-192-41-304-132-500-93-171 34-271 112-449 84C320 140 191 68 0 108Z" fill="url(#water)" opacity=".96"/>
+  <path d="M0 530c170-46 275-13 424-42 206-39 292-111 501-77 181 30 284 112 473 79 206-36 303-124 517-92 178 27 279 107 469 82 238-32 473-125 816-42v202H0Z" fill="#365f4e" opacity=".9"/>
+  <path d="M0 0h3200v640H0z" fill="url(#grain)"/>
+
+  <path d="M310 36C470 175 470 274 650 351s289 29 451 126c143 86 315 99 458-12 178-137 329-98 469-8 150 96 280 84 428-20 149-104 300-140 486-79" fill="none" stroke="#9dd4cf" stroke-width="34" opacity=".72"/>
+  <path d="M310 36C470 175 470 274 650 351s289 29 451 126c143 86 315 99 458-12 178-137 329-98 469-8 150 96 280 84 428-20 149-104 300-140 486-79" fill="none" stroke="#3c8091" stroke-width="22" opacity=".88"/>
+  <ellipse cx="1080" cy="475" rx="175" ry="86" fill="url(#water)" stroke="#83c8c6" stroke-width="8"/>
+  <ellipse cx="2365" cy="144" rx="145" ry="70" fill="url(#water)" stroke="#83c8c6" stroke-width="8"/>
+
+  <g filter="url(#shadow)" opacity=".92">
+    <use href="#mountain" x="70" y="128" width="150" height="116"/>
+    <use href="#mountain" x="190" y="90" width="125" height="100"/>
+    <use href="#mountain" x="720" y="70" width="145" height="110"/>
+    <use href="#mountain" x="840" y="102" width="120" height="94"/>
+    <use href="#mountain" x="1320" y="36" width="165" height="125"/>
+    <use href="#mountain" x="1460" y="82" width="135" height="104"/>
+    <use href="#mountain" x="2020" y="58" width="155" height="118"/>
+    <use href="#mountain" x="2150" y="82" width="135" height="104"/>
+    <use href="#mountain" x="2710" y="80" width="170" height="128"/>
+    <use href="#mountain" x="2860" y="115" width="130" height="100"/>
+    <use href="#mountain" x="3020" y="70" width="150" height="116"/>
+  </g>
+
+  <g opacity=".9">
+    <use href="#pine" x="30" y="350" width="45" height="66"/><use href="#pine" x="70" y="372" width="42" height="62"/><use href="#pine" x="115" y="340" width="48" height="70"/><use href="#pine" x="160" y="376" width="42" height="62"/>
+    <use href="#pine" x="500" y="135" width="45" height="66"/><use href="#pine" x="544" y="115" width="48" height="70"/><use href="#pine" x="591" y="145" width="42" height="62"/>
+    <use href="#pine" x="940" y="250" width="45" height="66"/><use href="#pine" x="985" y="232" width="48" height="70"/><use href="#pine" x="1032" y="263" width="42" height="62"/>
+    <use href="#pine" x="1625" y="155" width="45" height="66"/><use href="#pine" x="1670" y="134" width="48" height="70"/><use href="#pine" x="1719" y="164" width="42" height="62"/>
+    <use href="#pine" x="2220" y="470" width="45" height="66"/><use href="#pine" x="2263" y="445" width="48" height="70"/><use href="#pine" x="2312" y="474" width="42" height="62"/>
+    <use href="#pine" x="2630" y="285" width="45" height="66"/><use href="#pine" x="2673" y="260" width="48" height="70"/><use href="#pine" x="2722" y="290" width="42" height="62"/>
+    <use href="#pine" x="3090" y="390" width="45" height="66"/><use href="#pine" x="3132" y="365" width="48" height="70"/>
+  </g>
+
+  <g filter="url(#shadow)" opacity=".88">
+    <use href="#ruin" x="365" y="400" width="110" height="92"/>
+    <use href="#castle" x="1115" y="76" width="120" height="100"/>
+    <use href="#ruin" x="1810" y="365" width="120" height="100"/>
+    <use href="#castle" x="2475" y="390" width="120" height="100"/>
+    <use href="#ruin" x="2950" y="245" width="112" height="94"/>
+  </g>
+
+  <path d="M0 15h3200M0 625h3200" stroke="#d8c28a" stroke-width="10" opacity=".42"/>
+  <rect x="8" y="8" width="3184" height="624" rx="34" fill="none" stroke="#173d37" stroke-width="14" opacity=".7"/>
+</svg>

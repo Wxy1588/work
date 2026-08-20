@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>Fishing Game</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #0a1628; /* 深蓝色背景，完全由Canvas绘制背景 */
+        }
+        #gameCanvas {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            image-rendering: crisp-edges;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(3px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .result-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .result-overlay h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .result-overlay p {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .result-overlay .whale-image {
+            max-width: 400px;
+            max-height: 300px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .result-overlay .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        .result-overlay .button-row {
+            display: flex;
+            gap: 15px;
+        }
+        .result-overlay .menu-button {
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .result-overlay .menu-button:hover {
+            transform: scale(1.1);
+        }
+        .result-overlay .menu-button:active {
+            transform: scale(0.95);
+        }
+        .result-overlay .end-game-button {
+            width: 60px;
+            height: 60px;
+        }
+        
+        /* 成绩列表样式 */
+        .report-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .report-bg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .report-text {
+            position: absolute;
+            text-align: left;
+            color: #333;
+            font-size: 20px;
+            line-height: 2;
+            width: 60%;
+        }
+        
+        /* 未掌握单词区域 */
+        .unmastered-section {
+            position: absolute;
+            top: 25%;
+            left: 18%;
+            width: 62%;
+            display: flex;
+            align-items: flex-start;
+            gap: 0px;
+        }
+        .unmastered-label {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 22px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            line-height: 1.5;
+        }
+        .unmastered-content {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 20px;
+            white-space: pre-wrap;
+            word-break: keep-all;
+            word-wrap: normal;
+            border: none;
+            border-radius: 5px;
+            padding: 2 0px;
+            background: transparent;
+            min-height: 44px;
+            line-height: 1.4;
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        /* 已掌握单词区域 */
+        .mastered-section {
+            position: absolute;
+            top: 43%;
+            left: 18%;
+            width: 67%;
+            display: flex;
+            align-items: flex-start;
+            gap: 0px;
+        }
+        .mastered-label {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 22px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            line-height: 1.5;
+        }
+        .mastered-scroll {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 20px;
+            max-height: 150px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: keep-all;
+            word-wrap: normal;
+            border: none;
+            border-radius: 5px;
+            padding: 2 0px;
+            background: transparent;
+            min-height: 44px;
+            line-height: 1.4;
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        /* 掌握进度区域 */
+        .report-progress {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #3498db;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        /* 报告页操作按钮 */
+        .report-actions {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+        }
+        .report-action-button {
+            width: 84px;
+            height: 42px;
+            box-sizing: border-box;
+            padding: 3px 8px;
+            color: var(--report-action-text);
+            background: linear-gradient(180deg, var(--report-action-top), var(--report-action-bottom));
+            border: 2px solid var(--report-action-border);
+            border-radius: 9px;
+            font: 900 14px/1.2 "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+            white-space: nowrap;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(4, 67, 108, 0.22);
+            transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+        }
+        .report-action-button:hover,
+        .report-action-button:focus-visible {
+            filter: brightness(1.08);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(4, 67, 108, 0.3);
+            outline: none;
+        }
+        .report-action-button:active {
+            transform: translateY(1px) scale(0.98);
+        }
+        /* 加载动画样式 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+        }
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        .loading-waves {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .wave {
+            width: 12px;
+            height: 40px;
+            background: linear-gradient(to top, #6dd5ed, #2193b0);
+            border-radius: 6px;
+            animation: waveAnimation 1.2s ease-in-out infinite;
+        }
+        .wave:nth-child(1) { animation-delay: 0s; }
+        .wave:nth-child(2) { animation-delay: 0.1s; }
+        .wave:nth-child(3) { animation-delay: 0.2s; }
+        .wave:nth-child(4) { animation-delay: 0.3s; }
+        .wave:nth-child(5) { animation-delay: 0.4s; }
+        @keyframes waveAnimation {
+            0%, 100% { transform: scaleY(0.5); opacity: 0.6; }
+            50% { transform: scaleY(1.5); opacity: 1; }
+        }
+        .loading-text {
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            color: #ffffff;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: textPulse 2s ease-in-out infinite;
+        }
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        .loading-progress {
+            width: 200px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .loading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #6dd5ed, #2193b0);
+            border-radius: 3px;
+            animation: progressAnimation 2s ease-in-out infinite;
+        }
+        @keyframes progressAnimation {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        /* Grade selector button styles */
+        .grade-btn {
+            padding: 20px 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .grade-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        .grade-btn:active {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- 加载动画 -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-container">
+            <div class="loading-waves">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+            <div class="loading-text">Loading...</div>
+            <div class="loading-progress">
+                <div class="loading-progress-bar"></div>
+            </div>
+        </div>
+    </div>
+    
+    <canvas id="gameCanvas" width="1600" height="900"></canvas>
+    
+    <!-- 背景音乐 -->
+    <audio id="bgMusic" preload="auto" loop>
+        <source src="assets/yinxiao/background.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Grade selector overlay -->
+    <div id="gradeSelector" class="overlay" style="display: none;">
+        <h2 id="gradeTitle" style="color: white; font-size: 36px; margin-bottom: 40px;">Select Grade</h2>
+        <div id="gradeGrid" style="display: flex; justify-content: center; gap: 30px; max-width: 800px;">
+            <!-- Grade buttons will be added dynamically -->
+        </div>
+    </div>
+
+    <!-- 交互式新手关：提示悬浮在真实游戏场景上 -->
+    <div id="tutorialHud" class="tutorial-hud" hidden>
+        <div class="tutorial-objective" role="status" aria-live="polite">
+            <span id="tutorialProgress" class="tutorial-objective__step">新手训练 1/3</span>
+        </div>
+        <button id="tutorialSkip" class="tutorial-skip" type="button">跳过</button>
+    </div>
+
+    <!-- 新手关与正式关之间的升级规则提示动画（不展示船型） -->
+    <div id="upgradeIntro" class="upgrade-intro" role="status" aria-live="polite" hidden>
+        <div id="upgradeIntroPanel" class="upgrade-intro__panel">
+            <span class="upgrade-intro__bubble upgrade-intro__bubble--one" aria-hidden="true"></span>
+            <span class="upgrade-intro__bubble upgrade-intro__bubble--two" aria-hidden="true"></span>
+            <span class="upgrade-intro__bubble upgrade-intro__bubble--three" aria-hidden="true"></span>
+            <h2 class="upgrade-intro__title">捕获 <strong id="upgradeIntroTarget">15</strong> 条正确的鱼，即可升级渔船</h2>
+            <div class="upgrade-intro__mini-level" aria-hidden="true">
+                <div class="upgrade-intro__mini-sky">
+                    <div class="upgrade-intro__mini-boat-wrap">
+                        <img class="upgrade-intro__mini-boat" src="assets/image/boat.png" alt="">
+                        <img class="upgrade-intro__mini-hammer" src="assets/image/chuizi.png" alt="">
+                        <svg class="upgrade-intro__mini-boat-cover" viewBox="0 0 280 130" aria-hidden="true">
+                            <path d="M18 58 C25 52 39 49 58 49 L77 49 L88 29 C91 23 97 20 105 20 L174 20 C182 20 188 24 192 31 L202 49 L257 49 L247 73 C239 94 222 108 200 111 C158 117 93 117 55 111 C35 108 23 98 17 82 C14 74 14 65 18 58 Z"></path>
+                        </svg>
+                        <span class="upgrade-intro__mini-question">?</span>
+                    </div>
+                    <div class="upgrade-intro__fishing-line"></div>
+                    <img class="upgrade-intro__mini-harpoon" src="assets/image/hook.png" alt="">
+                </div>
+                <div class="upgrade-intro__mini-water">
+                    <div class="upgrade-intro__mini-wave"></div>
+                    <img class="upgrade-intro__mini-fish upgrade-intro__mini-fish--one" src="assets/image/fish1.png" alt="">
+                    <img class="upgrade-intro__mini-fish upgrade-intro__mini-fish--two" src="assets/image/fish2.png" alt="">
+                    <img class="upgrade-intro__mini-fish upgrade-intro__mini-fish--target" src="assets/image/fish1.png" alt="">
+                    <span class="upgrade-intro__mini-catch-flash">捕获 +1</span>
+                </div>
+            </div>
+            <div class="upgrade-intro__meter" aria-hidden="true">
+                <div id="upgradeIntroFill" class="upgrade-intro__meter-fill"></div>
+            </div>
+            <div class="upgrade-intro__count" aria-hidden="true"><span id="upgradeIntroCount">0</span>/<span id="upgradeIntroTotal">15</span></div>
+            <div class="upgrade-intro__ready">达到数量 · 可以升级！</div>
+        </div>
+    </div>
+    
+    <!-- Result overlay -->
+    <div id="resultOverlay" class="result-overlay" style="display: none;">
+        <h1 id="resultTitle"></h1>
+        <p id="resultScore"></p>
+        <img id="whaleImage" class="whale-image" src="assets/image/jiesuan.png" alt="结算鲸鱼">
+        <div id="resultButtons" class="button-group"></div>
+        <div id="reportContent"></div>
+    </div>
+    
+    <script src="game-tracker.js"></script>
+    <script src="words.js"></script>
+    <script src="play.js"></script>
+</body>
+</html>

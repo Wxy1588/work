@@ -1,0 +1,18 @@
+√ # bridge_word：农场大逃亡
+√ # candy_game：糖果罐游戏
+√ # fishing_game：叉鱼游戏      
+√ # monster_battle：语法怪兽
+√ # poke_bubbles：戳泡泡         
+√ # runner_game：咩了个咩       
+√ # trainrun：火车快跑               
+√ × word_bomb：单词炸弹
+√ # word_pairing：单词匹配
+√ × word_tug_of_war：单词拔河  
+√ flappy：语法空中跑酷
+√ # monster_hospital：语法怪兽医院
+√ # repair_train：语法火车修理
+√ # spelling->crossword：纵横词花
+
+
+
+

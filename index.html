@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>英语学习小游戏</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; color: #172033; background: linear-gradient(135deg, #eef5ff, #fff8ee); }
+    header { padding: 56px 24px 32px; text-align: center; }
+    h1 { margin: 0 0 12px; font-size: clamp(2rem, 5vw, 3.5rem); }
+    header p { margin: 0; color: #5d6880; font-size: 1.05rem; }
+    main { width: min(1100px, calc(100% - 32px)); margin: 0 auto 56px; }
+    .games { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    a.game { display: flex; min-height: 132px; padding: 22px; flex-direction: column; justify-content: space-between; color: inherit; text-decoration: none; background: #fff; border: 1px solid #e4e9f2; border-radius: 18px; box-shadow: 0 8px 24px #26385d12; transition: transform .18s ease, box-shadow .18s ease; }
+    a.game:hover, a.game:focus-visible { transform: translateY(-3px); box-shadow: 0 14px 30px #26385d24; outline: none; }
+    .emoji { font-size: 2rem; }
+    .name { margin-top: 12px; font-size: 1.15rem; font-weight: 700; }
+    .play { margin-top: 14px; color: #4263eb; font-size: .92rem; font-weight: 600; }
+    footer { padding: 0 24px 32px; text-align: center; color: #7a8499; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>英语学习小游戏</h1>
+    <p>选择一个游戏开始练习</p>
+  </header>
+  <main>
+    <section class="games" aria-label="游戏列表">
+      <a class="game" href="./叉鱼游戏/index.html"><span class="emoji">🎣</span><span class="name">叉鱼游戏</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./戳泡泡/index.html"><span class="emoji">🫧</span><span class="name">戳泡泡</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./单词拔河/index.html"><span class="emoji">💪</span><span class="name">单词拔河</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./单词匹配/index.html"><span class="emoji">🧩</span><span class="name">单词匹配</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./单词炸弹/index.html"><span class="emoji">💣</span><span class="name">单词炸弹</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./火车快跑/index.html"><span class="emoji">🚂</span><span class="name">火车快跑</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./咩了个咩/index.html"><span class="emoji">🐑</span><span class="name">咩了个咩</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./你来比划我来猜/index.html"><span class="emoji">🎭</span><span class="name">你来比划我来猜</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./农场大逃亡/index.html"><span class="emoji">🐔</span><span class="name">农场大逃亡</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./糖果罐游戏/index.html"><span class="emoji">🍬</span><span class="name">糖果罐游戏</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./语法怪兽/index.html"><span class="emoji">👾</span><span class="name">语法怪兽</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./语法怪兽医院/index.html"><span class="emoji">🏥</span><span class="name">语法怪兽医院</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./语法火车修理/index.html"><span class="emoji">🛠️</span><span class="name">语法火车修理</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./语法跑酷/index.html"><span class="emoji">🏃</span><span class="name">语法跑酷</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="./纵横词花/index.html"><span class="emoji">🔤</span><span class="name">纵横词花</span><span class="play">开始游戏 →</span></a>
+    </section>
+  </main>
+  <footer>静态网页游戏合集 · 可通过 GitHub Pages 发布</footer>
+</body>
+</html>

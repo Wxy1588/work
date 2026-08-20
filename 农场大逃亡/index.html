@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>农场大逃亡</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game_shell" aria-label="农场大逃亡游戏">
+    <canvas id="gameCanvas" width="1600" height="900" aria-label="游戏画面"></canvas>
+    <audio id="backgroundMusic" src="assets/yinxiao/background.mp3" preload="auto" autoplay loop></audio>
+    <div id="startOverlay" class="start_overlay" aria-label="游戏开始界面">
+      <div class="start_card">
+        <div class="start_badge">FARM ESCAPE</div>
+        <h1>农场大逃亡</h1>
+        <p>每题 20 秒，选择正确词块修好词桥<br>一次救一只小动物，把它送进安全围栏！</p>
+        <div class="grade_picker" aria-label="选择年级">
+          <span class="grade_label">选择年级</span>
+          <div id="gradeOptions" class="grade_options"></div>
+        </div>
+        <div id="startButtonMount"></div>
+      </div>
+    </div>
+  </main>
+  <script src="question_bank/runtime_bank.js"></script>
+  <script src="game-tracker.js"></script>
+  <script src="play.js?v=farm-79"></script>
+</body>
+</html>

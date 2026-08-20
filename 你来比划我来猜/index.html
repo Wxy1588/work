@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>你比划我来猜 - 完整版</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(163, 230, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 16px;
+            position: relative;
+            z-index: 1;
+            min-height: 0;
+            height: calc(100svh / var(--fit-scale, 1));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: clamp(16px, 3vh, 48px);
+            padding-bottom: clamp(24px, 4vh, 48px);
+            transform: scale(var(--fit-scale, 1));
+            transform-origin: top center;
+        }
+
+        /* 装饰星星 */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* 封面页 */
+        .cover-page {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .show-cover .cover-page {
+            display: block;
+        }
+
+        .show-cover .game-page,
+        .show-cover .result-page {
+            display: none;
+        }
+
+        .cover-header {
+            text-align: center;
+            padding: 48px 0 32px;
+        }
+
+        .brand-title {
+            font-size: 1.5rem;
+            color: #a3e635;
+            text-shadow: 0 0 20px rgba(163, 230, 53, 0.5);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .brand-title::before,
+        .brand-title::after {
+            content: '★';
+            color: #fbbf24;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 
+                0 0 10px rgba(163, 230, 53, 0.5),
+                0 0 30px rgba(163, 230, 53, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: 4px;
+        }
+
+        .title-tag {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 8px;
+            display: block;
+        }
+
+        .grade-selection, .semester-selection {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .grade-selection h2, .semester-selection h2 {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 0;
+            font-size: 1.6rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .grade-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .grade-btn {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(22, 163, 74, 0.3) 100%);
+            border: 1px solid rgba(163, 230, 53, 0.4);
+            font-size: 1.3rem;
+            font-weight: bold;
+            padding: 18px 0;
+            border-radius: 16px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .grade-btn:hover {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.5) 0%, rgba(22, 163, 74, 0.5) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .grade-btn:active {
+            transform: translateY(0);
+        }
+
+        .grade-btn.selected {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            border-color: #a3e635;
+            box-shadow: 
+                0 0 20px rgba(163, 230, 53, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .semester-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        .semester-btn {
+            width: 45%;
+            padding: 22px 0;
+            font-size: 1.6rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .semester-btn.first {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
+        }
+
+        .semester-btn.second {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #1a1a2e;
+            box-shadow: 0 8px 24px rgba(251, 191, 36, 0.4);
+        }
+
+        .semester-btn:hover {
+            transform: translateY(-4px);
+        }
+
+        .semester-btn.selected {
+            transform: scale(1.08);
+            box-shadow: 
+                0 0 30px rgba(255, 255, 255, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-start-cover {
+            background: linear-gradient(135deg, #a3e635 0%, #84cc16 100%);
+            font-size: 2rem;
+            padding: 24px 72px;
+            margin: 32px auto;
+            display: block;
+            border: none;
+            border-radius: 40px;
+            color: #1a1a2e;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 
+                0 12px 32px rgba(163, 230, 53, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.5);
+            transition: all 0.2s ease;
+            letter-spacing: 2px;
+        }
+
+        .btn-start-cover:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 16px 40px rgba(163, 230, 53, 0.5),
+                inset 0 2px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-start-cover:active {
+            transform: translateY(2px);
+            box-shadow: 
+                0 6px 20px rgba(163, 230, 53, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        /* 教程页 */
+        .tutorial-page {
+            display: none;
+            width: 100%;
+            max-height: none;
+            overflow: visible;
+            padding: 8px 0;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .show-tutorial-rules .cover-page,
+        .show-tutorial-rules .game-page,
+        .show-tutorial-rules .result-page,
+        .show-tutorial-video .cover-page,
+        .show-tutorial-video .game-page,
+        .show-tutorial-video .result-page {
+            display: none;
+        }
+
+        .show-tutorial-rules .tutorial-page,
+        .show-tutorial-video .tutorial-page {
+            display: block;
+        }
+
+        .tutorial-video-step {
+            display: none;
+        }
+
+        .show-tutorial-video .tutorial-rules-step {
+            display: none;
+        }
+
+        .show-tutorial-video .tutorial-video-step {
+            display: block;
+        }
+
+        .tutorial-card {
+            width: min(100%, 820px);
+            margin: 0 auto;
+            padding: clamp(24px, 4vw, 36px);
+            background: rgba(255, 255, 255, 0.09);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 32px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .tutorial-kicker {
+            margin: 0 0 8px;
+            color: #fbbf24;
+            text-align: center;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .tutorial-title {
+            margin: 0 0 28px;
+            color: #fff;
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            text-shadow: 0 0 24px rgba(163, 230, 53, 0.32);
+        }
+
+        .tutorial-rules {
+            display: grid;
+            gap: 14px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .tutorial-rule {
+            display: grid;
+            grid-template-columns: 42px 1fr;
+            gap: 14px;
+            align-items: start;
+            padding: 16px 18px;
+            border-radius: 18px;
+            background: rgba(8, 18, 42, 0.34);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.92);
+            font-size: clamp(1rem, 2.1vw, 1.2rem);
+            line-height: 1.65;
+        }
+
+        .tutorial-rule-number {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a3e635, #22c55e);
+            color: #14213d;
+            font-weight: 900;
+        }
+
+        .tutorial-actions {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .tutorial-btn {
+            min-width: 190px;
+            padding: 15px 28px;
+            border: none;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #a3e635 0%, #84cc16 100%);
+            color: #14213d;
+            font-size: 1.15rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(163, 230, 53, 0.34), inset 0 2px 0 rgba(255,255,255,0.45);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .tutorial-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(163, 230, 53, 0.42), inset 0 2px 0 rgba(255,255,255,0.45);
+        }
+
+        .tutorial-btn.secondary {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            box-shadow: none;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .tutorial-video-wrap {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 22px;
+            background: #050b1b;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.34);
+        }
+
+        .tutorial-video-wrap video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .tutorial-hint {
+            margin: 16px 0 0;
+            color: rgba(255, 255, 255, 0.68);
+            text-align: center;
+            font-size: 0.98rem;
+        }
+
+        /* 游戏页 */
+        .game-page {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .show-game .game-page {
+            display: block;
+        }
+
+        .show-game .cover-page,
+        .show-game .result-page {
+            display: none;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .game-title {
+            font-size: 1.5rem;
+            color: white;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .game-stats {
+            display: flex;
+            gap: 28px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #a3e635;
+        }
+
+        .time-display {
+            color: #f87171;
+            animation: timePulse 1s infinite;
+        }
+
+        @keyframes timePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .word-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 64px 32px;
+            text-align: center;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        .word-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(163, 230, 53, 0.05) 0%, transparent 70%);
+        }
+
+        .word-text {
+            font-size: 6.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #a3e635 0%, #22c55e 50%, #84cc16 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0 0 32px 0;
+            text-shadow: none;
+            filter: drop-shadow(0 0 20px rgba(163, 230, 53, 0.3));
+            animation: wordGlow 2s ease-in-out infinite;
+            line-height: 1.2;
+        }
+
+        @keyframes wordGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(163, 230, 53, 0.3)); }
+            50% { filter: drop-shadow(0 0 40px rgba(163, 230, 53, 0.6)); }
+        }
+
+        .word-meaning {
+            font-size: 1.6rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 24px;
+            border-radius: 16px;
+            display: inline-block;
+            align-self: center;
+        }
+
+        .game-buttons {
+            display: flex;
+            gap: 24px;
+        }
+
+        .game-btn {
+            flex: 1;
+            padding: 24px 0;
+            font-size: 1.6rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 1px;
+        }
+
+        .btn-correct {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            box-shadow: 
+                0 10px 30px rgba(34, 197, 94, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-skip {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            box-shadow: 
+                0 10px 30px rgba(245, 158, 11, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .game-btn:hover {
+            transform: translateY(-4px);
+        }
+
+        .game-btn:active {
+            transform: translateY(2px);
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .platform-home-link {
+            position: fixed;
+            top: calc(84px + env(safe-area-inset-top));
+            left: calc(16px + env(safe-area-inset-left));
+            z-index: 10000;
+            width: 74px;
+            height: 54px;
+            display: grid;
+            place-items: center;
+            border: 3px solid rgba(255, 255, 255, 0.82);
+            border-radius: 18px;
+            background: rgba(8, 18, 42, 0.68);
+            color: #ffffff;
+            font: 900 20px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            text-decoration: none;
+            box-shadow: 0 8px 0 rgba(0, 0, 0, 0.28), 0 0 22px rgba(80, 210, 255, 0.36);
+            backdrop-filter: blur(10px);
+            touch-action: manipulation;
+        }
+
+        .platform-home-link:active {
+            transform: translateY(2px) scale(0.96);
+        }
+
+        .home-btn {
+            display: none;
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 100;
+        }
+
+        .home-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.1);
+        }
+
+        /* 结果页 */
+        .result-page {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .show-result .result-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: calc(100vh - 48px);
+        }
+
+        .show-result .cover-page,
+        .show-result .game-page {
+            display: none;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 48px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .result-title {
+            font-size: 3rem;
+            color: white;
+            margin: 0 0 32px 0;
+            font-weight: 800;
+            text-shadow: 0 0 30px rgba(163, 230, 53, 0.5);
+        }
+
+        .result-score {
+            font-size: 5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #a3e635 0%, #22c55e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 24px 0;
+            filter: drop-shadow(0 0 30px rgba(163, 230, 53, 0.5));
+        }
+
+        .result-stats {
+            display: flex;
+            justify-content: center;
+            gap: 64px;
+            margin: 32px 0;
+        }
+
+        .result-stat {
+            text-align: center;
+            padding: 20px 32px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+        }
+
+        .result-stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fbbf24;
+            margin-bottom: 8px;
+        }
+
+        .result-stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .result-buttons {
+            display: flex;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .result-btn {
+            flex: 1;
+            padding: 22px 0;
+            font-size: 1.4rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 1px;
+        }
+
+        .btn-again {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            box-shadow: 
+                0 10px 30px rgba(34, 197, 94, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-home {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #1a1a2e;
+            box-shadow: 
+                0 10px 30px rgba(251, 191, 36, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        .result-btn:hover {
+            transform: translateY(-4px);
+        }
+
+        .result-btn:active {
+            transform: translateY(2px);
+        }
+
+        /* 音乐控制 */
+        .music-control {
+            position: relative;
+            top: auto;
+            right: auto;
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 0 12px auto;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 100;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .music-control:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.05);
+        }
+
+        /* 响应式 */
+        /* 矮屏桌面：压缩间距，保证首屏能看到开始按钮 */
+        @media (min-width: 769px) and (max-height: 900px) {
+            .container {
+                padding-top: 14px;
+                padding-bottom: 20px;
+            }
+
+            .cover-header {
+                padding: 22px 0 16px;
+            }
+
+            .brand-title {
+                margin-bottom: 6px;
+            }
+
+            .main-title {
+                font-size: clamp(2.4rem, 5vw, 3rem);
+            }
+
+            .title-tag {
+                margin-top: 4px;
+            }
+
+            .grade-selection,
+            .semester-selection {
+                padding: 16px;
+                margin-bottom: 14px;
+                border-radius: 20px;
+            }
+
+            .grade-selection h2,
+            .semester-selection h2 {
+                margin-bottom: 10px;
+                font-size: 1.35rem;
+            }
+
+            .grade-buttons,
+            .semester-buttons {
+                margin-top: 10px;
+                gap: 10px;
+            }
+
+            .grade-btn {
+                padding: 12px 0;
+            }
+
+            .semester-btn {
+                padding: 14px 0;
+                font-size: 1.35rem;
+            }
+
+            .btn-start-cover {
+                margin: 18px auto;
+                padding: 16px 48px;
+                font-size: 1.55rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .grade-buttons {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .grade-btn {
+                font-size: 1.1rem;
+                padding: 14px 0;
+            }
+
+            .semester-btn {
+                padding: 18px 0;
+                font-size: 1.4rem;
+            }
+
+            .word-text {
+                font-size: 3.5rem;
+            }
+
+            .word-meaning {
+                font-size: 1.3rem;
+            }
+
+            .game-btn {
+                font-size: 1.3rem;
+                padding: 20px 0;
+            }
+
+            .result-title {
+                font-size: 2.2rem;
+            }
+
+            .result-score {
+                font-size: 4rem;
+            }
+
+            .result-stats {
+                gap: 32px;
+            }
+
+            .result-stat-value {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cover-header {
+                padding: 32px 0 24px;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .word-text {
+                font-size: 2.8rem;
+            }
+
+            .game-header {
+                padding: 16px;
+            }
+
+            .game-title {
+                font-size: 1.2rem;
+            }
+
+            .stat-value {
+                font-size: 1.4rem;
+            }
+
+            .word-card {
+                padding: 32px 16px;
+                min-height: 280px;
+            }
+
+            .result-card {
+                padding: 32px 20px;
+            }
+
+            .tutorial-page {
+                max-height: calc(100vh - 24px);
+            }
+
+            .tutorial-card {
+                padding: 24px 16px;
+                border-radius: 24px;
+            }
+
+            .tutorial-title {
+                margin-bottom: 20px;
+            }
+
+            .tutorial-rule {
+                grid-template-columns: 34px 1fr;
+                gap: 10px;
+                padding: 13px 12px;
+                font-size: 0.98rem;
+            }
+
+            .tutorial-rule-number {
+                width: 32px;
+                height: 32px;
+            }
+
+            .tutorial-actions {
+                flex-direction: column-reverse;
+            }
+
+            .tutorial-btn {
+                width: 100%;
+                min-width: 0;
+            }
+        }
+    </style>
+</head>
+<body class="show-tutorial-rules">
+    <a class="platform-home-link" href="#" aria-label="返回游戏平台主页" onclick="history.back(); return false;">首页</a>
+    <div class="container">
+        <!-- 封面页 -->
+        <div class="cover-page">
+            <div class="cover-header">
+                <div class="brand-title">🦊 好犀狸·亲子对垒赛</div>
+                <h1 class="main-title">你比划我来猜</h1>
+                <span class="title-tag">单词版</span>
+            </div>
+            
+            <div class="grade-selection">
+                <h2>📖 选择年级</h2>
+                <div class="grade-buttons" id="gradeButtons"></div>
+            </div>
+            
+            <div class="semester-selection">
+                <h2>📚 选择学期</h2>
+                <div class="semester-buttons">
+                    <button class="semester-btn first selected" id="firstSemester">上册</button>
+                    <button class="semester-btn second" id="secondSemester">下册</button>
+                </div>
+            </div>
+            
+            <button class="btn-start-cover" id="startBtn">🎮 开始游戏</button>
+        </div>
+        
+        <!-- 游戏页 -->
+        <!-- 教程页：先看规则，再看示范视频 -->
+        <div class="tutorial-page">
+            <section class="tutorial-card tutorial-rules-step" aria-labelledby="tutorialRulesTitle">
+                <p class="tutorial-kicker">游戏教程 · 第 1 步</p>
+                <h2 class="tutorial-title" id="tutorialRulesTitle">先了解游戏规则</h2>
+                <ol class="tutorial-rules">
+                    <li class="tutorial-rule">
+                        <span class="tutorial-rule-number">1</span>
+                        <span>两人一组，一人看平板上显示的单词然后比划表演，另一人猜词。</span>
+                    </li>
+                    <li class="tutorial-rule">
+                        <span class="tutorial-rule-number">2</span>
+                        <span>比划者看到平板上的单词后，只能用肢体动作、表情、拟声来表达，不能说话、不能口型、不能写字。</span>
+                    </li>
+                    <li class="tutorial-rule">
+                        <span class="tutorial-rule-number">3</span>
+                        <span>猜词者根据表演猜出正确的单词。</span>
+                    </li>
+                </ol>
+                <div class="tutorial-actions">
+                    <button class="tutorial-btn secondary" id="tutorialBackBtn" type="button">跳过教程</button>
+                    <button class="tutorial-btn" id="tutorialVideoBtn" type="button">观看示范视频 →</button>
+                </div>
+            </section>
+
+            <section class="tutorial-card tutorial-video-step" aria-labelledby="tutorialVideoTitle">
+                <p class="tutorial-kicker">游戏教程 · 第 2 步</p>
+                <h2 class="tutorial-title" id="tutorialVideoTitle">观看示范视频</h2>
+                <div class="tutorial-video-wrap">
+                    <video id="teachVideo" controls playsinline preload="metadata">
+                        <source src="assets/teach.mp4" type="video/mp4">
+                        你的浏览器不支持视频播放，请直接点击“开始游戏”。
+                    </video>
+                </div>
+                <p class="tutorial-hint">看完示范后，就可以开始挑战啦！</p>
+                <div class="tutorial-actions">
+                    <button class="tutorial-btn secondary" id="tutorialRulesBtn" type="button">← 再看规则</button>
+                    <button class="tutorial-btn" id="tutorialStartBtn" type="button">进入选词 🎮</button>
+                </div>
+            </section>
+        </div>
+
+        <div class="game-page">
+            <button class="home-btn" id="homeBtn">🏠</button>
+            <div class="music-control" id="musicBtn">🎵 音乐 ON</div>
+            
+            <div class="game-header">
+                <h2 class="game-title" id="gameTitle">1年级 上册</h2>
+                <div class="game-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">得分</div>
+                        <div class="stat-value" id="score">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">时间</div>
+                        <div class="stat-value time-display" id="time">120</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word-text" id="currentWord">---</div>
+                <div class="word-meaning" id="currentMeaning">---</div>
+            </div>
+            
+            <div class="game-buttons">
+                <button class="game-btn btn-correct" id="correctBtn">✓ 答对</button>
+                <button class="game-btn btn-skip" id="skipBtn">➜ 跳过</button>
+            </div>
+        </div>
+        
+        <!-- 结果页 -->
+        <div class="result-page">
+            <div class="result-card">
+                <h2 class="result-title">🎉 游戏结束!</h2>
+                <div class="result-score" id="resultScore">0 分</div>
+                <div class="result-stats">
+                    <div class="result-stat">
+                        <div class="result-stat-value" id="resultCorrect">0</div>
+                        <div class="result-stat-label">答对</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="result-stat-value" id="resultTotal">0</div>
+                        <div class="result-stat-label">总题数</div>
+                    </div>
+                </div>
+                <div class="result-buttons">
+                    <button class="result-btn btn-again" id="againBtn">🔄 再玩一次</button>
+                    <button class="result-btn btn-home" id="backHomeBtn">🏠 返回首页</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="game-tracker.js"></script>
+    <script>
+        window.gameTracker = createPlatformGameTracker('act_and_guess');
+        // 全局变量
+        let selectedGrade = 1;
+        let selectedSemester = 'first';
+        let currentWords = [];
+        let currentWordIndex = 0;
+        let score = 0;
+        let timeLeft = 120;
+        let timer = null;
+        let audioCtx = null;
+        let musicPlaying = true;
+        let bgmInterval = null;
+        
+        // 词汇库
+        const WORD_BANK = {
+            first: {
+                1: [
+                    {word:"pencil",meaning:"铅笔"},{word:"new",meaning:"新的"},{word:"book",meaning:"书"},{word:"bag",meaning:"书包"},{word:"ruler",meaning:"尺子"},
+                    {word:"pencil-case",meaning:"铅笔盒"},{word:"eraser",meaning:"橡皮"},{word:"green",meaning:"绿色"},{word:"yellow",meaning:"黄色"},
+                    {word:"orange",meaning:"橙色"},{word:"red",meaning:"红色"},{word:"pink",meaning:"粉红色"},{word:"black",meaning:"黑色"},
+                    {word:"one",meaning:"一"},{word:"two",meaning:"二"},{word:"three",meaning:"三"},{word:"four",meaning:"四"},{word:"five",meaning:"五"},
+                    {word:"six",meaning:"六"},{word:"seven",meaning:"七"},{word:"eight",meaning:"八"},{word:"nine",meaning:"九"},{word:"ten",meaning:"十"},
+                    {word:"dog",meaning:"狗"},{word:"teddy bear",meaning:"泰迪熊"},{word:"cat",meaning:"猫"},{word:"doll",meaning:"玩具娃娃"},
+                    {word:"purple",meaning:"紫色"},{word:"blue",meaning:"蓝色"},{word:"plane",meaning:"飞机"},{word:"car",meaning:"汽车"},
+                    {word:"puzzle",meaning:"拼图"},{word:"train",meaning:"火车"},{word:"scooter",meaning:"滑板车"},{word:"skipping rope",meaning:"跳绳"},
+                    {word:"lion",meaning:"狮子"},{word:"monkey",meaning:"猴子"},{word:"rabbit",meaning:"兔子"},{word:"elephant",meaning:"大象"},
+                    {word:"kangaroo",meaning:"袋鼠"},{word:"run",meaning:"跑"},{word:"walk",meaning:"走"},{word:"jump",meaning:"跳"},
+                    {word:"swim",meaning:"游泳"},{word:"fish",meaning:"鱼"},{word:"fly",meaning:"飞"},{word:"bird",meaning:"鸟"}
+                ],
+                2: [
+                    {word:"bread",meaning:"面包"},{word:"breakfast",meaning:"早餐"},{word:"carrot",meaning:"胡萝卜"},{word:"computer",meaning:"电脑"},
+                    {word:"cola",meaning:"可乐"},{word:"dance",meaning:"跳舞"},{word:"dinner",meaning:"晚餐"},{word:"do a puzzle",meaning:"拼拼图"},
+                    {word:"do one's homework",meaning:"做作业"},{word:"draw",meaning:"画画"},{word:"drink",meaning:"喝"},{word:"egg",meaning:"鸡蛋"},
+                    {word:"eleven",meaning:"十一"},{word:"fly a kite",meaning:"放风筝"},{word:"get up",meaning:"起床"},{word:"go home",meaning:"回家"},
+                    {word:"go to school",meaning:"上学"},{word:"go to bed",meaning:"上床睡觉"},{word:"have",meaning:"吃"},{word:"hungry",meaning:"饥饿的"},
+                    {word:"hurry up",meaning:"快点"},{word:"late",meaning:"迟的"},{word:"lunch",meaning:"午餐"},{word:"meat",meaning:"肉"},
+                    {word:"mop the floor",meaning:"擦地板"},{word:"newspaper",meaning:"报纸"},{word:"play the piano",meaning:"弹钢琴"},{word:"read",meaning:"读"},
+                    {word:"rice",meaning:"米饭"},{word:"ride a bike",meaning:"骑自行车"},{word:"room",meaning:"房间"},{word:"sausage",meaning:"香肠"},
+                    {word:"set the table",meaning:"摆餐具"},{word:"sing",meaning:"唱歌"},{word:"skate",meaning:"滑冰"},{word:"skip rope",meaning:"跳绳"},
+                    {word:"sun",meaning:"太阳"},{word:"thirty",meaning:"三十"},{word:"time",meaning:"时间"},{word:"twelve",meaning:"十二"},
+                    {word:"wake up",meaning:"醒来"},{word:"wash up",meaning:"洗涮"}
+                ],
+                3: [
+                    {word:"listen carefully",meaning:"仔细听"},{word:"ask a question",meaning:"提问"},{word:"learn",meaning:"学习"},{word:"ruler",meaning:"尺子"},
+                    {word:"show me",meaning:"给我看"},{word:"nice to meet you",meaning:"很高兴认识你"},{word:"train",meaning:"火车"},{word:"T-shirt",meaning:"T恤"},
+                    {word:"chocolate",meaning:"巧克力"},{word:"coffee",meaning:"咖啡"},{word:"wonton",meaning:"馄饨"},{word:"salad",meaning:"沙拉"},
+                    {word:"microphone",meaning:"麦克风"},{word:"sofa",meaning:"沙发"},{word:"hamburger",meaning:"汉堡"},{word:"cookie",meaning:"饼干"},
+                    {word:"tai chi",meaning:"太极拳"},{word:"dim sum",meaning:"点心"},{word:"pak choi",meaning:"小白菜"},{word:"kung fu",meaning:"功夫"},
+                    {word:"boy",meaning:"男孩"},{word:"girl",meaning:"女孩"},{word:"hello",meaning:"你好"},{word:"welcome",meaning:"欢迎"},
+                    {word:"good morning",meaning:"早上好"},{word:"student ID",meaning:"学生证"},{word:"red",meaning:"红色"},{word:"yellow",meaning:"黄色"},
+                    {word:"green",meaning:"绿色"},{word:"blue",meaning:"蓝色"},{word:"white",meaning:"白色"},{word:"coloured pencil",meaning:"彩色铅笔"},
+                    {word:"spell",meaning:"拼写"},{word:"keyboard",meaning:"键盘"},{word:"left hand",meaning:"左手"},{word:"right hand",meaning:"右手"},
+                    {word:"finger",meaning:"手指"},{word:"zero",meaning:"零"},{word:"one",meaning:"一"},{word:"two",meaning:"二"},
+                    {word:"three",meaning:"三"},{word:"four",meaning:"四"},{word:"five",meaning:"五"},{word:"six",meaning:"六"},
+                    {word:"seven",meaning:"七"},{word:"eight",meaning:"八"},{word:"nine",meaning:"九"},{word:"face",meaning:"脸"},
+                    {word:"ear",meaning:"耳朵"},{word:"nose",meaning:"鼻子"},{word:"eye",meaning:"眼睛"},{word:"mouth",meaning:"嘴巴"},
+                    {word:"draw a face",meaning:"画脸"},{word:"hair",meaning:"头发"},{word:"head",meaning:"头"},{word:"body",meaning:"身体"},
+                    {word:"nod my head",meaning:"点头"},{word:"keep quiet",meaning:"保持安静"},{word:"put up my hand",meaning:"举手"},
+                    {word:"deer",meaning:"鹿"},{word:"tiger",meaning:"老虎"},{word:"rabbit",meaning:"兔子"},{word:"move",meaning:"移动"},
+                    {word:"arm",meaning:"手臂"},{word:"leg",meaning:"腿"},{word:"fly like a bird",meaning:"像鸟一样飞"},{word:"run like a horse",meaning:"像马一样跑"},
+                    {word:"swim like a fish",meaning:"像鱼一样游泳"},{word:"jump like a monkey",meaning:"像猴子一样跳"},{word:"walk like a bear",meaning:"像熊一样走"}
+                ],
+                4: [
+                    {word:"beautiful",meaning:"美丽的"},{word:"flower",meaning:"花"},{word:"glad",meaning:"高兴的"},{word:"seat",meaning:"座位"},
+                    {word:"fine",meaning:"好的"},{word:"bathroom",meaning:"浴室"},{word:"baby",meaning:"婴儿"},{word:"problem",meaning:"问题"},
+                    {word:"tea",meaning:"茶"},{word:"small",meaning:"小的"},{word:"gift",meaning:"礼物"},{word:"cup",meaning:"杯子"},
+                    {word:"have a seat",meaning:"坐下"},{word:"water",meaning:"水"},{word:"rice",meaning:"米饭"},{word:"soup",meaning:"汤"},
+                    {word:"house",meaning:"房子"},{word:"full",meaning:"饱的"},{word:"spoon",meaning:"勺子"},{word:"floor",meaning:"地板"},
+                    {word:"pick",meaning:"采摘"},{word:"taste",meaning:"品尝"},{word:"pick up",meaning:"捡起"},{word:"fish",meaning:"鱼"},
+                    {word:"tissue",meaning:"纸巾"},{word:"noodle",meaning:"面条"},{word:"cook",meaning:"做饭"},{word:"dumpling",meaning:"饺子"},
+                    {word:"pot",meaning:"锅"},{word:"boil",meaning:"煮沸"},{word:"careful",meaning:"小心"},{word:"fire",meaning:"火"},
+                    {word:"add",meaning:"添加"},{word:"wash",meaning:"洗"},{word:"stir",meaning:"搅拌"},{word:"sweep",meaning:"扫"},
+                    {word:"dish",meaning:"盘子"},{word:"rubbish",meaning:"垃圾"},{word:"chore",meaning:"家务"},{word:"dirty",meaning:"脏的"},
+                    {word:"bin",meaning:"垃圾桶"},{word:"do chores",meaning:"做家务"},{word:"put away",meaning:"收拾"},{word:"table",meaning:"桌子"},
+                    {word:"clean the table",meaning:"擦桌子"},{word:"wash the dishes",meaning:"洗碗"},{word:"take out the rubbish",meaning:"倒垃圾"},
+                    {word:"clear the table",meaning:"收拾桌子"},{word:"mop",meaning:"拖地"},{word:"idea",meaning:"主意"},
+                    {word:"smile",meaning:"微笑"},{word:"open",meaning:"打开"},{word:"cheer",meaning:"欢呼"},{word:"happy",meaning:"快乐的"},
+                    {word:"share",meaning:"分享"},{word:"animal",meaning:"动物"},{word:"tell",meaning:"告诉"},{word:"give a gift",meaning:"送礼物"},
+                    {word:"buy",meaning:"买"},{word:"read a book",meaning:"读书"},{word:"take a walk",meaning:"散步"},{word:"sing a song",meaning:"唱歌"},
+                    {word:"Dragon Boat Festival",meaning:"端午节"},{word:"watch the dragon boat races",meaning:"看龙舟赛"},{word:"Spring Festival",meaning:"春节"},
+                    {word:"climb",meaning:"爬"},{word:"mountain",meaning:"山"},{word:"climb the mountain",meaning:"爬山"},{word:"present",meaning:"礼物"},
+                    {word:"lantern",meaning:"灯笼"},{word:"bamboo",meaning:"竹子"}
+                ],
+                5: [
+                    {word:"model",meaning:"模型"},{word:"stamp",meaning:"邮票"},{word:"collect",meaning:"收集"},{word:"animal",meaning:"动物"},
+                    {word:"country",meaning:"国家"},{word:"play music",meaning:"演奏音乐"},{word:"make models",meaning:"做模型"},{word:"play computer games",meaning:"玩电脑游戏"},
+                    {word:"read books",meaning:"读书"},{word:"take photos",meaning:"拍照"},{word:"plant",meaning:"种植"},{word:"club",meaning:"社团"},
+                    {word:"pet",meaning:"宠物"},{word:"keep pets",meaning:"养宠物"},{word:"football",meaning:"足球"},{word:"play football",meaning:"踢足球"},
+                    {word:"holiday",meaning:"假期"},{word:"plant trees",meaning:"种树"},{word:"friend",meaning:"朋友"},{word:"grow flowers",meaning:"种花"},
+                    {word:"make cakes",meaning:"做蛋糕"},{word:"cook",meaning:"烹饪"},{word:"bake",meaning:"烘焙"},{word:"smell",meaning:"闻"},
+                    {word:"building",meaning:"建筑物"},{word:"flag",meaning:"旗帜"},{word:"sky",meaning:"天空"},{word:"drawing",meaning:"画画"},
+                    {word:"grow up",meaning:"长大"},{word:"painter",meaning:"画家"},{word:"write stories",meaning:"写故事"},{word:"coloured pencils",meaning:"彩色铅笔"},
+                    {word:"feed",meaning:"喂养"},{word:"play basketball",meaning:"打篮球"},{word:"jump high",meaning:"跳高"},{word:"run fast",meaning:"跑得快"},
+                    {word:"swim",meaning:"游泳"},{word:"dance",meaning:"跳舞"},{word:"learn",meaning:"学习"},{word:"sick",meaning:"生病的"},
+                    {word:"cousin",meaning:"堂兄"},{word:"pupil",meaning:"小学生"},{word:"machine",meaning:"机器"},{word:"build",meaning:"建造"},
+                    {word:"count",meaning:"数数"},{word:"speak",meaning:"说话"},{word:"talk",meaning:"谈论"},{word:"map",meaning:"地图"},
+                    {word:"read a map",meaning:"看地图"},{word:"weather",meaning:"天气"},{word:"clean my room",meaning:"打扫房间"},{word:"do my homework",meaning:"做作业"},
+                    {word:"laugh",meaning:"笑"},{word:"find",meaning:"找到"},{word:"way",meaning:"路"},{word:"home",meaning:"家"},
+                    {word:"ice cream",meaning:"冰淇淋"},{word:"look for",meaning:"寻找"},{word:"exercise",meaning:"锻炼"},{word:"gym",meaning:"体育馆"}
+                ],
+                6: [
+                    {word:"cow",meaning:"奶牛"},{word:"grass",meaning:"草"},{word:"goat",meaning:"山羊"},{word:"river",meaning:"河"},
+                    {word:"goose",meaning:"鹅"},{word:"sheep",meaning:"绵羊"},{word:"pig",meaning:"猪"},{word:"horse",meaning:"马"},
+                    {word:"chicken",meaning:"鸡"},{word:"duck",meaning:"鸭子"},{word:"vegetable",meaning:"蔬菜"},{word:"cut grass",meaning:"割草"},
+                    {word:"air",meaning:"空气"},{word:"ride",meaning:"骑"},{word:"milk",meaning:"挤奶"},{word:"grandparent",meaning:"祖父母"},
+                    {word:"wake up",meaning:"醒来"},{word:"tired",meaning:"累的"},{word:"picnic",meaning:"野餐"},{word:"city",meaning:"城市"},
+                    {word:"quiet",meaning:"安静的"},{word:"noisy",meaning:"吵闹的"},{word:"slow",meaning:"慢的"},{word:"wide",meaning:"宽的"},
+                    {word:"heavy",meaning:"重的"},{word:"cinema",meaning:"电影院"},{word:"museum",meaning:"博物馆"},{word:"supermarket",meaning:"超市"},
+                    {word:"clap",meaning:"拍手"},{word:"stamp feet",meaning:"跺脚"},{word:"knee",meaning:"膝盖"},{word:"tap knees",meaning:"敲膝盖"},
+                    {word:"beautiful",meaning:"美丽的"},{word:"bright",meaning:"明亮的"},{word:"light",meaning:"灯"},{word:"idea",meaning:"主意"},
+                    {word:"park",meaning:"公园"},{word:"amusement park",meaning:"游乐园"},{word:"ill",meaning:"生病的"},{word:"sick",meaning:"生病的"},
+                    {word:"cold",meaning:"感冒"},{word:"fever",meaning:"发烧"},{word:"headache",meaning:"头疼"},{word:"toothache",meaning:"牙疼"},
+                    {word:"stomachache",meaning:"胃疼"},{word:"take medicine",meaning:"吃药"},{word:"see a doctor",meaning:"看医生"},
+                    {word:"feel better",meaning:"感觉好些"},{word:"drink water",meaning:"喝水"},{word:"have a rest",meaning:"休息"}
+                ],
+                7: [
+                    {word:"guitar",meaning:"吉他"},{word:"confident",meaning:"自信的"},{word:"courage",meaning:"勇气"},{word:"friendship",meaning:"友谊"},
+                    {word:"respect",meaning:"尊重"},{word:"trust",meaning:"信任"},{word:"appearance",meaning:"外貌"},{word:"straight",meaning:"直的"},
+                    {word:"dark",meaning:"黑暗的"},{word:"glad",meaning:"高兴的"},{word:"heart",meaning:"心脏"},{word:"modern dance",meaning:"现代舞"},
+                    {word:"wake up",meaning:"醒来"},{word:"share",meaning:"分享"},{word:"dive into",meaning:"跳水"},{word:"geography",meaning:"地理"},
+                    {word:"corner",meaning:"角落"},{word:"magazine",meaning:"杂志"},{word:"teenager",meaning:"青少年"},{word:"diary",meaning:"日记"},
+                    {word:"presentation",meaning:"演讲"},{word:"mood",meaning:"情绪"},{word:"celebrate",meaning:"庆祝"},{word:"success",meaning:"成功"},
+                    {word:"do the dishes",meaning:"洗碗"},{word:"have classes",meaning:"上课"},{word:"kick",meaning:"踢"},{word:"town",meaning:"城镇"},
+                    {word:"thunder",meaning:"雷声"},{word:"lightning",meaning:"闪电"},{word:"snake",meaning:"蛇"},{word:"sandcastle",meaning:"沙堡"},
+                    {word:"follow",meaning:"跟随"},{word:"cover",meaning:"覆盖"},{word:"freezing",meaning:"极冷的"},{word:"north",meaning:"北方"},
+                    {word:"wide",meaning:"宽的"},{word:"whale",meaning:"鲸"},{word:"butterfly",meaning:"蝴蝶"},{word:"plastic",meaning:"塑料"},
+                    {word:"burn",meaning:"燃烧"},{word:"oil",meaning:"石油"},{word:"gas",meaning:"气体"},{word:"emperor",meaning:"皇帝"},
+                    {word:"hunt",meaning:"打猎"},{word:"blow",meaning:"吹"},{word:"cut down",meaning:"砍倒"},{word:"blow away",meaning:"吹走"},
+                    {word:"collect",meaning:"收集"},{word:"low",meaning:"低的"},{word:"weigh",meaning:"称重"},{word:"breathe",meaning:"呼吸"}
+                ],
+                8: [
+                    {word:"amazing",meaning:"令人惊叹的"},{word:"incredible",meaning:"难以置信的"},{word:"fascinating",meaning:"迷人的"},{word:"brilliant",meaning:"才华横溢的"},
+                    {word:"outstanding",meaning:"杰出的"},{word:"excellent",meaning:"优秀的"},{word:"fantastic",meaning:"极好的"},{word:"wonderful",meaning:"精彩的"},
+                    {word:"adventure",meaning:"冒险"},{word:"journey",meaning:"旅程"},{word:"exploration",meaning:"探索"},{word:"discovery",meaning:"发现"},
+                    {word:"mystery",meaning:"神秘"},{word:"challenge",meaning:"挑战"},{word:"opportunity",meaning:"机会"},{word:"experience",meaning:"经历"},
+                    {word:"imagination",meaning:"想象力"},{word:"creativity",meaning:"创造力"},{word:"innovation",meaning:"创新"},{word:"inspiration",meaning:"灵感"},
+                    {word:"knowledge",meaning:"知识"},{word:"wisdom",meaning:"智慧"},{word:"intelligence",meaning:"智力"},{word:"talent",meaning:"天赋"},
+                    {word:"passion",meaning:"热情"},{word:"determination",meaning:"决心"},{word:"perseverance",meaning:"坚持不懈"},{word:"dedication",meaning:"奉献"},
+                    {word:"teamwork",meaning:"团队合作"},{word:"leadership",meaning:"领导力"},{word:"communication",meaning:"沟通"},{word:"cooperation",meaning:"合作"},
+                    {word:"responsibility",meaning:"责任"},{word:"integrity",meaning:"诚信"},{word:"honesty",meaning:"诚实"},{word:"kindness",meaning:"善良"},
+                    {word:"generosity",meaning:"慷慨"},{word:"patience",meaning:"耐心"},{word:"forgiveness",meaning:"宽恕"},{word:"gratitude",meaning:"感激"},
+                    {word:"happiness",meaning:"幸福"},{word:"love",meaning:"爱"},{word:"peace",meaning:"和平"},{word:"harmony",meaning:"和谐"},
+                    {word:"freedom",meaning:"自由"},{word:"equality",meaning:"平等"},{word:"justice",meaning:"正义"},{word:"humanity",meaning:"人类"}
+                ],
+                9: [
+                    {word:"wake up",meaning:"醒来"},{word:"giraffe",meaning:"长颈鹿"},{word:"wealth",meaning:"财富"},{word:"write down",meaning:"写下"},
+                    {word:"firework",meaning:"烟花"},{word:"pink",meaning:"粉色"},{word:"green",meaning:"绿色"},{word:"baseball",meaning:"棒球"},
+                    {word:"take off",meaning:"起飞/脱下"},{word:"give a speech",meaning:"发表演讲"},{word:"soil",meaning:"土壤"},{word:"throw away",meaning:"扔掉"},
+                    {word:"cut down",meaning:"砍伐"},{word:"earthquake",meaning:"地震"},{word:"typhoon",meaning:"台风"},{word:"deaf",meaning:"聋的"},
+                    {word:"stare",meaning:"盯着看"},{word:"screen",meaning:"屏幕"},{word:"fall down",meaning:"跌倒"},{word:"glove",meaning:"手套"},
+                    {word:"couple",meaning:"一对/情侣"},{word:"rope",meaning:"绳子"},{word:"enter",meaning:"进入"},{word:"badminton",meaning:"羽毛球"},
+                    {word:"keep one's balance",meaning:"保持平衡"},{word:"ski",meaning:"滑雪"},{word:"guard",meaning:"守卫"},{word:"bright",meaning:"明亮的"},
+                    {word:"concert",meaning:"音乐会"},{word:"silent",meaning:"沉默的"},{word:"musical instrument",meaning:"乐器"},{word:"dentist",meaning:"牙医"},
+                    {word:"take a walk",meaning:"散步"},{word:"hug",meaning:"拥抱"},{word:"clap",meaning:"鼓掌"},{word:"wave",meaning:"挥手"},
+                    {word:"run",meaning:"跑"},{word:"jump",meaning:"跳"},{word:"swim",meaning:"游泳"},{word:"dance",meaning:"跳舞"}
+                ]
+            },
+            second: {
+                1: [
+                    { word: "baby", meaning: "婴儿" },{ word: "tall", meaning: "高的" },{ word: "short", meaning: "矮的" },
+                    { word: "grandma", meaning: "奶奶" },{ word: "grandpa", meaning: "爷爷" },{ word: "brother", meaning: "兄弟" },
+                    { word: "father", meaning: "爸爸" },{ word: "mother", meaning: "妈妈" },{ word: "sister", meaning: "姐妹" },
+                    { word: "big", meaning: "大的" },{ word: "small", meaning: "小的" },{ word: "wash", meaning: "洗" },
+                    { word: "play", meaning: "玩" },{ word: "cook", meaning: "做饭" },{ word: "eat", meaning: "吃" },
+                    { word: "sleep", meaning: "睡觉" },{ word: "fast", meaning: "快的" },{ word: "slow", meaning: "慢的" },
+                    { word: "feed", meaning: "喂" },{ word: "scary", meaning: "吓人的" },{ word: "spider", meaning: "蜘蛛" },
+                    { word: "duck", meaning: "鸭子" },{ word: "mouse", meaning: "老鼠" },{ word: "frog", meaning: "青蛙" },
+                    { word: "chicken", meaning: "鸡" },{ word: "apple", meaning: "苹果" },{ word: "banana", meaning: "香蕉" },
+                    { word: "grape", meaning: "葡萄" },{ word: "water", meaning: "水" },{ word: "cake", meaning: "蛋糕" },
+                    { word: "tea", meaning: "茶" },{ word: "milk", meaning: "牛奶" },{ word: "hamburger", meaning: "汉堡包" },
+                    { word: "noodle", meaning: "面条" },{ word: "room", meaning: "房间" },{ word: "bed", meaning: "床" },
+                    { word: "chair", meaning: "椅子" },{ word: "desk", meaning: "书桌" },{ word: "door", meaning: "门" },
+                    { word: "floor", meaning: "地板" }
+                ],
+                2: [
+                    { word: "motorbike", meaning: "摩托车" },{ word: "white", meaning: "白色" },{ word: "live", meaning: "居住" },
+                    { word: "taxi", meaning: "出租车" },{ word: "underground", meaning: "地铁" },{ word: "engineer", meaning: "工程师" },
+                    { word: "fireman", meaning: "消防员" },{ word: "manager", meaning: "经理" },{ word: "teacher", meaning: "老师" },
+                    { word: "doctor", meaning: "医生" },{ word: "nurse", meaning: "护士" },{ word: "policeman", meaning: "警察" },
+                    { word: "driver", meaning: "司机" },{ word: "bookstore", meaning: "书店" },{ word: "comic", meaning: "漫画" },
+                    { word: "buy", meaning: "买" },{ word: "playground", meaning: "操场" },{ word: "park", meaning: "公园" },
+                    { word: "supermarket", meaning: "超市" },{ word: "tomorrow", meaning: "明天" },{ word: "today", meaning: "今天" },
+                    { word: "boot", meaning: "靴子" },{ word: "scarf", meaning: "围巾" },{ word: "sunglasses", meaning: "墨镜" },
+                    { word: "watermelon", meaning: "西瓜" },{ word: "rain", meaning: "下雨" },{ word: "snow", meaning: "下雪" },
+                    { word: "sunny", meaning: "晴朗" },{ word: "windy", meaning: "有风" },{ word: "umbrella", meaning: "雨伞" },
+                    { word: "cold", meaning: "寒冷" },{ word: "hot", meaning: "热" },{ word: "trainer", meaning: "教练" },
+                    { word: "coat", meaning: "外套" },{ word: "spring", meaning: "春天" },{ word: "summer", meaning: "夏天" },
+                    { word: "warm", meaning: "温暖" },{ word: "cool", meaning: "凉爽" },{ word: "autumn", meaning: "秋天" },
+                    { word: "winter", meaning: "冬天" }
+                ],
+                3: [
+                    { word: "see", meaning: "看见" },{ word: "use", meaning: "使用" },{ word: "hand", meaning: "手" },
+                    { word: "make", meaning: "做" },{ word: "work", meaning: "工作" },{ word: "together", meaning: "一起" },
+                    { word: "dress", meaning: "连衣裙" },{ word: "brush", meaning: "刷" },{ word: "teeth", meaning: "牙齿" },
+                    { word: "wash", meaning: "洗" },{ word: "face", meaning: "脸" },{ word: "comb", meaning: "梳头" },
+                    { word: "hair", meaning: "头发" },{ word: "eat", meaning: "吃" },{ word: "drink", meaning: "喝" },
+                    { word: "read", meaning: "阅读" },{ word: "book", meaning: "书" },{ word: "play", meaning: "玩" },
+                    { word: "sports", meaning: "运动" },{ word: "watch", meaning: "看" },{ word: "bed", meaning: "床" },
+                    { word: "run", meaning: "跑" },{ word: "swim", meaning: "游泳" },{ word: "classroom", meaning: "教室" },
+                    { word: "rule", meaning: "规则" },{ word: "speak", meaning: "说话" },{ word: "say", meaning: "说" },
+                    { word: "give", meaning: "给" },{ word: "help", meaning: "帮助" },{ word: "listen", meaning: "听" },
+                    { word: "like", meaning: "喜欢" },{ word: "follow", meaning: "跟随" },{ word: "stand", meaning: "站立" },
+                    { word: "carry", meaning: "搬运" },{ word: "stop", meaning: "停止" },{ word: "look", meaning: "看" },
+                    { word: "careful", meaning: "小心" },{ word: "quiet", meaning: "安静" },{ word: "finish", meaning: "完成" },
+                    { word: "love", meaning: "爱" }
+                ],
+                4: [
+                    { word: "grow", meaning: "生长" },{ word: "carrot", meaning: "胡萝卜" },{ word: "bamboo", meaning: "竹子" },
+                    { word: "apple", meaning: "苹果" },{ word: "umbrella", meaning: "雨伞" },{ word: "delicious", meaning: "美味" },
+                    { word: "live", meaning: "居住" },{ word: "easy", meaning: "容易" },{ word: "star", meaning: "星星" },
+                    { word: "rose", meaning: "玫瑰" },{ word: "tree", meaning: "树" },{ word: "beautiful", meaning: "美丽" },
+                    { word: "flower", meaning: "花" },{ word: "sleep", meaning: "睡觉" },{ word: "want", meaning: "想要" },
+                    { word: "tell", meaning: "告诉" },{ word: "cat", meaning: "猫" },{ word: "dog", meaning: "狗" },
+                    { word: "duck", meaning: "鸭子" },{ word: "pig", meaning: "猪" },{ word: "horse", meaning: "马" },
+                    { word: "elephant", meaning: "大象" },{ word: "mouse", meaning: "老鼠" },{ word: "bee", meaning: "蜜蜂" },
+                    { word: "slow", meaning: "缓慢" },{ word: "honey", meaning: "蜂蜜" },{ word: "brother", meaning: "兄弟" },
+                    { word: "say", meaning: "说" },{ word: "fast", meaning: "快速" },{ word: "hungry", meaning: "饥饿" },
+                    { word: "rain", meaning: "下雨" },{ word: "snow", meaning: "下雪" },{ word: "sunny", meaning: "晴朗" },
+                    { word: "windy", meaning: "有风" },{ word: "cold", meaning: "寒冷" },{ word: "hot", meaning: "热" },
+                    { word: "fly", meaning: "飞" },{ word: "snowman", meaning: "雪人" },{ word: "cook", meaning: "烹饪" },
+                    { word: "swim", meaning: "游泳" }
+                ],
+                5: [
+                    { word: "ski", meaning: "滑雪" },{ word: "plant", meaning: "种植" },{ word: "camp", meaning: "野营" },
+                    { word: "fly a kite", meaning: "放风筝" },{ word: "make a snowman", meaning: "堆雪人" },{ word: "swim", meaning: "游泳" },
+                    { word: "go swimming", meaning: "去游泳" },{ word: "travel", meaning: "旅行" },{ word: "climb", meaning: "爬" },
+                    { word: "picnic", meaning: "野餐" },{ word: "invite", meaning: "邀请" },{ word: "arrive", meaning: "到达" },
+                    { word: "call", meaning: "打电话" },{ word: "leave", meaning: "离开" },{ word: "take a walk", meaning: "散步" },
+                    { word: "buy", meaning: "购买" },{ word: "hurt", meaning: "受伤" },{ word: "fall down", meaning: "跌倒" },
+                    { word: "feed", meaning: "喂养" },{ word: "cross the street", meaning: "过马路" },{ word: "run", meaning: "跑" },
+                    { word: "get lost", meaning: "迷路" },{ word: "turn right", meaning: "右转" },{ word: "stand", meaning: "站立" },
+                    { word: "believe", meaning: "相信" },{ word: "pass", meaning: "通过" },{ word: "enter", meaning: "进入" },
+                    { word: "show", meaning: "展示" },{ word: "deer", meaning: "鹿" },{ word: "beach", meaning: "海滩" },
+                    { word: "pool", meaning: "水池" },{ word: "gate", meaning: "大门" },{ word: "supermarket", meaning: "超市" },
+                    { word: "taxi", meaning: "出租车" },{ word: "train", meaning: "火车" },{ word: "ship", meaning: "船" },
+                    { word: "hotel", meaning: "酒店" },{ word: "restaurant", meaning: "餐厅" },{ word: "police station", meaning: "警察局" },
+                    { word: "zoo", meaning: "动物园" }
+                ],
+                6: [
+                    { word: "win", meaning: "获胜" },{ word: "carry", meaning: "搬运" },{ word: "hurry", meaning: "匆忙" },
+                    { word: "take a rest", meaning: "休息" },{ word: "ride a bike", meaning: "骑自行车" },{ word: "cut a finger", meaning: "割伤手指" },
+                    { word: "have a picnic", meaning: "野餐" },{ word: "go fishing", meaning: "钓鱼" },{ word: "come over", meaning: "过来" },
+                    { word: "look for", meaning: "寻找" },{ word: "crash", meaning: "撞击" },{ word: "die", meaning: "死亡" },
+                    { word: "pick up", meaning: "捡起" },{ word: "appear", meaning: "出现" },{ word: "happen", meaning: "发生" },
+                    { word: "wait for", meaning: "等待" },{ word: "tell the truth", meaning: "说实话" },{ word: "save", meaning: "拯救" },
+                    { word: "disappear", meaning: "消失" },{ word: "pollute", meaning: "污染" },{ word: "make a poster", meaning: "制作海报" },
+                    { word: "invent", meaning: "发明" },{ word: "laugh", meaning: "笑" },{ word: "laugh at", meaning: "嘲笑" },
+                    { word: "throw", meaning: "扔" },{ word: "share", meaning: "分享" },{ word: "keep quiet", meaning: "保持安静" },
+                    { word: "stand in line", meaning: "排队" },{ word: "push", meaning: "推" },{ word: "light up", meaning: "点亮" },
+                    { word: "cry out", meaning: "大喊" },{ word: "choose", meaning: "选择" },{ word: "pay attention to", meaning: "注意" },
+                    { word: "book", meaning: "预订" },{ word: "land", meaning: "着陆" },{ word: "kangaroo", meaning: "袋鼠" },
+                    { word: "tiger", meaning: "老虎" },{ word: "lion", meaning: "狮子" },{ word: "panda", meaning: "熊猫" },
+                    { word: "elephant", meaning: "大象" }
+                ],
+                7: [
+                    { word: "run", meaning: "跑" },{ word: "jump", meaning: "跳" },{ word: "swim", meaning: "游泳" },
+                    { word: "climb", meaning: "爬" },{ word: "fly", meaning: "飞" },{ word: "dance", meaning: "跳舞" },
+                    { word: "sing", meaning: "唱歌" },{ word: "laugh", meaning: "笑" },{ word: "cry", meaning: "哭" },
+                    { word: "shout", meaning: "喊" },{ word: "whisper", meaning: "耳语" },{ word: "read", meaning: "读" },
+                    { word: "write", meaning: "写" },{ word: "draw", meaning: "画" },{ word: "cook", meaning: "做饭" },
+                    { word: "eat", meaning: "吃" },{ word: "drink", meaning: "喝" },{ word: "sleep", meaning: "睡觉" },
+                    { word: "wake up", meaning: "醒来" },{ word: "brush teeth", meaning: "刷牙" },{ word: "wash face", meaning: "洗脸" },
+                    { word: "take a shower", meaning: "洗澡" },{ word: "get dressed", meaning: "穿衣服" },{ word: "comb hair", meaning: "梳头" },
+                    { word: "ride a bike", meaning: "骑自行车" },{ word: "drive a car", meaning: "开车" },{ word: "take a taxi", meaning: "打出租车" },
+                    { word: "play football", meaning: "踢足球" },{ word: "play basketball", meaning: "打篮球" },{ word: "play tennis", meaning: "打网球" },
+                    { word: "throw", meaning: "扔" },{ word: "catch", meaning: "接" },{ word: "kick", meaning: "踢" },
+                    { word: "push", meaning: "推" },{ word: "pull", meaning: "拉" },{ word: "clap", meaning: "鼓掌" },
+                    { word: "wave", meaning: "挥手" },{ word: "point", meaning: "指" },{ word: "hug", meaning: "拥抱" },
+                    { word: "kiss", meaning: "亲吻" }
+                ],
+                8: [
+                    { word: "pain", meaning: "痛苦" },{ word: "joy", meaning: "愉快" },{ word: "ache", meaning: "疼痛" },
+                    { word: "look after", meaning: "照顾" },{ word: "flower arranging", meaning: "插花" },{ word: "clap", meaning: "鼓掌" },
+                    { word: "shake", meaning: "握手/摇动" },{ word: "ballet", meaning: "芭蕾舞" },{ word: "nod", meaning: "点头" },
+                    { word: "shy", meaning: "害羞的" },{ word: "sit up", meaning: "坐起来" },{ word: "eye contact", meaning: "眼神交流" },
+                    { word: "hero", meaning: "英雄" },{ word: "crash", meaning: "撞击" },{ word: "wave", meaning: "挥手/波浪" },
+                    { word: "breath", meaning: "呼吸" },{ word: "weather forecast", meaning: "天气预报" },{ word: "hold one's breath", meaning: "屏住呼吸" },
+                    { word: "take photos", meaning: "拍照" },{ word: "gun", meaning: "枪" },{ word: "mirror", meaning: "镜子" },
+                    { word: "handsome", meaning: "英俊的" },{ word: "throw", meaning: "扔" },{ word: "punish", meaning: "惩罚" },
+                    { word: "shoulder", meaning: "肩膀" },{ word: "slim", meaning: "苗条的" },{ word: "thirsty", meaning: "口渴的" },
+                    { word: "shoot dead", meaning: "射杀" },{ word: "stage", meaning: "舞台" },{ word: "Christmas", meaning: "圣诞节" },
+                    { word: "beef", meaning: "牛肉" },{ word: "hit", meaning: "击打" },{ word: "muscle", meaning: "肌肉" },
+                    { word: "throat", meaning: "喉咙" },{ word: "cough", meaning: "咳嗽" },{ word: "fear", meaning: "害怕" },
+                    { word: "refuse", meaning: "拒绝" },{ word: "camera", meaning: "相机" },{ word: "argue", meaning: "争吵" },
+                    { word: "shout for help", meaning: "呼救" }
+                ],
+                9: [
+                    { word: "wake up", meaning: "醒来" },{ word: "giraffe", meaning: "长颈鹿" },{ word: "wealth", meaning: "财富" },
+                    { word: "write down", meaning: "写下" },{ word: "firework", meaning: "烟花" },{ word: "pink", meaning: "粉色" },
+                    { word: "green", meaning: "绿色" },{ word: "baseball", meaning: "棒球" },{ word: "take off", meaning: "起飞/脱下" },
+                    { word: "give a speech", meaning: "发表演讲" },{ word: "soil", meaning: "土壤" },{ word: "throw away", meaning: "扔掉" },
+                    { word: "cut down", meaning: "砍伐" },{ word: "earthquake", meaning: "地震" },{ word: "typhoon", meaning: "台风" },
+                    { word: "deaf", meaning: "聋的" },{ word: "stare", meaning: "盯着看" },{ word: "screen", meaning: "屏幕" },
+                    { word: "fall down", meaning: "跌倒" },{ word: "glove", meaning: "手套" },{ word: "couple", meaning: "一对/情侣" },
+                    { word: "rope", meaning: "绳子" },{ word: "enter", meaning: "进入" },{ word: "badminton", meaning: "羽毛球" },
+                    { word: "keep one's balance", meaning: "保持平衡" },{ word: "ski", meaning: "滑雪" },{ word: "guard", meaning: "守卫" },
+                    { word: "bright", meaning: "明亮的" },{ word: "concert", meaning: "音乐会" },{ word: "silent", meaning: "沉默的" },
+                    { word: "musical instrument", meaning: "乐器" },{ word: "dentist", meaning: "牙医" },{ word: "take a walk", meaning: "散步" },
+                    { word: "hug", meaning: "拥抱" },{ word: "clap", meaning: "鼓掌" },{ word: "wave", meaning: "挥手" },
+                    { word: "run", meaning: "跑" },{ word: "jump", meaning: "跳" },{ word: "swim", meaning: "游泳" },
+                    { word: "dance", meaning: "跳舞" }
+                ]
+            }
+        };
+        
+        // 工具函数
+        function shuffle(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+        
+        // 音乐函数
+        function initAudio() {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        
+        function playBGM() {
+            if (!audioCtx) initAudio();
+            
+            const playNote = (freq, startTime, duration, type = 'sine', volume = 0.08) => {
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                oscillator.frequency.value = freq;
+                oscillator.type = type;
+                
+                gainNode.gain.setValueAtTime(volume, startTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + duration);
+                
+                oscillator.start(startTime);
+                oscillator.stop(startTime + duration);
+            };
+            
+            const playDrum = (startTime) => {
+                const noise = audioCtx.createBufferSource();
+                const noiseBuffer = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.1, audioCtx.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+                for (let i = 0; i < noiseBuffer.length; i++) {
+                    output[i] = Math.random() * 2 - 1;
+                }
+                noise.buffer = noiseBuffer;
+                
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.value = 200;
+                
+                const gainNode = audioCtx.createGain();
+                gainNode.gain.setValueAtTime(0.3, startTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.1);
+                
+                noise.connect(filter);
+                filter.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                noise.start(startTime);
+            };
+            
+            const happyChords = [
+                [523.25, 659.25, 783.99],
+                [587.33, 739.99, 880.00],
+                [659.25, 830.61, 987.77],
+                [698.46, 880.00, 1046.50],
+                [783.99, 987.77, 1174.66],
+                [880.00, 1108.73, 1318.51]
+            ];
+            
+            const melodyNotes = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50];
+            let time = audioCtx.currentTime;
+            let chordIndex = 0;
+            let melodyIndex = 0;
+            let beatCount = 0;
+            
+            bgmInterval = setInterval(() => {
+                if (!musicPlaying) return;
+                
+                if (beatCount % 2 === 0) {
+                    playDrum(time);
+                    
+                    const chord = happyChords[chordIndex % happyChords.length];
+                    playNote(chord[0], time, 1, 'triangle', 0.06);
+                    playNote(chord[1], time, 1, 'triangle', 0.06);
+                    playNote(chord[2], time, 1, 'triangle', 0.06);
+                    
+                    chordIndex++;
+                }
+                
+                if (beatCount % 4 === 1 || beatCount % 4 === 3) {
+                    const note = melodyNotes[melodyIndex % melodyNotes.length];
+                    playNote(note, time, 0.35, 'sine', 0.08);
+                    playNote(note * 1.5, time + 0.18, 0.25, 'sine', 0.05);
+                    melodyIndex += Math.floor(Math.random() * 2) + 1;
+                }
+                
+                beatCount++;
+                time += 0.25;
+            }, 250);
+        }
+        
+        function toggleMusic() {
+            musicPlaying = !musicPlaying;
+            const musicBtn = document.getElementById('musicBtn');
+            musicBtn.textContent = musicPlaying ? '🎵 音乐 ON' : '🔇 音乐 OFF';
+            
+            if (musicPlaying && !bgmInterval) {
+                playBGM();
+            }
+        }
+        
+        // 游戏函数
+        // 按窗口尺寸缩放整个界面，避免出现滚动条或内容被裁切。
+        let fitFrame = null;
+        function fitToViewport() {
+            const container = document.querySelector('.container');
+            if (!container) return;
+
+            // 先恢复原始比例测量当前页面的真实内容尺寸。
+            container.style.setProperty('--fit-scale', '1');
+            const naturalHeight = Math.max(container.scrollHeight, 1);
+            const naturalWidth = Math.max(container.scrollWidth, 1);
+            const availableHeight = Math.max(window.innerHeight - 8, 1);
+            const availableWidth = Math.max(window.innerWidth - 16, 1);
+            const scale = Math.min(1, availableHeight / naturalHeight, availableWidth / naturalWidth);
+
+            container.style.setProperty('--fit-scale', scale.toFixed(4));
+        }
+
+        function scheduleFitToViewport() {
+            if (fitFrame) cancelAnimationFrame(fitFrame);
+            fitFrame = requestAnimationFrame(function() {
+                fitFrame = null;
+                fitToViewport();
+            });
+        }
+
+        // Tutorial flow: rules first, then the demonstration video.
+        function showTutorialRules() {
+            document.body.className = 'show-tutorial-rules';
+            scheduleFitToViewport();
+        }
+
+        function showTutorialVideo() {
+            document.body.className = 'show-tutorial-video';
+            scheduleFitToViewport();
+            const teachVideo = document.getElementById('teachVideo');
+            teachVideo.currentTime = 0;
+            const playPromise = teachVideo.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(() => {
+                    // If autoplay is blocked, the native controls remain available.
+                });
+            }
+        }
+
+        function returnToCoverFromTutorial() {
+            const teachVideo = document.getElementById('teachVideo');
+            teachVideo.pause();
+            document.body.className = 'show-cover';
+            scheduleFitToViewport();
+        }
+
+        function startGame() {
+            const wordBank = WORD_BANK[selectedSemester][selectedGrade];
+            if (!wordBank || wordBank.length === 0) {
+                alert('该年级学期暂无词汇');
+                return;
+            }
+            window.gameTracker.start();
+            
+            currentWords = shuffle(wordBank);
+            currentWordIndex = 0;
+            score = 0;
+            timeLeft = 120;
+            
+            // 更新界面
+            document.getElementById('gameTitle').textContent = selectedGrade + '年级 ' + (selectedSemester === 'first' ? '上册' : '下册');
+            document.getElementById('score').textContent = score;
+            document.getElementById('time').textContent = timeLeft;
+            
+            // 切换到游戏页
+            document.body.className = 'show-game';
+            scheduleFitToViewport();
+
+            const teachVideo = document.getElementById('teachVideo');
+            if (teachVideo) teachVideo.pause();
+            
+            // 显示第一个单词
+            showWord();
+            
+            // 开始计时
+            timer = setInterval(function() {
+                timeLeft--;
+                document.getElementById('time').textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+            
+            // 开始音乐
+            if (!bgmInterval && musicPlaying) {
+                playBGM();
+            }
+        }
+        
+        function showWord() {
+            if (currentWordIndex >= currentWords.length) {
+                endGame();
+                return;
+            }
+            
+            const word = currentWords[currentWordIndex];
+            document.getElementById('currentWord').textContent = word.word;
+            document.getElementById('currentMeaning').textContent = '提示: ' + word.meaning;
+        }
+        
+        function handleCorrect() {
+            score += 1;
+            document.getElementById('score').textContent = score;
+            currentWordIndex++;
+            showWord();
+        }
+        
+        function handleSkip() {
+            currentWordIndex++;
+            showWord();
+        }
+        
+        function endGame() {
+            clearInterval(timer);
+            window.gameTracker.finish(score);
+            
+            const correctCount = score;
+            const totalCount = currentWordIndex;
+            
+            document.getElementById('resultScore').textContent = score + ' 分';
+            document.getElementById('resultCorrect').textContent = correctCount;
+            document.getElementById('resultTotal').textContent = totalCount;
+            
+            document.body.className = 'show-result';
+            scheduleFitToViewport();
+        }
+        
+        function goHome() {
+            window.gameTracker.abandon();
+            history.back();
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化年级按钮
+            const gradeButtons = document.getElementById('gradeButtons');
+            for (let i = 1; i <= 9; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'grade-btn';
+                btn.textContent = i + '年级';
+                btn.addEventListener('click', function() {
+                    selectedGrade = i;
+                    document.querySelectorAll('.grade-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+                if (i === 1) btn.classList.add('selected');
+                gradeButtons.appendChild(btn);
+            }
+            
+            // 初始化学期按钮
+            document.getElementById('firstSemester').addEventListener('click', function() {
+                selectedSemester = 'first';
+                document.querySelectorAll('.semester-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+            
+            document.getElementById('secondSemester').addEventListener('click', function() {
+                selectedSemester = 'second';
+                document.querySelectorAll('.semester-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+            
+            // 初始化游戏按钮
+            document.getElementById('startBtn').addEventListener('click', startGame);
+            document.getElementById('tutorialVideoBtn').addEventListener('click', showTutorialVideo);
+            document.getElementById('tutorialStartBtn').addEventListener('click', returnToCoverFromTutorial);
+            document.getElementById('tutorialBackBtn').addEventListener('click', returnToCoverFromTutorial);
+            document.getElementById('tutorialRulesBtn').addEventListener('click', function() {
+                document.getElementById('teachVideo').pause();
+                document.body.className = 'show-tutorial-rules';
+            });
+            document.getElementById('homeBtn').addEventListener('click', goHome);
+            document.getElementById('correctBtn').addEventListener('click', handleCorrect);
+            document.getElementById('skipBtn').addEventListener('click', handleSkip);
+            document.getElementById('againBtn').addEventListener('click', startGame);
+            document.getElementById('backHomeBtn').addEventListener('click', goHome);
+            document.getElementById('musicBtn').addEventListener('click', toggleMusic);
+
+            window.addEventListener('resize', scheduleFitToViewport);
+            if (window.visualViewport) {
+                window.visualViewport.addEventListener('resize', scheduleFitToViewport);
+            }
+            scheduleFitToViewport();
+        });
+    </script>
+</body>
+</html>
