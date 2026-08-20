@@ -13,11 +13,13 @@
     header p { margin: 0; color: #5d6880; font-size: 1.05rem; }
     main { width: min(1100px, calc(100% - 32px)); margin: 0 auto 56px; }
     .games { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-    a.game { display: flex; min-height: 132px; padding: 22px; flex-direction: column; justify-content: space-between; color: inherit; text-decoration: none; background: #fff; border: 1px solid #e4e9f2; border-radius: 18px; box-shadow: 0 8px 24px #26385d12; transition: transform .18s ease, box-shadow .18s ease; }
+    a.game { display: flex; min-height: 300px; overflow: hidden; flex-direction: column; color: inherit; text-decoration: none; background: #fff; border: 1px solid #e4e9f2; border-radius: 18px; box-shadow: 0 8px 24px #26385d12; transition: transform .18s ease, box-shadow .18s ease; }
     a.game:hover, a.game:focus-visible { transform: translateY(-3px); box-shadow: 0 14px 30px #26385d24; outline: none; }
-    .emoji { font-size: 2rem; }
-    .name { margin-top: 12px; font-size: 1.15rem; font-weight: 700; }
-    .play { margin-top: 14px; color: #4263eb; font-size: .92rem; font-weight: 600; }
+    .cover { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: #eef2f8; }
+    .game-info { display: flex; flex: 1; padding: 14px 16px 16px; flex-direction: column; }
+    .emoji { font-size: 1.35rem; line-height: 1; }
+    .name { margin-top: 8px; font-size: 1.15rem; font-weight: 700; }
+    .play { margin-top: auto; padding-top: 12px; color: #4263eb; font-size: .92rem; font-weight: 600; }
     footer { padding: 0 24px 32px; text-align: center; color: #7a8499; font-size: .9rem; }
   </style>
 </head>
@@ -28,22 +30,22 @@
   </header>
   <main>
     <section class="games" aria-label="游戏列表">
-      <a class="game" href="https://wxy1588.github.io/fishing-game/"><span class="emoji">🎣</span><span class="name">叉鱼游戏</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/poke-bubbles/"><span class="emoji">🫧</span><span class="name">戳泡泡</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/word-tug-of-war/"><span class="emoji">💪</span><span class="name">单词拔河</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/word-pairing/"><span class="emoji">🧩</span><span class="name">单词匹配</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/word-bomb/"><span class="emoji">💣</span><span class="name">单词炸弹</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/train-run/"><span class="emoji">🚂</span><span class="name">火车快跑</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/sheep-game/"><span class="emoji">🐑</span><span class="name">咩了个咩</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/charades-game/"><span class="emoji">🎭</span><span class="name">你来比划我来猜</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/farm-escape/"><span class="emoji">🐔</span><span class="name">农场大逃亡</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/candy-jar/"><span class="emoji">🍬</span><span class="name">糖果罐游戏</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/grammar-monster/"><span class="emoji">👾</span><span class="name">语法怪兽</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/grammar-monster-hospital/"><span class="emoji">🏥</span><span class="name">语法怪兽医院</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/grammar-train-repair/"><span class="emoji">🛠️</span><span class="name">语法火车修理</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/grammar-run/"><span class="emoji">🏃</span><span class="name">语法跑酷</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/word-crossword/"><span class="emoji">🔤</span><span class="name">纵横词花</span><span class="play">开始游戏 →</span></a>
-      <a class="game" href="https://wxy1588.github.io/flip-card/"><span class="emoji">🃏</span><span class="name">翻牌</span><span class="play">开始游戏 →</span></a>
+      <a class="game" href="https://wxy1588.github.io/fishing-game/"><img class="cover" src="picture/叉鱼游戏.png" alt="叉鱼游戏封面"><span class="game-info"><span class="emoji">🎣</span><span class="name">叉鱼游戏</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/poke-bubbles/"><img class="cover" src="picture/戳泡泡.png" alt="戳泡泡封面"><span class="game-info"><span class="emoji">🫧</span><span class="name">戳泡泡</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/word-tug-of-war/"><img class="cover" src="picture/单词拔河.png" alt="单词拔河封面"><span class="game-info"><span class="emoji">💪</span><span class="name">单词拔河</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/word-pairing/"><img class="cover" src="picture/单词匹配.png" alt="单词匹配封面"><span class="game-info"><span class="emoji">🧩</span><span class="name">单词匹配</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/word-bomb/"><img class="cover" src="picture/单词炸弹.png" alt="单词炸弹封面"><span class="game-info"><span class="emoji">💣</span><span class="name">单词炸弹</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/train-run/"><img class="cover" src="picture/火车快跑.png" alt="火车快跑封面"><span class="game-info"><span class="emoji">🚂</span><span class="name">火车快跑</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/sheep-game/"><img class="cover" src="picture/咩了个咩.png" alt="咩了个咩封面"><span class="game-info"><span class="emoji">🐑</span><span class="name">咩了个咩</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/charades-game/"><img class="cover" src="picture/你来比划我来猜.png" alt="你来比划我来猜封面"><span class="game-info"><span class="emoji">🎭</span><span class="name">你来比划我来猜</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/farm-escape/"><img class="cover" src="picture/农场大逃亡.png" alt="农场大逃亡封面"><span class="game-info"><span class="emoji">🐔</span><span class="name">农场大逃亡</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/candy-jar/"><img class="cover" src="picture/糖果罐游戏.png" alt="糖果罐游戏封面"><span class="game-info"><span class="emoji">🍬</span><span class="name">糖果罐游戏</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/grammar-monster/"><img class="cover" src="picture/语法怪兽.png" alt="语法怪兽封面"><span class="game-info"><span class="emoji">👾</span><span class="name">语法怪兽</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/grammar-monster-hospital/"><img class="cover" src="picture/怪兽医院.png" alt="语法怪兽医院封面"><span class="game-info"><span class="emoji">🏥</span><span class="name">语法怪兽医院</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/grammar-train-repair/"><img class="cover" src="picture/语法火车修理.png" alt="语法火车修理封面"><span class="game-info"><span class="emoji">🛠️</span><span class="name">语法火车修理</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/grammar-run/"><img class="cover" src="picture/语法空中跑酷.png" alt="语法跑酷封面"><span class="game-info"><span class="emoji">🏃</span><span class="name">语法跑酷</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/word-crossword/"><img class="cover" src="picture/纵横词花.png" alt="纵横词花封面"><span class="game-info"><span class="emoji">🔤</span><span class="name">纵横词花</span><span class="play">开始游戏 →</span></span></a>
+      <a class="game" href="https://wxy1588.github.io/flip-card/"><img class="cover" src="picture/翻翻搭档.png" alt="翻牌封面"><span class="game-info"><span class="emoji">🃏</span><span class="name">翻牌</span><span class="play">开始游戏 →</span></span></a>
     </section>
   </main>
   <footer>静态网页游戏合集 · 可通过 GitHub Pages 发布</footer>
