@@ -9,3 +9,6 @@ node_modules/
 dist/
 build/
 *.log
+
+# Local staging copies for independent game repositories
+_game-repos/
